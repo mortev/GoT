@@ -25,12 +25,14 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "GameGamePlayer", "Game", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Game), "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GamePlayer))]
 [assembly: EdmRelationshipAttribute("Model", "RegionRegionStatus", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus))]
 [assembly: EdmRelationshipAttribute("Model", "CharacterHouseCard", "Character", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Character), "HouseCard", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.HouseCard))]
-[assembly: EdmRelationshipAttribute("Model", "RoundRegionStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.RegionStatus))]
+[assembly: EdmRelationshipAttribute("Model", "RoundRegionStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus))]
 [assembly: EdmRelationshipAttribute("Model", "GamePlayerMove", "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.GamePlayer), "Move", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Move))]
 [assembly: EdmRelationshipAttribute("Model", "RoundMove", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "Move", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Move))]
-[assembly: EdmRelationshipAttribute("Model", "RoundInfluenceTrackStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "InfluenceTrackStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.InfluenceTrackStatus))]
+[assembly: EdmRelationshipAttribute("Model", "RoundInfluenceTrackStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "InfluenceTrackStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.InfluenceTrackStatus))]
 [assembly: EdmRelationshipAttribute("Model", "GameGameResult", "Game", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Game), "GameResult", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GameResult))]
 [assembly: EdmRelationshipAttribute("Model", "GamePlayerGameResult", "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.GamePlayer), "GameResult", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GameResult))]
+[assembly: EdmRelationshipAttribute("Model", "RegionPort", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.Port))]
+[assembly: EdmRelationshipAttribute("Model", "RegionRegionRelationship", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "RegionRelationship", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionRelationship))]
 
 #endregion
 
@@ -289,6 +291,38 @@ namespace GoT.Data
             }
         }
         private ObjectSet<GameResult> _GameResults;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Port> Ports
+        {
+            get
+            {
+                if ((_Ports == null))
+                {
+                    _Ports = base.CreateObjectSet<Port>("Ports");
+                }
+                return _Ports;
+            }
+        }
+        private ObjectSet<Port> _Ports;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<RegionRelationship> RegionRelationships
+        {
+            get
+            {
+                if ((_RegionRelationships == null))
+                {
+                    _RegionRelationships = base.CreateObjectSet<RegionRelationship>("RegionRelationships");
+                }
+                return _RegionRelationships;
+            }
+        }
+        private ObjectSet<RegionRelationship> _RegionRelationships;
 
         #endregion
 
@@ -396,6 +430,22 @@ namespace GoT.Data
         public void AddToGameResults(GameResult gameResult)
         {
             base.AddObject("GameResults", gameResult);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Ports EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPorts(Port port)
+        {
+            base.AddObject("Ports", port);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RegionRelationships EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRegionRelationships(RegionRelationship regionRelationship)
+        {
+            base.AddObject("RegionRelationships", regionRelationship);
         }
 
         #endregion
@@ -1141,11 +1191,13 @@ namespace GoT.Data
         /// </summary>
         /// <param name="houseId">Initial value of the HouseId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static House CreateHouse(global::System.Int32 houseId, global::System.String name)
+        /// <param name="capitalRegionId">Initial value of the CapitalRegionId property.</param>
+        public static House CreateHouse(global::System.Int32 houseId, global::System.String name, global::System.Int64 capitalRegionId)
         {
             House house = new House();
             house.HouseId = houseId;
             house.Name = name;
+            house.CapitalRegionId = capitalRegionId;
             return house;
         }
 
@@ -1251,6 +1303,30 @@ namespace GoT.Data
         private global::System.Byte[] _Sigil;
         partial void OnSigilChanging(global::System.Byte[] value);
         partial void OnSigilChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 CapitalRegionId
+        {
+            get
+            {
+                return _CapitalRegionId;
+            }
+            set
+            {
+                OnCapitalRegionIdChanging(value);
+                ReportPropertyChanging("CapitalRegionId");
+                _CapitalRegionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CapitalRegionId");
+                OnCapitalRegionIdChanged();
+            }
+        }
+        private global::System.Int64 _CapitalRegionId;
+        partial void OnCapitalRegionIdChanging(global::System.Int64 value);
+        partial void OnCapitalRegionIdChanged();
 
         #endregion
 
@@ -2326,6 +2402,131 @@ namespace GoT.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="Port")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Port : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Port object.
+        /// </summary>
+        /// <param name="portId">Initial value of the PortId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Port CreatePort(global::System.Int64 portId, global::System.String name)
+        {
+            Port port = new Port();
+            port.PortId = portId;
+            port.Name = name;
+            return port;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 PortId
+        {
+            get
+            {
+                return _PortId;
+            }
+            set
+            {
+                if (_PortId != value)
+                {
+                    OnPortIdChanging(value);
+                    ReportPropertyChanging("PortId");
+                    _PortId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PortId");
+                    OnPortIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _PortId;
+        partial void OnPortIdChanging(global::System.Int64 value);
+        partial void OnPortIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RegionPort", "Region")]
+        public Region Region
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Region>("Model.RegionPort", "Region").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Region>("Model.RegionPort", "Region").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Region> RegionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Region>("Model.RegionPort", "Region");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Region>("Model.RegionPort", "Region", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Model", Name="Region")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2339,20 +2540,22 @@ namespace GoT.Data
         /// <param name="regionId">Initial value of the RegionId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="supplyCount">Initial value of the SupplyCount property.</param>
-        /// <param name="hasConsolidatePower">Initial value of the HasConsolidatePower property.</param>
-        /// <param name="hasPort">Initial value of the HasPort property.</param>
         /// <param name="isStronghold">Initial value of the IsStronghold property.</param>
         /// <param name="isCastle">Initial value of the IsCastle property.</param>
-        public static Region CreateRegion(global::System.Int64 regionId, global::System.String name, global::System.Int32 supplyCount, global::System.Boolean hasConsolidatePower, global::System.Boolean hasPort, global::System.Boolean isStronghold, global::System.Boolean isCastle)
+        /// <param name="minNoOfUnitsToEnter">Initial value of the MinNoOfUnitsToEnter property.</param>
+        /// <param name="consolidatePowerCount">Initial value of the ConsolidatePowerCount property.</param>
+        /// <param name="isOcean">Initial value of the IsOcean property.</param>
+        public static Region CreateRegion(global::System.Int64 regionId, global::System.String name, global::System.Int32 supplyCount, global::System.Boolean isStronghold, global::System.Boolean isCastle, global::System.Int32 minNoOfUnitsToEnter, global::System.Int32 consolidatePowerCount, global::System.Boolean isOcean)
         {
             Region region = new Region();
             region.RegionId = regionId;
             region.Name = name;
             region.SupplyCount = supplyCount;
-            region.HasConsolidatePower = hasConsolidatePower;
-            region.HasPort = hasPort;
             region.IsStronghold = isStronghold;
             region.IsCastle = isCastle;
+            region.MinNoOfUnitsToEnter = minNoOfUnitsToEnter;
+            region.ConsolidatePowerCount = consolidatePowerCount;
+            region.IsOcean = isOcean;
             return region;
         }
 
@@ -2464,54 +2667,6 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean HasConsolidatePower
-        {
-            get
-            {
-                return _HasConsolidatePower;
-            }
-            set
-            {
-                OnHasConsolidatePowerChanging(value);
-                ReportPropertyChanging("HasConsolidatePower");
-                _HasConsolidatePower = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("HasConsolidatePower");
-                OnHasConsolidatePowerChanged();
-            }
-        }
-        private global::System.Boolean _HasConsolidatePower;
-        partial void OnHasConsolidatePowerChanging(global::System.Boolean value);
-        partial void OnHasConsolidatePowerChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean HasPort
-        {
-            get
-            {
-                return _HasPort;
-            }
-            set
-            {
-                OnHasPortChanging(value);
-                ReportPropertyChanging("HasPort");
-                _HasPort = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("HasPort");
-                OnHasPortChanged();
-            }
-        }
-        private global::System.Boolean _HasPort;
-        partial void OnHasPortChanging(global::System.Boolean value);
-        partial void OnHasPortChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Boolean IsStronghold
         {
             get
@@ -2554,10 +2709,321 @@ namespace GoT.Data
         private global::System.Boolean _IsCastle;
         partial void OnIsCastleChanging(global::System.Boolean value);
         partial void OnIsCastleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 MinNoOfUnitsToEnter
+        {
+            get
+            {
+                return _MinNoOfUnitsToEnter;
+            }
+            set
+            {
+                OnMinNoOfUnitsToEnterChanging(value);
+                ReportPropertyChanging("MinNoOfUnitsToEnter");
+                _MinNoOfUnitsToEnter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MinNoOfUnitsToEnter");
+                OnMinNoOfUnitsToEnterChanged();
+            }
+        }
+        private global::System.Int32 _MinNoOfUnitsToEnter;
+        partial void OnMinNoOfUnitsToEnterChanging(global::System.Int32 value);
+        partial void OnMinNoOfUnitsToEnterChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DefenceCount
+        {
+            get
+            {
+                return _DefenceCount;
+            }
+            set
+            {
+                OnDefenceCountChanging(value);
+                ReportPropertyChanging("DefenceCount");
+                _DefenceCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DefenceCount");
+                OnDefenceCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DefenceCount;
+        partial void OnDefenceCountChanging(Nullable<global::System.Int32> value);
+        partial void OnDefenceCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ConsolidatePowerCount
+        {
+            get
+            {
+                return _ConsolidatePowerCount;
+            }
+            set
+            {
+                OnConsolidatePowerCountChanging(value);
+                ReportPropertyChanging("ConsolidatePowerCount");
+                _ConsolidatePowerCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ConsolidatePowerCount");
+                OnConsolidatePowerCountChanged();
+            }
+        }
+        private global::System.Int32 _ConsolidatePowerCount;
+        partial void OnConsolidatePowerCountChanging(global::System.Int32 value);
+        partial void OnConsolidatePowerCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsOcean
+        {
+            get
+            {
+                return _IsOcean;
+            }
+            set
+            {
+                OnIsOceanChanging(value);
+                ReportPropertyChanging("IsOcean");
+                _IsOcean = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsOcean");
+                OnIsOceanChanged();
+            }
+        }
+        private global::System.Boolean _IsOcean;
+        partial void OnIsOceanChanging(global::System.Boolean value);
+        partial void OnIsOceanChanged();
 
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RegionPort", "Port")]
+        public Port Port
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Port>("Model.RegionPort", "Port").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Port>("Model.RegionPort", "Port").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Port> PortReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Port>("Model.RegionPort", "Port");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Port>("Model.RegionPort", "Port", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RegionRegionRelationship", "RegionRelationship")]
+        public EntityCollection<RegionRelationship> RegionRelationships
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RegionRelationship>("Model.RegionRegionRelationship", "RegionRelationship");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RegionRelationship>("Model.RegionRegionRelationship", "RegionRelationship", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="RegionRelationship")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RegionRelationship : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RegionRelationship object.
+        /// </summary>
+        /// <param name="regionRelationshipId">Initial value of the RegionRelationshipId property.</param>
+        /// <param name="destinationRegionId">Initial value of the DestinationRegionId property.</param>
+        /// <param name="bridgeRegionId">Initial value of the BridgeRegionId property.</param>
+        public static RegionRelationship CreateRegionRelationship(global::System.Int64 regionRelationshipId, global::System.Int64 destinationRegionId, global::System.Int64 bridgeRegionId)
+        {
+            RegionRelationship regionRelationship = new RegionRelationship();
+            regionRelationship.RegionRelationshipId = regionRelationshipId;
+            regionRelationship.DestinationRegionId = destinationRegionId;
+            regionRelationship.BridgeRegionId = bridgeRegionId;
+            return regionRelationship;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 RegionRelationshipId
+        {
+            get
+            {
+                return _RegionRelationshipId;
+            }
+            set
+            {
+                if (_RegionRelationshipId != value)
+                {
+                    OnRegionRelationshipIdChanging(value);
+                    ReportPropertyChanging("RegionRelationshipId");
+                    _RegionRelationshipId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RegionRelationshipId");
+                    OnRegionRelationshipIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _RegionRelationshipId;
+        partial void OnRegionRelationshipIdChanging(global::System.Int64 value);
+        partial void OnRegionRelationshipIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 DestinationRegionId
+        {
+            get
+            {
+                return _DestinationRegionId;
+            }
+            set
+            {
+                OnDestinationRegionIdChanging(value);
+                ReportPropertyChanging("DestinationRegionId");
+                _DestinationRegionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DestinationRegionId");
+                OnDestinationRegionIdChanged();
+            }
+        }
+        private global::System.Int64 _DestinationRegionId;
+        partial void OnDestinationRegionIdChanging(global::System.Int64 value);
+        partial void OnDestinationRegionIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 BridgeRegionId
+        {
+            get
+            {
+                return _BridgeRegionId;
+            }
+            set
+            {
+                OnBridgeRegionIdChanging(value);
+                ReportPropertyChanging("BridgeRegionId");
+                _BridgeRegionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BridgeRegionId");
+                OnBridgeRegionIdChanged();
+            }
+        }
+        private global::System.Int64 _BridgeRegionId;
+        partial void OnBridgeRegionIdChanging(global::System.Int64 value);
+        partial void OnBridgeRegionIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RegionRegionRelationship", "Region")]
+        public Region SourceRegion
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Region>("Model.RegionRegionRelationship", "Region").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Region>("Model.RegionRegionRelationship", "Region").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Region> SourceRegionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Region>("Model.RegionRegionRelationship", "Region");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Region>("Model.RegionRegionRelationship", "Region", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -2870,17 +3336,13 @@ namespace GoT.Data
         /// <param name="roundNumber">Initial value of the RoundNumber property.</param>
         /// <param name="wildlingsCount">Initial value of the WildlingsCount property.</param>
         /// <param name="restriction">Initial value of the Restriction property.</param>
-        /// <param name="wildlingsAttack">Initial value of the WildlingsAttack property.</param>
-        /// <param name="wildlingsVictory">Initial value of the WildlingsVictory property.</param>
-        public static Round CreateRound(global::System.Int64 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingsCount, global::System.String restriction, global::System.Boolean wildlingsAttack, global::System.Boolean wildlingsVictory)
+        public static Round CreateRound(global::System.Int64 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingsCount, global::System.String restriction)
         {
             Round round = new Round();
             round.RoundId = roundId;
             round.RoundNumber = roundNumber;
             round.WildlingsCount = wildlingsCount;
             round.Restriction = restriction;
-            round.WildlingsAttack = wildlingsAttack;
-            round.WildlingsVictory = wildlingsVictory;
             return round;
         }
 
@@ -2990,9 +3452,9 @@ namespace GoT.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean WildlingsAttack
+        public Nullable<global::System.Boolean> WildlingsAttack
         {
             get
             {
@@ -3007,16 +3469,16 @@ namespace GoT.Data
                 OnWildlingsAttackChanged();
             }
         }
-        private global::System.Boolean _WildlingsAttack;
-        partial void OnWildlingsAttackChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _WildlingsAttack;
+        partial void OnWildlingsAttackChanging(Nullable<global::System.Boolean> value);
         partial void OnWildlingsAttackChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean WildlingsVictory
+        public Nullable<global::System.Boolean> WildlingsVictory
         {
             get
             {
@@ -3031,8 +3493,8 @@ namespace GoT.Data
                 OnWildlingsVictoryChanged();
             }
         }
-        private global::System.Boolean _WildlingsVictory;
-        partial void OnWildlingsVictoryChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _WildlingsVictory;
+        partial void OnWildlingsVictoryChanging(Nullable<global::System.Boolean> value);
         partial void OnWildlingsVictoryChanged();
 
         #endregion
@@ -3085,33 +3547,17 @@ namespace GoT.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "RoundRegionStatus", "RegionStatus")]
-        public RegionStatus RegionStatus
+        public EntityCollection<RegionStatus> RegionStatuses
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RegionStatus>("Model.RoundRegionStatus", "RegionStatus").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RegionStatus>("Model.RoundRegionStatus", "RegionStatus").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<RegionStatus> RegionStatusReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RegionStatus>("Model.RoundRegionStatus", "RegionStatus");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RegionStatus>("Model.RoundRegionStatus", "RegionStatus");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RegionStatus>("Model.RoundRegionStatus", "RegionStatus", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RegionStatus>("Model.RoundRegionStatus", "RegionStatus", value);
                 }
             }
         }
@@ -3145,33 +3591,17 @@ namespace GoT.Data
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "RoundInfluenceTrackStatus", "InfluenceTrackStatus")]
-        public InfluenceTrackStatus InfluenceTrackStatus
+        public EntityCollection<InfluenceTrackStatus> InfluenceTrackStatuses
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<InfluenceTrackStatus> InfluenceTrackStatusReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus", value);
                 }
             }
         }

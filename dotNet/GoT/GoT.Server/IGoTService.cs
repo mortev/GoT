@@ -26,6 +26,14 @@ namespace GoT.Server
         List<HouseDto> GetHouses();
 
         /// <summary>
+        /// Get list of Regions.
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
+        List<RegionDto> GetRegions();
+
+        /// <summary>
         /// Get list of Players.
         /// </summary>
         /// <returns></returns>

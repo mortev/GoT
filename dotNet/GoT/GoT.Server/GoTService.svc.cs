@@ -41,9 +41,15 @@ namespace GoT.Server
                         {
                             HouseId = house.HouseId,
                             Name = house.Name,
+                            Description = house.Description,
                             Sigil = house.Sigil,
                             Characters = new List<CharacterDto>()
                         };
+
+                        var capitalRegion = ctx.Regions.First(w => w.RegionId == house.CapitalRegionId);
+                        if (capitalRegion != null)
+                            houseDto.CapitalRegionId = capitalRegion.RegionId;
+
                         foreach (var character in house.Characters)
                         {
                             var characterDto = new CharacterDto
@@ -57,6 +63,71 @@ namespace GoT.Server
                             houseDto.Characters.Add(characterDto);
                         }
                         response.Add(houseDto);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+
+            }
+
+            return response;
+        }
+
+        /// <inheritdoc />
+        public List<RegionDto> GetRegions()
+        {
+            var response = new List<RegionDto>();
+
+            try
+            {
+                using (var ctx = new GoTDataContext())
+                {
+                    var regions = ctx.Regions.ToList();
+
+                    //TODO:: Refactor to mapping classes::
+                    foreach (var region in regions)
+                    {
+                        var regionDto = new RegionDto
+                        {
+                            RegionId = region.RegionId,
+                            Name = region.Name,
+                            Description = region.Description,
+                            ConsolidatePowerCount = region.ConsolidatePowerCount,
+                            DefenceCount = region.DefenceCount,
+                            IsCastle = region.IsCastle,
+                            IsStronghold = region.IsStronghold,
+                            IsOcean = region.IsOcean,
+                            SupplyCount = region.SupplyCount,
+                            MinNoOfUnitsToEnter = region.MinNoOfUnitsToEnter,
+                            Relationships = new List<RegionRelationshipDto>()
+                        };
+
+                        //Add port::
+                        if(region.Port != null)
+                        {
+                            var portDto = new PortDto
+                            {
+                                PortId = region.Port.PortId,
+                                Name = region.Port.Name
+                            };
+
+                            regionDto.Port = portDto;
+                        }
+
+                        //Add region relationships::
+                        foreach (var relationship in region.RegionRelationships)
+                        {
+                            var relationshipDto = new RegionRelationshipDto
+                            {
+                                RegionRelationshipId = relationship.RegionRelationshipId,
+                                SourceRegionId = relationship.SourceRegion.RegionId,
+                                DestinationRegionId = relationship.DestinationRegionId,
+                                BridgeRegionId = relationship.BridgeRegionId
+                            };
+                            regionDto.Relationships.Add(relationshipDto);
+                        }
+                        response.Add(regionDto);
                     }
                 }
             }

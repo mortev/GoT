@@ -81,6 +81,9 @@
     <Compile Include="Messages\HouseCardDto.cs" />
     <Compile Include="Messages\HouseDto.cs" />
     <Compile Include="Messages\PlayerDto.cs" />
+    <Compile Include="Messages\PortDto.cs" />
+    <Compile Include="Messages\RegionDto.cs" />
+    <Compile Include="Messages\RegionRelationshipDto.cs" />
     <Compile Include="Messages\TrophyDto.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

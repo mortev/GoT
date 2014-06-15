@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/15/2014 17:04:20
+-- Date Created: 06/15/2014 20:26:47
 -- Generated from EDMX file: C:\Data\Repository\GoT\dotNet\GoT\GoT.Data\Model.edmx
 -- --------------------------------------------------
 
@@ -39,7 +39,7 @@ IF OBJECT_ID(N'[dbo].[FK_CharacterHouseCard]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HouseCards] DROP CONSTRAINT [FK_CharacterHouseCard];
 GO
 IF OBJECT_ID(N'[dbo].[FK_RoundRegionStatus]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Rounds] DROP CONSTRAINT [FK_RoundRegionStatus];
+    ALTER TABLE [dbo].[RegionStatuses] DROP CONSTRAINT [FK_RoundRegionStatus];
 GO
 IF OBJECT_ID(N'[dbo].[FK_GamePlayerMove]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Moves] DROP CONSTRAINT [FK_GamePlayerMove];
@@ -48,13 +48,19 @@ IF OBJECT_ID(N'[dbo].[FK_RoundMove]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Moves] DROP CONSTRAINT [FK_RoundMove];
 GO
 IF OBJECT_ID(N'[dbo].[FK_RoundInfluenceTrackStatus]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Rounds] DROP CONSTRAINT [FK_RoundInfluenceTrackStatus];
+    ALTER TABLE [dbo].[InfluenceTrackStatuses] DROP CONSTRAINT [FK_RoundInfluenceTrackStatus];
 GO
 IF OBJECT_ID(N'[dbo].[FK_GameGameResult]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[GameResults] DROP CONSTRAINT [FK_GameGameResult];
 GO
 IF OBJECT_ID(N'[dbo].[FK_GamePlayerGameResult]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[GameResults] DROP CONSTRAINT [FK_GamePlayerGameResult];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionPort]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PortSet] DROP CONSTRAINT [FK_RegionPort];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionRegionRelationship]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionRelationshipSet] DROP CONSTRAINT [FK_RegionRegionRelationship];
 GO
 
 -- --------------------------------------------------
@@ -100,6 +106,12 @@ GO
 IF OBJECT_ID(N'[dbo].[GameResults]', 'U') IS NOT NULL
     DROP TABLE [dbo].[GameResults];
 GO
+IF OBJECT_ID(N'[dbo].[PortSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PortSet];
+GO
+IF OBJECT_ID(N'[dbo].[RegionRelationshipSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RegionRelationshipSet];
+GO
 IF OBJECT_ID(N'[dbo].[PlayerTrophy]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PlayerTrophy];
 GO
@@ -124,7 +136,8 @@ CREATE TABLE [dbo].[Houses] (
     [HouseId] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL,
-    [Sigil] varbinary(max)  NULL
+    [Sigil] varbinary(max)  NULL,
+    [CapitalRegionId] bigint  NOT NULL
 );
 GO
 
@@ -145,10 +158,12 @@ CREATE TABLE [dbo].[Regions] (
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL,
     [SupplyCount] int  NOT NULL,
-    [HasConsolidatePower] bit  NOT NULL,
-    [HasPort] bit  NOT NULL,
     [IsStronghold] bit  NOT NULL,
-    [IsCastle] bit  NOT NULL
+    [IsCastle] bit  NOT NULL,
+    [MinNoOfUnitsToEnter] int  NOT NULL,
+    [DefenceCount] int  NULL,
+    [ConsolidatePowerCount] int  NOT NULL,
+    [IsOcean] bit  NOT NULL
 );
 GO
 
@@ -187,11 +202,9 @@ CREATE TABLE [dbo].[Rounds] (
     [RoundNumber] int  NOT NULL,
     [WildlingsCount] int  NOT NULL,
     [Restriction] nvarchar(max)  NOT NULL,
-    [WildlingsAttack] bit  NOT NULL,
-    [WildlingsVictory] bit  NOT NULL,
-    [Game_GameId] bigint  NOT NULL,
-    [RegionStatus_RegionStatusId] bigint  NOT NULL,
-    [InfluenceTrackStatus_InfluenceTrackId] bigint  NOT NULL
+    [WildlingsAttack] bit  NULL,
+    [WildlingsVictory] bit  NULL,
+    [Game_GameId] bigint  NOT NULL
 );
 GO
 
@@ -204,7 +217,8 @@ CREATE TABLE [dbo].[RegionStatuses] (
     [ShipCount] int  NOT NULL,
     [SiegeCount] int  NOT NULL,
     [ControlledByGamePlayerId] bigint  NOT NULL,
-    [Region_RegionId] bigint  NOT NULL
+    [Region_RegionId] bigint  NOT NULL,
+    [Round_RoundId] bigint  NOT NULL
 );
 GO
 
@@ -234,7 +248,8 @@ CREATE TABLE [dbo].[InfluenceTrackStatuses] (
     [IronThronePosition] int  NOT NULL,
     [FiefdomPosition] int  NOT NULL,
     [KingsCourtPosition] int  NOT NULL,
-    [GamePlayerId] bigint  NOT NULL
+    [GamePlayerId] bigint  NOT NULL,
+    [Round_RoundId] bigint  NOT NULL
 );
 GO
 
@@ -253,6 +268,23 @@ CREATE TABLE [dbo].[GameResults] (
     [Place] int  NOT NULL,
     [GameGameResult_GameResult_GameId] bigint  NOT NULL,
     [GamePlayer_GamePlayerId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'Ports'
+CREATE TABLE [dbo].[Ports] (
+    [PortId] bigint IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Region_RegionId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'RegionRelationships'
+CREATE TABLE [dbo].[RegionRelationships] (
+    [RegionRelationshipId] bigint IDENTITY(1,1) NOT NULL,
+    [DestinationRegionId] bigint  NOT NULL,
+    [BridgeRegionId] bigint  NOT NULL,
+    [SourceRegion_RegionId] bigint  NOT NULL
 );
 GO
 
@@ -343,6 +375,18 @@ GO
 ALTER TABLE [dbo].[GameResults]
 ADD CONSTRAINT [PK_GameResults]
     PRIMARY KEY CLUSTERED ([GameResultId] ASC);
+GO
+
+-- Creating primary key on [PortId] in table 'Ports'
+ALTER TABLE [dbo].[Ports]
+ADD CONSTRAINT [PK_Ports]
+    PRIMARY KEY CLUSTERED ([PortId] ASC);
+GO
+
+-- Creating primary key on [RegionRelationshipId] in table 'RegionRelationships'
+ALTER TABLE [dbo].[RegionRelationships]
+ADD CONSTRAINT [PK_RegionRelationships]
+    PRIMARY KEY CLUSTERED ([RegionRelationshipId] ASC);
 GO
 
 -- Creating primary key on [Player_PlayerId], [Trophys_TrophyId] in table 'PlayerTrophy'
@@ -448,18 +492,18 @@ ON [dbo].[HouseCards]
     ([Character_CharacterId]);
 GO
 
--- Creating foreign key on [RegionStatus_RegionStatusId] in table 'Rounds'
-ALTER TABLE [dbo].[Rounds]
+-- Creating foreign key on [Round_RoundId] in table 'RegionStatuses'
+ALTER TABLE [dbo].[RegionStatuses]
 ADD CONSTRAINT [FK_RoundRegionStatus]
-    FOREIGN KEY ([RegionStatus_RegionStatusId])
-    REFERENCES [dbo].[RegionStatuses]
-        ([RegionStatusId])
+    FOREIGN KEY ([Round_RoundId])
+    REFERENCES [dbo].[Rounds]
+        ([RoundId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoundRegionStatus'
 CREATE INDEX [IX_FK_RoundRegionStatus]
-ON [dbo].[Rounds]
-    ([RegionStatus_RegionStatusId]);
+ON [dbo].[RegionStatuses]
+    ([Round_RoundId]);
 GO
 
 -- Creating foreign key on [GamePlayerMove_Move_GamePlayerId] in table 'Moves'
@@ -490,18 +534,18 @@ ON [dbo].[Moves]
     ([Round_RoundId]);
 GO
 
--- Creating foreign key on [InfluenceTrackStatus_InfluenceTrackId] in table 'Rounds'
-ALTER TABLE [dbo].[Rounds]
+-- Creating foreign key on [Round_RoundId] in table 'InfluenceTrackStatuses'
+ALTER TABLE [dbo].[InfluenceTrackStatuses]
 ADD CONSTRAINT [FK_RoundInfluenceTrackStatus]
-    FOREIGN KEY ([InfluenceTrackStatus_InfluenceTrackId])
-    REFERENCES [dbo].[InfluenceTrackStatuses]
-        ([InfluenceTrackId])
+    FOREIGN KEY ([Round_RoundId])
+    REFERENCES [dbo].[Rounds]
+        ([RoundId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoundInfluenceTrackStatus'
 CREATE INDEX [IX_FK_RoundInfluenceTrackStatus]
-ON [dbo].[Rounds]
-    ([InfluenceTrackStatus_InfluenceTrackId]);
+ON [dbo].[InfluenceTrackStatuses]
+    ([Round_RoundId]);
 GO
 
 -- Creating foreign key on [GameGameResult_GameResult_GameId] in table 'GameResults'
@@ -530,6 +574,34 @@ ADD CONSTRAINT [FK_GamePlayerGameResult]
 CREATE INDEX [IX_FK_GamePlayerGameResult]
 ON [dbo].[GameResults]
     ([GamePlayer_GamePlayerId]);
+GO
+
+-- Creating foreign key on [Region_RegionId] in table 'Ports'
+ALTER TABLE [dbo].[Ports]
+ADD CONSTRAINT [FK_RegionPort]
+    FOREIGN KEY ([Region_RegionId])
+    REFERENCES [dbo].[Regions]
+        ([RegionId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RegionPort'
+CREATE INDEX [IX_FK_RegionPort]
+ON [dbo].[Ports]
+    ([Region_RegionId]);
+GO
+
+-- Creating foreign key on [SourceRegion_RegionId] in table 'RegionRelationships'
+ALTER TABLE [dbo].[RegionRelationships]
+ADD CONSTRAINT [FK_RegionRegionRelationship]
+    FOREIGN KEY ([SourceRegion_RegionId])
+    REFERENCES [dbo].[Regions]
+        ([RegionId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RegionRegionRelationship'
+CREATE INDEX [IX_FK_RegionRegionRelationship]
+ON [dbo].[RegionRelationships]
+    ([SourceRegion_RegionId]);
 GO
 
 -- --------------------------------------------------
