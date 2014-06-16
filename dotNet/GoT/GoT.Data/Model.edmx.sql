@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/15/2014 20:26:47
+-- Date Created: 06/16/2014 10:14:38
 -- Generated from EDMX file: C:\Data\Repository\GoT\dotNet\GoT\GoT.Data\Model.edmx
 -- --------------------------------------------------
 
@@ -57,10 +57,16 @@ IF OBJECT_ID(N'[dbo].[FK_GamePlayerGameResult]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[GameResults] DROP CONSTRAINT [FK_GamePlayerGameResult];
 GO
 IF OBJECT_ID(N'[dbo].[FK_RegionPort]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PortSet] DROP CONSTRAINT [FK_RegionPort];
+    ALTER TABLE [dbo].[Ports] DROP CONSTRAINT [FK_RegionPort];
 GO
 IF OBJECT_ID(N'[dbo].[FK_RegionRegionRelationship]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionRelationshipSet] DROP CONSTRAINT [FK_RegionRegionRelationship];
+    ALTER TABLE [dbo].[RegionRelationships] DROP CONSTRAINT [FK_RegionRegionRelationship];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionStatusPort]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionStatuses] DROP CONSTRAINT [FK_RegionStatusPort];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TriviaTriviaAlternative]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TriviaAlternatives] DROP CONSTRAINT [FK_TriviaTriviaAlternative];
 GO
 
 -- --------------------------------------------------
@@ -106,11 +112,20 @@ GO
 IF OBJECT_ID(N'[dbo].[GameResults]', 'U') IS NOT NULL
     DROP TABLE [dbo].[GameResults];
 GO
-IF OBJECT_ID(N'[dbo].[PortSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PortSet];
+IF OBJECT_ID(N'[dbo].[Ports]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Ports];
 GO
-IF OBJECT_ID(N'[dbo].[RegionRelationshipSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RegionRelationshipSet];
+IF OBJECT_ID(N'[dbo].[RegionRelationships]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RegionRelationships];
+GO
+IF OBJECT_ID(N'[dbo].[Trivias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Trivias];
+GO
+IF OBJECT_ID(N'[dbo].[DidYouKnows]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DidYouKnows];
+GO
+IF OBJECT_ID(N'[dbo].[TriviaAlternatives]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TriviaAlternatives];
 GO
 IF OBJECT_ID(N'[dbo].[PlayerTrophy]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PlayerTrophy];
@@ -160,8 +175,8 @@ CREATE TABLE [dbo].[Regions] (
     [SupplyCount] int  NOT NULL,
     [IsStronghold] bit  NOT NULL,
     [IsCastle] bit  NOT NULL,
-    [MinNoOfUnitsToEnter] int  NOT NULL,
-    [DefenceCount] int  NULL,
+    [MinimumUnitsToEnter] int  NOT NULL,
+    [DefenseCount] int  NULL,
     [ConsolidatePowerCount] int  NOT NULL,
     [IsOcean] bit  NOT NULL
 );
@@ -200,10 +215,10 @@ GO
 CREATE TABLE [dbo].[Rounds] (
     [RoundId] bigint IDENTITY(1,1) NOT NULL,
     [RoundNumber] int  NOT NULL,
-    [WildlingsCount] int  NOT NULL,
+    [WildlingCount] int  NOT NULL,
     [Restriction] nvarchar(max)  NOT NULL,
-    [WildlingsAttack] bit  NULL,
-    [WildlingsVictory] bit  NULL,
+    [WildlingAttack] bit  NOT NULL,
+    [WildlingVictory] bit  NULL,
     [Game_GameId] bigint  NOT NULL
 );
 GO
@@ -218,7 +233,8 @@ CREATE TABLE [dbo].[RegionStatuses] (
     [SiegeCount] int  NOT NULL,
     [ControlledByGamePlayerId] bigint  NOT NULL,
     [Region_RegionId] bigint  NOT NULL,
-    [Round_RoundId] bigint  NOT NULL
+    [Round_RoundId] bigint  NOT NULL,
+    [Port_PortId] bigint  NULL
 );
 GO
 
@@ -285,6 +301,30 @@ CREATE TABLE [dbo].[RegionRelationships] (
     [DestinationRegionId] bigint  NOT NULL,
     [BridgeRegionId] bigint  NOT NULL,
     [SourceRegion_RegionId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'Trivias'
+CREATE TABLE [dbo].[Trivias] (
+    [TriviaId] bigint IDENTITY(1,1) NOT NULL,
+    [QuestionText] nvarchar(max)  NOT NULL,
+    [AnswerText] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'DidYouKnows'
+CREATE TABLE [dbo].[DidYouKnows] (
+    [DidYouKnowId] bigint IDENTITY(1,1) NOT NULL,
+    [Text] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'TriviaAlternatives'
+CREATE TABLE [dbo].[TriviaAlternatives] (
+    [TriviaAlternativeId] bigint IDENTITY(1,1) NOT NULL,
+    [Text] nvarchar(max)  NOT NULL,
+    [IsCorrect] bit  NOT NULL,
+    [Trivia_TriviaId] bigint  NOT NULL
 );
 GO
 
@@ -387,6 +427,24 @@ GO
 ALTER TABLE [dbo].[RegionRelationships]
 ADD CONSTRAINT [PK_RegionRelationships]
     PRIMARY KEY CLUSTERED ([RegionRelationshipId] ASC);
+GO
+
+-- Creating primary key on [TriviaId] in table 'Trivias'
+ALTER TABLE [dbo].[Trivias]
+ADD CONSTRAINT [PK_Trivias]
+    PRIMARY KEY CLUSTERED ([TriviaId] ASC);
+GO
+
+-- Creating primary key on [DidYouKnowId] in table 'DidYouKnows'
+ALTER TABLE [dbo].[DidYouKnows]
+ADD CONSTRAINT [PK_DidYouKnows]
+    PRIMARY KEY CLUSTERED ([DidYouKnowId] ASC);
+GO
+
+-- Creating primary key on [TriviaAlternativeId] in table 'TriviaAlternatives'
+ALTER TABLE [dbo].[TriviaAlternatives]
+ADD CONSTRAINT [PK_TriviaAlternatives]
+    PRIMARY KEY CLUSTERED ([TriviaAlternativeId] ASC);
 GO
 
 -- Creating primary key on [Player_PlayerId], [Trophys_TrophyId] in table 'PlayerTrophy'
@@ -602,6 +660,34 @@ ADD CONSTRAINT [FK_RegionRegionRelationship]
 CREATE INDEX [IX_FK_RegionRegionRelationship]
 ON [dbo].[RegionRelationships]
     ([SourceRegion_RegionId]);
+GO
+
+-- Creating foreign key on [Port_PortId] in table 'RegionStatuses'
+ALTER TABLE [dbo].[RegionStatuses]
+ADD CONSTRAINT [FK_RegionStatusPort]
+    FOREIGN KEY ([Port_PortId])
+    REFERENCES [dbo].[Ports]
+        ([PortId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RegionStatusPort'
+CREATE INDEX [IX_FK_RegionStatusPort]
+ON [dbo].[RegionStatuses]
+    ([Port_PortId]);
+GO
+
+-- Creating foreign key on [Trivia_TriviaId] in table 'TriviaAlternatives'
+ALTER TABLE [dbo].[TriviaAlternatives]
+ADD CONSTRAINT [FK_TriviaTriviaAlternative]
+    FOREIGN KEY ([Trivia_TriviaId])
+    REFERENCES [dbo].[Trivias]
+        ([TriviaId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TriviaTriviaAlternative'
+CREATE INDEX [IX_FK_TriviaTriviaAlternative]
+ON [dbo].[TriviaAlternatives]
+    ([Trivia_TriviaId]);
 GO
 
 -- --------------------------------------------------

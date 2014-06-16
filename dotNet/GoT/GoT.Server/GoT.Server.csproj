@@ -75,8 +75,12 @@
     <Compile Include="GoTService.svc.cs">
       <DependentUpon>GoTService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Visitors\CharacterVisitor.cs" />
+    <Compile Include="Visitors\HouseVisitor.cs" />
+    <Compile Include="Visitors\PlayerVisitor.cs" />
     <Compile Include="IGoTService.cs" />
     <Compile Include="Messages\CharacterDto.cs" />
+    <Compile Include="Messages\DidYouKnowDto.cs" />
     <Compile Include="Messages\GameDto.cs" />
     <Compile Include="Messages\HouseCardDto.cs" />
     <Compile Include="Messages\HouseDto.cs" />
@@ -84,9 +88,16 @@
     <Compile Include="Messages\PortDto.cs" />
     <Compile Include="Messages\RegionDto.cs" />
     <Compile Include="Messages\RegionRelationshipDto.cs" />
+    <Compile Include="Messages\RoundDto.cs" />
+    <Compile Include="Messages\TriviaAlternativeDto.cs" />
+    <Compile Include="Messages\TriviaDto.cs" />
     <Compile Include="Messages\TrophyDto.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Visitors\PortVisitor.cs" />
+    <Compile Include="Visitors\RegionRelationshipVisitor.cs" />
+    <Compile Include="Visitors\RegionVisitor.cs" />
+    <Compile Include="Visitors\TrophyVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GoT.Data\GoT.Data.csproj">

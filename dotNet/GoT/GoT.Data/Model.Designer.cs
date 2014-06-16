@@ -33,6 +33,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "GamePlayerGameResult", "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.GamePlayer), "GameResult", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GameResult))]
 [assembly: EdmRelationshipAttribute("Model", "RegionPort", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.Port))]
 [assembly: EdmRelationshipAttribute("Model", "RegionRegionRelationship", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "RegionRelationship", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionRelationship))]
+[assembly: EdmRelationshipAttribute("Model", "RegionStatusPort", "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.Port))]
+[assembly: EdmRelationshipAttribute("Model", "TriviaTriviaAlternative", "Trivia", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Trivia), "TriviaAlternative", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.TriviaAlternative))]
 
 #endregion
 
@@ -323,6 +325,54 @@ namespace GoT.Data
             }
         }
         private ObjectSet<RegionRelationship> _RegionRelationships;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Trivia> Trivias
+        {
+            get
+            {
+                if ((_Trivias == null))
+                {
+                    _Trivias = base.CreateObjectSet<Trivia>("Trivias");
+                }
+                return _Trivias;
+            }
+        }
+        private ObjectSet<Trivia> _Trivias;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DidYouKnow> DidYouKnows
+        {
+            get
+            {
+                if ((_DidYouKnows == null))
+                {
+                    _DidYouKnows = base.CreateObjectSet<DidYouKnow>("DidYouKnows");
+                }
+                return _DidYouKnows;
+            }
+        }
+        private ObjectSet<DidYouKnow> _DidYouKnows;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TriviaAlternative> TriviaAlternatives
+        {
+            get
+            {
+                if ((_TriviaAlternatives == null))
+                {
+                    _TriviaAlternatives = base.CreateObjectSet<TriviaAlternative>("TriviaAlternatives");
+                }
+                return _TriviaAlternatives;
+            }
+        }
+        private ObjectSet<TriviaAlternative> _TriviaAlternatives;
 
         #endregion
 
@@ -446,6 +496,30 @@ namespace GoT.Data
         public void AddToRegionRelationships(RegionRelationship regionRelationship)
         {
             base.AddObject("RegionRelationships", regionRelationship);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Trivias EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTrivias(Trivia trivia)
+        {
+            base.AddObject("Trivias", trivia);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DidYouKnows EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDidYouKnows(DidYouKnow didYouKnow)
+        {
+            base.AddObject("DidYouKnows", didYouKnow);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TriviaAlternatives EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTriviaAlternatives(TriviaAlternative triviaAlternative)
+        {
+            base.AddObject("TriviaAlternatives", triviaAlternative);
         }
 
         #endregion
@@ -693,6 +767,89 @@ namespace GoT.Data
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="DidYouKnow")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DidYouKnow : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DidYouKnow object.
+        /// </summary>
+        /// <param name="didYouKnowId">Initial value of the DidYouKnowId property.</param>
+        /// <param name="text">Initial value of the Text property.</param>
+        public static DidYouKnow CreateDidYouKnow(global::System.Int64 didYouKnowId, global::System.String text)
+        {
+            DidYouKnow didYouKnow = new DidYouKnow();
+            didYouKnow.DidYouKnowId = didYouKnowId;
+            didYouKnow.Text = text;
+            return didYouKnow;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 DidYouKnowId
+        {
+            get
+            {
+                return _DidYouKnowId;
+            }
+            set
+            {
+                if (_DidYouKnowId != value)
+                {
+                    OnDidYouKnowIdChanging(value);
+                    ReportPropertyChanging("DidYouKnowId");
+                    _DidYouKnowId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("DidYouKnowId");
+                    OnDidYouKnowIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _DidYouKnowId;
+        partial void OnDidYouKnowIdChanging(global::System.Int64 value);
+        partial void OnDidYouKnowIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Text
+        {
+            get
+            {
+                return _Text;
+            }
+            set
+            {
+                OnTextChanging(value);
+                ReportPropertyChanging("Text");
+                _Text = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Text");
+                OnTextChanged();
+            }
+        }
+        private global::System.String _Text;
+        partial void OnTextChanging(global::System.String value);
+        partial void OnTextChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>
@@ -2542,10 +2699,10 @@ namespace GoT.Data
         /// <param name="supplyCount">Initial value of the SupplyCount property.</param>
         /// <param name="isStronghold">Initial value of the IsStronghold property.</param>
         /// <param name="isCastle">Initial value of the IsCastle property.</param>
-        /// <param name="minNoOfUnitsToEnter">Initial value of the MinNoOfUnitsToEnter property.</param>
+        /// <param name="minimumUnitsToEnter">Initial value of the MinimumUnitsToEnter property.</param>
         /// <param name="consolidatePowerCount">Initial value of the ConsolidatePowerCount property.</param>
         /// <param name="isOcean">Initial value of the IsOcean property.</param>
-        public static Region CreateRegion(global::System.Int64 regionId, global::System.String name, global::System.Int32 supplyCount, global::System.Boolean isStronghold, global::System.Boolean isCastle, global::System.Int32 minNoOfUnitsToEnter, global::System.Int32 consolidatePowerCount, global::System.Boolean isOcean)
+        public static Region CreateRegion(global::System.Int64 regionId, global::System.String name, global::System.Int32 supplyCount, global::System.Boolean isStronghold, global::System.Boolean isCastle, global::System.Int32 minimumUnitsToEnter, global::System.Int32 consolidatePowerCount, global::System.Boolean isOcean)
         {
             Region region = new Region();
             region.RegionId = regionId;
@@ -2553,7 +2710,7 @@ namespace GoT.Data
             region.SupplyCount = supplyCount;
             region.IsStronghold = isStronghold;
             region.IsCastle = isCastle;
-            region.MinNoOfUnitsToEnter = minNoOfUnitsToEnter;
+            region.MinimumUnitsToEnter = minimumUnitsToEnter;
             region.ConsolidatePowerCount = consolidatePowerCount;
             region.IsOcean = isOcean;
             return region;
@@ -2715,48 +2872,48 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 MinNoOfUnitsToEnter
+        public global::System.Int32 MinimumUnitsToEnter
         {
             get
             {
-                return _MinNoOfUnitsToEnter;
+                return _MinimumUnitsToEnter;
             }
             set
             {
-                OnMinNoOfUnitsToEnterChanging(value);
-                ReportPropertyChanging("MinNoOfUnitsToEnter");
-                _MinNoOfUnitsToEnter = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MinNoOfUnitsToEnter");
-                OnMinNoOfUnitsToEnterChanged();
+                OnMinimumUnitsToEnterChanging(value);
+                ReportPropertyChanging("MinimumUnitsToEnter");
+                _MinimumUnitsToEnter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MinimumUnitsToEnter");
+                OnMinimumUnitsToEnterChanged();
             }
         }
-        private global::System.Int32 _MinNoOfUnitsToEnter;
-        partial void OnMinNoOfUnitsToEnterChanging(global::System.Int32 value);
-        partial void OnMinNoOfUnitsToEnterChanged();
+        private global::System.Int32 _MinimumUnitsToEnter;
+        partial void OnMinimumUnitsToEnterChanging(global::System.Int32 value);
+        partial void OnMinimumUnitsToEnterChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> DefenceCount
+        public Nullable<global::System.Int32> DefenseCount
         {
             get
             {
-                return _DefenceCount;
+                return _DefenseCount;
             }
             set
             {
-                OnDefenceCountChanging(value);
-                ReportPropertyChanging("DefenceCount");
-                _DefenceCount = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DefenceCount");
-                OnDefenceCountChanged();
+                OnDefenseCountChanging(value);
+                ReportPropertyChanging("DefenseCount");
+                _DefenseCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DefenseCount");
+                OnDefenseCountChanged();
             }
         }
-        private Nullable<global::System.Int32> _DefenceCount;
-        partial void OnDefenceCountChanging(Nullable<global::System.Int32> value);
-        partial void OnDefenceCountChanged();
+        private Nullable<global::System.Int32> _DefenseCount;
+        partial void OnDefenseCountChanging(Nullable<global::System.Int32> value);
+        partial void OnDefenseCountChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3314,6 +3471,44 @@ namespace GoT.Data
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RegionStatusPort", "Port")]
+        public Port Port
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Port>("Model.RegionStatusPort", "Port").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Port>("Model.RegionStatusPort", "Port").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Port> PortReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Port>("Model.RegionStatusPort", "Port");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Port>("Model.RegionStatusPort", "Port", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -3334,15 +3529,17 @@ namespace GoT.Data
         /// </summary>
         /// <param name="roundId">Initial value of the RoundId property.</param>
         /// <param name="roundNumber">Initial value of the RoundNumber property.</param>
-        /// <param name="wildlingsCount">Initial value of the WildlingsCount property.</param>
+        /// <param name="wildlingCount">Initial value of the WildlingCount property.</param>
         /// <param name="restriction">Initial value of the Restriction property.</param>
-        public static Round CreateRound(global::System.Int64 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingsCount, global::System.String restriction)
+        /// <param name="wildlingAttack">Initial value of the WildlingAttack property.</param>
+        public static Round CreateRound(global::System.Int64 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingCount, global::System.String restriction, global::System.Boolean wildlingAttack)
         {
             Round round = new Round();
             round.RoundId = roundId;
             round.RoundNumber = roundNumber;
-            round.WildlingsCount = wildlingsCount;
+            round.WildlingCount = wildlingCount;
             round.Restriction = restriction;
+            round.WildlingAttack = wildlingAttack;
             return round;
         }
 
@@ -3406,24 +3603,24 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 WildlingsCount
+        public global::System.Int32 WildlingCount
         {
             get
             {
-                return _WildlingsCount;
+                return _WildlingCount;
             }
             set
             {
-                OnWildlingsCountChanging(value);
-                ReportPropertyChanging("WildlingsCount");
-                _WildlingsCount = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("WildlingsCount");
-                OnWildlingsCountChanged();
+                OnWildlingCountChanging(value);
+                ReportPropertyChanging("WildlingCount");
+                _WildlingCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WildlingCount");
+                OnWildlingCountChanged();
             }
         }
-        private global::System.Int32 _WildlingsCount;
-        partial void OnWildlingsCountChanging(global::System.Int32 value);
-        partial void OnWildlingsCountChanged();
+        private global::System.Int32 _WildlingCount;
+        partial void OnWildlingCountChanging(global::System.Int32 value);
+        partial void OnWildlingCountChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3452,50 +3649,50 @@ namespace GoT.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> WildlingsAttack
+        public global::System.Boolean WildlingAttack
         {
             get
             {
-                return _WildlingsAttack;
+                return _WildlingAttack;
             }
             set
             {
-                OnWildlingsAttackChanging(value);
-                ReportPropertyChanging("WildlingsAttack");
-                _WildlingsAttack = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("WildlingsAttack");
-                OnWildlingsAttackChanged();
+                OnWildlingAttackChanging(value);
+                ReportPropertyChanging("WildlingAttack");
+                _WildlingAttack = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WildlingAttack");
+                OnWildlingAttackChanged();
             }
         }
-        private Nullable<global::System.Boolean> _WildlingsAttack;
-        partial void OnWildlingsAttackChanging(Nullable<global::System.Boolean> value);
-        partial void OnWildlingsAttackChanged();
+        private global::System.Boolean _WildlingAttack;
+        partial void OnWildlingAttackChanging(global::System.Boolean value);
+        partial void OnWildlingAttackChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> WildlingsVictory
+        public Nullable<global::System.Boolean> WildlingVictory
         {
             get
             {
-                return _WildlingsVictory;
+                return _WildlingVictory;
             }
             set
             {
-                OnWildlingsVictoryChanging(value);
-                ReportPropertyChanging("WildlingsVictory");
-                _WildlingsVictory = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("WildlingsVictory");
-                OnWildlingsVictoryChanged();
+                OnWildlingVictoryChanging(value);
+                ReportPropertyChanging("WildlingVictory");
+                _WildlingVictory = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WildlingVictory");
+                OnWildlingVictoryChanged();
             }
         }
-        private Nullable<global::System.Boolean> _WildlingsVictory;
-        partial void OnWildlingsVictoryChanging(Nullable<global::System.Boolean> value);
-        partial void OnWildlingsVictoryChanged();
+        private Nullable<global::System.Boolean> _WildlingVictory;
+        partial void OnWildlingVictoryChanging(Nullable<global::System.Boolean> value);
+        partial void OnWildlingVictoryChanged();
 
         #endregion
 
@@ -3602,6 +3799,290 @@ namespace GoT.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="Trivia")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Trivia : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Trivia object.
+        /// </summary>
+        /// <param name="triviaId">Initial value of the TriviaId property.</param>
+        /// <param name="questionText">Initial value of the QuestionText property.</param>
+        public static Trivia CreateTrivia(global::System.Int64 triviaId, global::System.String questionText)
+        {
+            Trivia trivia = new Trivia();
+            trivia.TriviaId = triviaId;
+            trivia.QuestionText = questionText;
+            return trivia;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 TriviaId
+        {
+            get
+            {
+                return _TriviaId;
+            }
+            set
+            {
+                if (_TriviaId != value)
+                {
+                    OnTriviaIdChanging(value);
+                    ReportPropertyChanging("TriviaId");
+                    _TriviaId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TriviaId");
+                    OnTriviaIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _TriviaId;
+        partial void OnTriviaIdChanging(global::System.Int64 value);
+        partial void OnTriviaIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String QuestionText
+        {
+            get
+            {
+                return _QuestionText;
+            }
+            set
+            {
+                OnQuestionTextChanging(value);
+                ReportPropertyChanging("QuestionText");
+                _QuestionText = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("QuestionText");
+                OnQuestionTextChanged();
+            }
+        }
+        private global::System.String _QuestionText;
+        partial void OnQuestionTextChanging(global::System.String value);
+        partial void OnQuestionTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AnswerText
+        {
+            get
+            {
+                return _AnswerText;
+            }
+            set
+            {
+                OnAnswerTextChanging(value);
+                ReportPropertyChanging("AnswerText");
+                _AnswerText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AnswerText");
+                OnAnswerTextChanged();
+            }
+        }
+        private global::System.String _AnswerText;
+        partial void OnAnswerTextChanging(global::System.String value);
+        partial void OnAnswerTextChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "TriviaTriviaAlternative", "TriviaAlternative")]
+        public EntityCollection<TriviaAlternative> TriviaAlternatives
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TriviaAlternative>("Model.TriviaTriviaAlternative", "TriviaAlternative");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TriviaAlternative>("Model.TriviaTriviaAlternative", "TriviaAlternative", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="TriviaAlternative")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TriviaAlternative : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TriviaAlternative object.
+        /// </summary>
+        /// <param name="triviaAlternativeId">Initial value of the TriviaAlternativeId property.</param>
+        /// <param name="text">Initial value of the Text property.</param>
+        /// <param name="isCorrect">Initial value of the IsCorrect property.</param>
+        public static TriviaAlternative CreateTriviaAlternative(global::System.Int64 triviaAlternativeId, global::System.String text, global::System.Boolean isCorrect)
+        {
+            TriviaAlternative triviaAlternative = new TriviaAlternative();
+            triviaAlternative.TriviaAlternativeId = triviaAlternativeId;
+            triviaAlternative.Text = text;
+            triviaAlternative.IsCorrect = isCorrect;
+            return triviaAlternative;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 TriviaAlternativeId
+        {
+            get
+            {
+                return _TriviaAlternativeId;
+            }
+            set
+            {
+                if (_TriviaAlternativeId != value)
+                {
+                    OnTriviaAlternativeIdChanging(value);
+                    ReportPropertyChanging("TriviaAlternativeId");
+                    _TriviaAlternativeId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TriviaAlternativeId");
+                    OnTriviaAlternativeIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _TriviaAlternativeId;
+        partial void OnTriviaAlternativeIdChanging(global::System.Int64 value);
+        partial void OnTriviaAlternativeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Text
+        {
+            get
+            {
+                return _Text;
+            }
+            set
+            {
+                OnTextChanging(value);
+                ReportPropertyChanging("Text");
+                _Text = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Text");
+                OnTextChanged();
+            }
+        }
+        private global::System.String _Text;
+        partial void OnTextChanging(global::System.String value);
+        partial void OnTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsCorrect
+        {
+            get
+            {
+                return _IsCorrect;
+            }
+            set
+            {
+                OnIsCorrectChanging(value);
+                ReportPropertyChanging("IsCorrect");
+                _IsCorrect = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsCorrect");
+                OnIsCorrectChanged();
+            }
+        }
+        private global::System.Boolean _IsCorrect;
+        partial void OnIsCorrectChanging(global::System.Boolean value);
+        partial void OnIsCorrectChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "TriviaTriviaAlternative", "Trivia")]
+        public Trivia Trivia
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Trivia>("Model.TriviaTriviaAlternative", "Trivia").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Trivia>("Model.TriviaTriviaAlternative", "Trivia").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Trivia> TriviaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Trivia>("Model.TriviaTriviaAlternative", "Trivia");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Trivia>("Model.TriviaTriviaAlternative", "Trivia", value);
                 }
             }
         }

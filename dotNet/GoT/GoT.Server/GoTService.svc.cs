@@ -7,6 +7,7 @@ using System.Text;
 using System.ServiceModel.Activation;
 using GoT.Data;
 using GoT.Server.Messages;
+using GoT.Server.Visitors;
 
 namespace GoT.Server
 {
@@ -33,37 +34,7 @@ namespace GoT.Server
                 using (var ctx = new GoTDataContext())
                 {
                     var houses = ctx.Houses.ToList();
-                    
-                    //TODO:: Refactor to mapping classes::
-                    foreach (var house in houses)
-                    {
-                        var houseDto = new HouseDto
-                        {
-                            HouseId = house.HouseId,
-                            Name = house.Name,
-                            Description = house.Description,
-                            Sigil = house.Sigil,
-                            Characters = new List<CharacterDto>()
-                        };
-
-                        var capitalRegion = ctx.Regions.First(w => w.RegionId == house.CapitalRegionId);
-                        if (capitalRegion != null)
-                            houseDto.CapitalRegionId = capitalRegion.RegionId;
-
-                        foreach (var character in house.Characters)
-                        {
-                            var characterDto = new CharacterDto
-                            {
-                                CharacterId = character.CharacterId,
-                                FirstName = character.FirstName,
-                                LastName = character.LastName,
-                                NickName = character.NickName,
-                                Gender = character.Gender
-                            };
-                            houseDto.Characters.Add(characterDto);
-                        }
-                        response.Add(houseDto);
-                    }
+                    response = HouseVisitor.Visit(houses, ctx);
                 }
             }
             catch (Exception exc)
@@ -84,51 +55,7 @@ namespace GoT.Server
                 using (var ctx = new GoTDataContext())
                 {
                     var regions = ctx.Regions.ToList();
-
-                    //TODO:: Refactor to mapping classes::
-                    foreach (var region in regions)
-                    {
-                        var regionDto = new RegionDto
-                        {
-                            RegionId = region.RegionId,
-                            Name = region.Name,
-                            Description = region.Description,
-                            ConsolidatePowerCount = region.ConsolidatePowerCount,
-                            DefenceCount = region.DefenceCount,
-                            IsCastle = region.IsCastle,
-                            IsStronghold = region.IsStronghold,
-                            IsOcean = region.IsOcean,
-                            SupplyCount = region.SupplyCount,
-                            MinNoOfUnitsToEnter = region.MinNoOfUnitsToEnter,
-                            Relationships = new List<RegionRelationshipDto>()
-                        };
-
-                        //Add port::
-                        if(region.Port != null)
-                        {
-                            var portDto = new PortDto
-                            {
-                                PortId = region.Port.PortId,
-                                Name = region.Port.Name
-                            };
-
-                            regionDto.Port = portDto;
-                        }
-
-                        //Add region relationships::
-                        foreach (var relationship in region.RegionRelationships)
-                        {
-                            var relationshipDto = new RegionRelationshipDto
-                            {
-                                RegionRelationshipId = relationship.RegionRelationshipId,
-                                SourceRegionId = relationship.SourceRegion.RegionId,
-                                DestinationRegionId = relationship.DestinationRegionId,
-                                BridgeRegionId = relationship.BridgeRegionId
-                            };
-                            regionDto.Relationships.Add(relationshipDto);
-                        }
-                        response.Add(regionDto);
-                    }
+                    response = RegionVisitor.Visit(regions);
                 }
             }
             catch (Exception exc)
@@ -149,32 +76,7 @@ namespace GoT.Server
                 using (var ctx = new GoTDataContext())
                 {
                     var players = ctx.Players.ToList();
-
-                    //TODO:: Refactor to mapping classes::
-                    foreach (var player in players)
-                    {
-                        var playerDto = new PlayerDto
-                        {
-                            PlayerId = player.PlayerId,
-                            FirstName = player.FirstName,
-                            LastName = player.LastName,
-                            DateOfBirth = player.DateOfBirth,
-                            City = player.City,
-                            Country = player.Country,
-                            Trophies = new List<TrophyDto>()
-                        };
-                        foreach (var trophy in player.Trophys)
-                        {
-                            var trophyDto = new TrophyDto
-                            {
-                                TrophyId = trophy.TrophyId,
-                                Name = trophy.Name,
-                                Description = trophy.Description
-                            };
-                            playerDto.Trophies.Add(trophyDto);
-                        }
-                        response.Add(playerDto);
-                    }
+                    response = PlayerVisitor.Visit(players);
                 }
             }
             catch (Exception exc)
@@ -184,9 +86,33 @@ namespace GoT.Server
 
             return response;
         }
+        
+        /// <inheritdoc />
+        public List<TriviaDto> GetTrivias()
+        {
+            throw new NotImplementedException();
+        }
 
         /// <inheritdoc />
-        public GameDto CreateGame(GameDto game)
+        public List<DidYouKnowDto> GetDidYouKnows()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public List<GameDto> GetGames(int maxNumberOfGamesToReturn)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public void CreateGame(GameDto game)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public void CreateRound(RoundDto round)
         {
             throw new NotImplementedException();
         }
