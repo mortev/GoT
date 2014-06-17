@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/16/2014 10:14:38
+-- Date Created: 06/17/2014 21:33:23
 -- Generated from EDMX file: C:\Data\Repository\GoT\dotNet\GoT\GoT.Data\Model.edmx
 -- --------------------------------------------------
 
@@ -20,12 +20,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HouseCharacter]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Characters] DROP CONSTRAINT [FK_HouseCharacter];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerTrophy_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerTrophy] DROP CONSTRAINT [FK_PlayerTrophy_Player];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerTrophy_Trophy]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerTrophy] DROP CONSTRAINT [FK_PlayerTrophy_Trophy];
-GO
 IF OBJECT_ID(N'[dbo].[FK_GameRound]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Rounds] DROP CONSTRAINT [FK_GameRound];
 GO
@@ -35,14 +29,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RegionRegionStatus]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RegionStatuses] DROP CONSTRAINT [FK_RegionRegionStatus];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CharacterHouseCard]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HouseCards] DROP CONSTRAINT [FK_CharacterHouseCard];
-GO
 IF OBJECT_ID(N'[dbo].[FK_RoundRegionStatus]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RegionStatuses] DROP CONSTRAINT [FK_RoundRegionStatus];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GamePlayerMove]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Moves] DROP CONSTRAINT [FK_GamePlayerMove];
 GO
 IF OBJECT_ID(N'[dbo].[FK_RoundMove]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Moves] DROP CONSTRAINT [FK_RoundMove];
@@ -67,6 +55,24 @@ IF OBJECT_ID(N'[dbo].[FK_RegionStatusPort]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_TriviaTriviaAlternative]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TriviaAlternatives] DROP CONSTRAINT [FK_TriviaTriviaAlternative];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HouseHouseCard]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HouseCards] DROP CONSTRAINT [FK_HouseHouseCard];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerPlayerTrophy]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerTrophies] DROP CONSTRAINT [FK_PlayerPlayerTrophy];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TrophyPlayerTrophy]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerTrophies] DROP CONSTRAINT [FK_TrophyPlayerTrophy];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionRelationshipRelationshipBridge]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RelationshipBridges] DROP CONSTRAINT [FK_RegionRelationshipRelationshipBridge];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RoundWesterosCardStatus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rounds] DROP CONSTRAINT [FK_RoundWesterosCardStatus];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GamePlayerHouseCardStatus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HouseCardStatuses] DROP CONSTRAINT [FK_GamePlayerHouseCardStatus];
 GO
 
 -- --------------------------------------------------
@@ -127,8 +133,20 @@ GO
 IF OBJECT_ID(N'[dbo].[TriviaAlternatives]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TriviaAlternatives];
 GO
-IF OBJECT_ID(N'[dbo].[PlayerTrophy]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PlayerTrophy];
+IF OBJECT_ID(N'[dbo].[PlayerTrophies]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PlayerTrophies];
+GO
+IF OBJECT_ID(N'[dbo].[RelationshipBridges]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RelationshipBridges];
+GO
+IF OBJECT_ID(N'[dbo].[WesterosCardStatuses]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WesterosCardStatuses];
+GO
+IF OBJECT_ID(N'[dbo].[WesterosCards]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WesterosCards];
+GO
+IF OBJECT_ID(N'[dbo].[HouseCardStatuses]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HouseCardStatuses];
 GO
 
 -- --------------------------------------------------
@@ -137,18 +155,21 @@ GO
 
 -- Creating table 'Players'
 CREATE TABLE [dbo].[Players] (
-    [PlayerId] int IDENTITY(1,1) NOT NULL,
+    [PlayerId] bigint IDENTITY(1,1) NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [DateOfBirth] datetime  NULL,
     [City] nvarchar(max)  NULL,
-    [Country] nvarchar(max)  NULL
+    [Country] nvarchar(max)  NULL,
+    [Username] nvarchar(max)  NOT NULL,
+    [Password] nvarchar(max)  NOT NULL,
+    [IsAdmin] bit  NOT NULL
 );
 GO
 
 -- Creating table 'Houses'
 CREATE TABLE [dbo].[Houses] (
-    [HouseId] int IDENTITY(1,1) NOT NULL,
+    [HouseId] int  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL,
     [Sigil] varbinary(max)  NULL,
@@ -158,11 +179,12 @@ GO
 
 -- Creating table 'Characters'
 CREATE TABLE [dbo].[Characters] (
-    [CharacterId] int IDENTITY(1,1) NOT NULL,
+    [CharacterId] bigint  NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [NickName] nvarchar(max)  NULL,
     [Gender] nvarchar(max)  NOT NULL,
+    [Image] varbinary(max)  NULL,
     [House_HouseId] int  NOT NULL
 );
 GO
@@ -184,13 +206,13 @@ GO
 
 -- Creating table 'HouseCards'
 CREATE TABLE [dbo].[HouseCards] (
-    [HouseCardId] int IDENTITY(1,1) NOT NULL,
+    [HouseCardId] int  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
     [CombatStrength] int  NOT NULL,
-    [Speciality] nvarchar(max)  NULL,
     [SwordCount] int  NOT NULL,
     [TowerCount] int  NOT NULL,
-    [Character_CharacterId] int  NOT NULL
+    [CharacterId] bigint  NOT NULL,
+    [House_HouseId] int  NOT NULL
 );
 GO
 
@@ -207,7 +229,9 @@ CREATE TABLE [dbo].[Games] (
     [GameId] bigint IDENTITY(1,1) NOT NULL,
     [Date] datetime  NOT NULL,
     [Mode] nvarchar(max)  NOT NULL,
-    [Status] nvarchar(max)  NOT NULL
+    [Status] nvarchar(max)  NOT NULL,
+    [CreatedDate] datetime  NOT NULL,
+    [CreatedByPlayerId] bigint  NOT NULL
 );
 GO
 
@@ -216,10 +240,10 @@ CREATE TABLE [dbo].[Rounds] (
     [RoundId] bigint IDENTITY(1,1) NOT NULL,
     [RoundNumber] int  NOT NULL,
     [WildlingCount] int  NOT NULL,
-    [Restriction] nvarchar(max)  NOT NULL,
     [WildlingAttack] bit  NOT NULL,
     [WildlingVictory] bit  NULL,
-    [Game_GameId] bigint  NOT NULL
+    [Game_GameId] bigint  NOT NULL,
+    [WesterosCardStatus_WesterosCardStatusId] bigint  NOT NULL
 );
 GO
 
@@ -250,10 +274,9 @@ CREATE TABLE [dbo].[Moves] (
     [AttackerVictory] bit  NOT NULL,
     [AttackerHouseCardId] bigint  NULL,
     [DefenderHouseCardId] bigint  NULL,
-    [AttackerGamePlayerId] bigint  NOT NULL,
+    [GamePlayerId] bigint  NOT NULL,
     [FromRegionId] bigint  NOT NULL,
     [ToRegionId] bigint  NOT NULL,
-    [GamePlayerMove_Move_GamePlayerId] bigint  NOT NULL,
     [Round_RoundId] bigint  NOT NULL
 );
 GO
@@ -299,7 +322,6 @@ GO
 CREATE TABLE [dbo].[RegionRelationships] (
     [RegionRelationshipId] bigint IDENTITY(1,1) NOT NULL,
     [DestinationRegionId] bigint  NOT NULL,
-    [BridgeRegionId] bigint  NOT NULL,
     [SourceRegion_RegionId] bigint  NOT NULL
 );
 GO
@@ -328,10 +350,47 @@ CREATE TABLE [dbo].[TriviaAlternatives] (
 );
 GO
 
--- Creating table 'PlayerTrophy'
-CREATE TABLE [dbo].[PlayerTrophy] (
-    [Player_PlayerId] int  NOT NULL,
-    [Trophys_TrophyId] int  NOT NULL
+-- Creating table 'PlayerTrophies'
+CREATE TABLE [dbo].[PlayerTrophies] (
+    [PlayerTrophyId] bigint IDENTITY(1,1) NOT NULL,
+    [DateAchieved] datetime  NOT NULL,
+    [Player_PlayerId] bigint  NOT NULL,
+    [Trophy_TrophyId] int  NOT NULL
+);
+GO
+
+-- Creating table 'RelationshipBridges'
+CREATE TABLE [dbo].[RelationshipBridges] (
+    [RelationshipBridgeId] bigint IDENTITY(1,1) NOT NULL,
+    [BridgeRegionId] bigint  NOT NULL,
+    [RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'WesterosCardStatuses'
+CREATE TABLE [dbo].[WesterosCardStatuses] (
+    [WesterosCardStatusId] bigint IDENTITY(1,1) NOT NULL,
+    [DeckOneId] bigint  NOT NULL,
+    [DeckTwoId] bigint  NOT NULL,
+    [DeckThreeId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'WesterosCards'
+CREATE TABLE [dbo].[WesterosCards] (
+    [WesterosCardId] bigint  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NULL,
+    [Deck] int  NOT NULL
+);
+GO
+
+-- Creating table 'HouseCardStatuses'
+CREATE TABLE [dbo].[HouseCardStatuses] (
+    [HouseCardStatusId] bigint IDENTITY(1,1) NOT NULL,
+    [HouseCardId] bigint  NOT NULL,
+    [IsAvailable] bit  NOT NULL,
+    [GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId] bigint  NOT NULL
 );
 GO
 
@@ -447,10 +506,34 @@ ADD CONSTRAINT [PK_TriviaAlternatives]
     PRIMARY KEY CLUSTERED ([TriviaAlternativeId] ASC);
 GO
 
--- Creating primary key on [Player_PlayerId], [Trophys_TrophyId] in table 'PlayerTrophy'
-ALTER TABLE [dbo].[PlayerTrophy]
-ADD CONSTRAINT [PK_PlayerTrophy]
-    PRIMARY KEY NONCLUSTERED ([Player_PlayerId], [Trophys_TrophyId] ASC);
+-- Creating primary key on [PlayerTrophyId] in table 'PlayerTrophies'
+ALTER TABLE [dbo].[PlayerTrophies]
+ADD CONSTRAINT [PK_PlayerTrophies]
+    PRIMARY KEY CLUSTERED ([PlayerTrophyId] ASC);
+GO
+
+-- Creating primary key on [RelationshipBridgeId] in table 'RelationshipBridges'
+ALTER TABLE [dbo].[RelationshipBridges]
+ADD CONSTRAINT [PK_RelationshipBridges]
+    PRIMARY KEY CLUSTERED ([RelationshipBridgeId] ASC);
+GO
+
+-- Creating primary key on [WesterosCardStatusId] in table 'WesterosCardStatuses'
+ALTER TABLE [dbo].[WesterosCardStatuses]
+ADD CONSTRAINT [PK_WesterosCardStatuses]
+    PRIMARY KEY CLUSTERED ([WesterosCardStatusId] ASC);
+GO
+
+-- Creating primary key on [WesterosCardId] in table 'WesterosCards'
+ALTER TABLE [dbo].[WesterosCards]
+ADD CONSTRAINT [PK_WesterosCards]
+    PRIMARY KEY CLUSTERED ([WesterosCardId] ASC);
+GO
+
+-- Creating primary key on [HouseCardStatusId] in table 'HouseCardStatuses'
+ALTER TABLE [dbo].[HouseCardStatuses]
+ADD CONSTRAINT [PK_HouseCardStatuses]
+    PRIMARY KEY CLUSTERED ([HouseCardStatusId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -469,29 +552,6 @@ ADD CONSTRAINT [FK_HouseCharacter]
 CREATE INDEX [IX_FK_HouseCharacter]
 ON [dbo].[Characters]
     ([House_HouseId]);
-GO
-
--- Creating foreign key on [Player_PlayerId] in table 'PlayerTrophy'
-ALTER TABLE [dbo].[PlayerTrophy]
-ADD CONSTRAINT [FK_PlayerTrophy_Player]
-    FOREIGN KEY ([Player_PlayerId])
-    REFERENCES [dbo].[Players]
-        ([PlayerId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Trophys_TrophyId] in table 'PlayerTrophy'
-ALTER TABLE [dbo].[PlayerTrophy]
-ADD CONSTRAINT [FK_PlayerTrophy_Trophy]
-    FOREIGN KEY ([Trophys_TrophyId])
-    REFERENCES [dbo].[Trophys]
-        ([TrophyId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PlayerTrophy_Trophy'
-CREATE INDEX [IX_FK_PlayerTrophy_Trophy]
-ON [dbo].[PlayerTrophy]
-    ([Trophys_TrophyId]);
 GO
 
 -- Creating foreign key on [Game_GameId] in table 'Rounds'
@@ -536,20 +596,6 @@ ON [dbo].[RegionStatuses]
     ([Region_RegionId]);
 GO
 
--- Creating foreign key on [Character_CharacterId] in table 'HouseCards'
-ALTER TABLE [dbo].[HouseCards]
-ADD CONSTRAINT [FK_CharacterHouseCard]
-    FOREIGN KEY ([Character_CharacterId])
-    REFERENCES [dbo].[Characters]
-        ([CharacterId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CharacterHouseCard'
-CREATE INDEX [IX_FK_CharacterHouseCard]
-ON [dbo].[HouseCards]
-    ([Character_CharacterId]);
-GO
-
 -- Creating foreign key on [Round_RoundId] in table 'RegionStatuses'
 ALTER TABLE [dbo].[RegionStatuses]
 ADD CONSTRAINT [FK_RoundRegionStatus]
@@ -562,20 +608,6 @@ ADD CONSTRAINT [FK_RoundRegionStatus]
 CREATE INDEX [IX_FK_RoundRegionStatus]
 ON [dbo].[RegionStatuses]
     ([Round_RoundId]);
-GO
-
--- Creating foreign key on [GamePlayerMove_Move_GamePlayerId] in table 'Moves'
-ALTER TABLE [dbo].[Moves]
-ADD CONSTRAINT [FK_GamePlayerMove]
-    FOREIGN KEY ([GamePlayerMove_Move_GamePlayerId])
-    REFERENCES [dbo].[GamePlayers]
-        ([GamePlayerId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GamePlayerMove'
-CREATE INDEX [IX_FK_GamePlayerMove]
-ON [dbo].[Moves]
-    ([GamePlayerMove_Move_GamePlayerId]);
 GO
 
 -- Creating foreign key on [Round_RoundId] in table 'Moves'
@@ -688,6 +720,90 @@ ADD CONSTRAINT [FK_TriviaTriviaAlternative]
 CREATE INDEX [IX_FK_TriviaTriviaAlternative]
 ON [dbo].[TriviaAlternatives]
     ([Trivia_TriviaId]);
+GO
+
+-- Creating foreign key on [House_HouseId] in table 'HouseCards'
+ALTER TABLE [dbo].[HouseCards]
+ADD CONSTRAINT [FK_HouseHouseCard]
+    FOREIGN KEY ([House_HouseId])
+    REFERENCES [dbo].[Houses]
+        ([HouseId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HouseHouseCard'
+CREATE INDEX [IX_FK_HouseHouseCard]
+ON [dbo].[HouseCards]
+    ([House_HouseId]);
+GO
+
+-- Creating foreign key on [Player_PlayerId] in table 'PlayerTrophies'
+ALTER TABLE [dbo].[PlayerTrophies]
+ADD CONSTRAINT [FK_PlayerPlayerTrophy]
+    FOREIGN KEY ([Player_PlayerId])
+    REFERENCES [dbo].[Players]
+        ([PlayerId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PlayerPlayerTrophy'
+CREATE INDEX [IX_FK_PlayerPlayerTrophy]
+ON [dbo].[PlayerTrophies]
+    ([Player_PlayerId]);
+GO
+
+-- Creating foreign key on [Trophy_TrophyId] in table 'PlayerTrophies'
+ALTER TABLE [dbo].[PlayerTrophies]
+ADD CONSTRAINT [FK_TrophyPlayerTrophy]
+    FOREIGN KEY ([Trophy_TrophyId])
+    REFERENCES [dbo].[Trophys]
+        ([TrophyId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrophyPlayerTrophy'
+CREATE INDEX [IX_FK_TrophyPlayerTrophy]
+ON [dbo].[PlayerTrophies]
+    ([Trophy_TrophyId]);
+GO
+
+-- Creating foreign key on [RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId] in table 'RelationshipBridges'
+ALTER TABLE [dbo].[RelationshipBridges]
+ADD CONSTRAINT [FK_RegionRelationshipRelationshipBridge]
+    FOREIGN KEY ([RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId])
+    REFERENCES [dbo].[RegionRelationships]
+        ([RegionRelationshipId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RegionRelationshipRelationshipBridge'
+CREATE INDEX [IX_FK_RegionRelationshipRelationshipBridge]
+ON [dbo].[RelationshipBridges]
+    ([RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId]);
+GO
+
+-- Creating foreign key on [WesterosCardStatus_WesterosCardStatusId] in table 'Rounds'
+ALTER TABLE [dbo].[Rounds]
+ADD CONSTRAINT [FK_RoundWesterosCardStatus]
+    FOREIGN KEY ([WesterosCardStatus_WesterosCardStatusId])
+    REFERENCES [dbo].[WesterosCardStatuses]
+        ([WesterosCardStatusId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RoundWesterosCardStatus'
+CREATE INDEX [IX_FK_RoundWesterosCardStatus]
+ON [dbo].[Rounds]
+    ([WesterosCardStatus_WesterosCardStatusId]);
+GO
+
+-- Creating foreign key on [GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId] in table 'HouseCardStatuses'
+ALTER TABLE [dbo].[HouseCardStatuses]
+ADD CONSTRAINT [FK_GamePlayerHouseCardStatus]
+    FOREIGN KEY ([GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId])
+    REFERENCES [dbo].[GamePlayers]
+        ([GamePlayerId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GamePlayerHouseCardStatus'
+CREATE INDEX [IX_FK_GamePlayerHouseCardStatus]
+ON [dbo].[HouseCardStatuses]
+    ([GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId]);
 GO
 
 -- --------------------------------------------------

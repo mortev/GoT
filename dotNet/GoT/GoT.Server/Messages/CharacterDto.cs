@@ -12,7 +12,6 @@ namespace GoT.Server.Messages
         public string LastName { get; set; }
         public string NickName { get; set; }
         public string Gender { get; set; }
-
-        public HouseCardDto HouseCard { get; set; }
+        public byte[] Image { get; set; }
     }
 }

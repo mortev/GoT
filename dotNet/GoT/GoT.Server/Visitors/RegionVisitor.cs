@@ -33,7 +33,7 @@ namespace GoT.Server.Visitors
         /// </summary>
         /// <param name="region"></param>
         /// <returns></returns>
-        public static RegionDto Visit(Region region)
+        private static RegionDto Visit(Region region)
         {
             if (region == null)
                 return null;

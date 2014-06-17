@@ -9,13 +9,13 @@ namespace GoT.Server.Visitors
 {
     public static class TrophyVisitor
     {
-        public static List<TrophyDto> Visit(List<Trophy> trophies)
+        public static List<TrophyDto> Visit(List<PlayerTrophy> trophies, GoTDataContext ctx)
         {
             List<TrophyDto> response = new List<TrophyDto>();
 
             foreach (var trophy in trophies)
             {
-                var trophyDto = Visit(trophy);
+                var trophyDto = Visit(trophy, ctx);
                 if (trophyDto != null)
                     response.Add(trophyDto);
             }
@@ -23,8 +23,12 @@ namespace GoT.Server.Visitors
             return response;
         }
 
-        public static TrophyDto Visit(Trophy trophy)
+        private static TrophyDto Visit(PlayerTrophy playerTrophy, GoTDataContext ctx)
         {
+            if (playerTrophy == null)
+                return null;
+
+            var trophy = ctx.Trophys.FirstOrDefault(w => w.TrophyId == playerTrophy.Trophy.TrophyId);
             if (trophy == null)
                 return null;
 

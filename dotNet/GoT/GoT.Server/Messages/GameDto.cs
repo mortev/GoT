@@ -11,5 +11,7 @@ namespace GoT.Server.Messages
         public DateTime Date { get; set; }
         public string Mode { get; set; }
         public string Status { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public Int64 CreatedByPlayerId { get; set; }
     }
 }

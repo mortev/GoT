@@ -35,7 +35,7 @@ namespace GoT.Server.Visitors
         /// <param name="house"></param>
         /// <param name="ctx"></param>
         /// <returns></returns>
-        public static HouseDto Visit(House house, GoTDataContext ctx)
+        private static HouseDto Visit(House house, GoTDataContext ctx)
         {
             if (house == null)
                 return null;
@@ -50,7 +50,8 @@ namespace GoT.Server.Visitors
                 Description = house.Description,
                 Sigil = house.Sigil,
                 CapitalRegionId = capitalRegion != null ? capitalRegion.RegionId : 0,
-                Characters = CharacterVisitor.Visit(house.Characters.ToList())
+                Characters = CharacterVisitor.Visit(house.Characters.ToList()),
+                HouseCards = HouseCardVisitor.Visit(house.HouseCards.ToList())
             };
         }
     }

@@ -20,13 +20,10 @@ using System.Xml.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("Model", "HouseCharacter", "House", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.House), "Character", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Character))]
-[assembly: EdmRelationshipAttribute("Model", "PlayerTrophy", "Player", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Player), "Trophy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Trophy))]
 [assembly: EdmRelationshipAttribute("Model", "GameRound", "Game", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Game), "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Round))]
 [assembly: EdmRelationshipAttribute("Model", "GameGamePlayer", "Game", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Game), "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GamePlayer))]
 [assembly: EdmRelationshipAttribute("Model", "RegionRegionStatus", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus))]
-[assembly: EdmRelationshipAttribute("Model", "CharacterHouseCard", "Character", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Character), "HouseCard", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.HouseCard))]
 [assembly: EdmRelationshipAttribute("Model", "RoundRegionStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus))]
-[assembly: EdmRelationshipAttribute("Model", "GamePlayerMove", "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.GamePlayer), "Move", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Move))]
 [assembly: EdmRelationshipAttribute("Model", "RoundMove", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "Move", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Move))]
 [assembly: EdmRelationshipAttribute("Model", "RoundInfluenceTrackStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "InfluenceTrackStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.InfluenceTrackStatus))]
 [assembly: EdmRelationshipAttribute("Model", "GameGameResult", "Game", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Game), "GameResult", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GameResult))]
@@ -35,6 +32,12 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "RegionRegionRelationship", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "RegionRelationship", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionRelationship))]
 [assembly: EdmRelationshipAttribute("Model", "RegionStatusPort", "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.Port))]
 [assembly: EdmRelationshipAttribute("Model", "TriviaTriviaAlternative", "Trivia", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Trivia), "TriviaAlternative", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.TriviaAlternative))]
+[assembly: EdmRelationshipAttribute("Model", "HouseHouseCard", "House", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.House), "HouseCard", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.HouseCard))]
+[assembly: EdmRelationshipAttribute("Model", "PlayerPlayerTrophy", "Player", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Player), "PlayerTrophy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.PlayerTrophy))]
+[assembly: EdmRelationshipAttribute("Model", "TrophyPlayerTrophy", "Trophy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Trophy), "PlayerTrophy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.PlayerTrophy))]
+[assembly: EdmRelationshipAttribute("Model", "RegionRelationshipRelationshipBridge", "RegionRelationship", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.RegionRelationship), "RelationshipBridge", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RelationshipBridge))]
+[assembly: EdmRelationshipAttribute("Model", "RoundWesterosCardStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "WesterosCardStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.WesterosCardStatus))]
+[assembly: EdmRelationshipAttribute("Model", "GamePlayerHouseCardStatus", "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.GamePlayer), "HouseCardStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.HouseCardStatus))]
 
 #endregion
 
@@ -373,6 +376,86 @@ namespace GoT.Data
             }
         }
         private ObjectSet<TriviaAlternative> _TriviaAlternatives;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PlayerTrophy> PlayerTrophies
+        {
+            get
+            {
+                if ((_PlayerTrophies == null))
+                {
+                    _PlayerTrophies = base.CreateObjectSet<PlayerTrophy>("PlayerTrophies");
+                }
+                return _PlayerTrophies;
+            }
+        }
+        private ObjectSet<PlayerTrophy> _PlayerTrophies;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<RelationshipBridge> RelationshipBridges
+        {
+            get
+            {
+                if ((_RelationshipBridges == null))
+                {
+                    _RelationshipBridges = base.CreateObjectSet<RelationshipBridge>("RelationshipBridges");
+                }
+                return _RelationshipBridges;
+            }
+        }
+        private ObjectSet<RelationshipBridge> _RelationshipBridges;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<WesterosCardStatus> WesterosCardStatuses
+        {
+            get
+            {
+                if ((_WesterosCardStatuses == null))
+                {
+                    _WesterosCardStatuses = base.CreateObjectSet<WesterosCardStatus>("WesterosCardStatuses");
+                }
+                return _WesterosCardStatuses;
+            }
+        }
+        private ObjectSet<WesterosCardStatus> _WesterosCardStatuses;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<WesterosCard> WesterosCards
+        {
+            get
+            {
+                if ((_WesterosCards == null))
+                {
+                    _WesterosCards = base.CreateObjectSet<WesterosCard>("WesterosCards");
+                }
+                return _WesterosCards;
+            }
+        }
+        private ObjectSet<WesterosCard> _WesterosCards;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<HouseCardStatus> HouseCardStatuses
+        {
+            get
+            {
+                if ((_HouseCardStatuses == null))
+                {
+                    _HouseCardStatuses = base.CreateObjectSet<HouseCardStatus>("HouseCardStatuses");
+                }
+                return _HouseCardStatuses;
+            }
+        }
+        private ObjectSet<HouseCardStatus> _HouseCardStatuses;
 
         #endregion
 
@@ -521,6 +604,46 @@ namespace GoT.Data
         {
             base.AddObject("TriviaAlternatives", triviaAlternative);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PlayerTrophies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPlayerTrophies(PlayerTrophy playerTrophy)
+        {
+            base.AddObject("PlayerTrophies", playerTrophy);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RelationshipBridges EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRelationshipBridges(RelationshipBridge relationshipBridge)
+        {
+            base.AddObject("RelationshipBridges", relationshipBridge);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the WesterosCardStatuses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToWesterosCardStatuses(WesterosCardStatus westerosCardStatus)
+        {
+            base.AddObject("WesterosCardStatuses", westerosCardStatus);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the WesterosCards EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToWesterosCards(WesterosCard westerosCard)
+        {
+            base.AddObject("WesterosCards", westerosCard);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the HouseCardStatuses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToHouseCardStatuses(HouseCardStatus houseCardStatus)
+        {
+            base.AddObject("HouseCardStatuses", houseCardStatus);
+        }
 
         #endregion
 
@@ -547,7 +670,7 @@ namespace GoT.Data
         /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="gender">Initial value of the Gender property.</param>
-        public static Character CreateCharacter(global::System.Int32 characterId, global::System.String firstName, global::System.String lastName, global::System.String gender)
+        public static Character CreateCharacter(global::System.Int64 characterId, global::System.String firstName, global::System.String lastName, global::System.String gender)
         {
             Character character = new Character();
             character.CharacterId = characterId;
@@ -566,7 +689,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 CharacterId
+        public global::System.Int64 CharacterId
         {
             get
             {
@@ -584,8 +707,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int32 _CharacterId;
-        partial void OnCharacterIdChanging(global::System.Int32 value);
+        private global::System.Int64 _CharacterId;
+        partial void OnCharacterIdChanging(global::System.Int64 value);
         partial void OnCharacterIdChanged();
     
         /// <summary>
@@ -683,6 +806,30 @@ namespace GoT.Data
         private global::System.String _Gender;
         partial void OnGenderChanging(global::System.String value);
         partial void OnGenderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] Image
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_Image);
+            }
+            set
+            {
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
+            }
+        }
+        private global::System.Byte[] _Image;
+        partial void OnImageChanging(global::System.Byte[] value);
+        partial void OnImageChanged();
 
         #endregion
 
@@ -723,44 +870,6 @@ namespace GoT.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<House>("Model.HouseCharacter", "House", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CharacterHouseCard", "HouseCard")]
-        public HouseCard HouseCard
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HouseCard>("Model.CharacterHouseCard", "HouseCard").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HouseCard>("Model.CharacterHouseCard", "HouseCard").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<HouseCard> HouseCardReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HouseCard>("Model.CharacterHouseCard", "HouseCard");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HouseCard>("Model.CharacterHouseCard", "HouseCard", value);
                 }
             }
         }
@@ -869,13 +978,17 @@ namespace GoT.Data
         /// <param name="date">Initial value of the Date property.</param>
         /// <param name="mode">Initial value of the Mode property.</param>
         /// <param name="status">Initial value of the Status property.</param>
-        public static Game CreateGame(global::System.Int64 gameId, global::System.DateTime date, global::System.String mode, global::System.String status)
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        /// <param name="createdByPlayerId">Initial value of the CreatedByPlayerId property.</param>
+        public static Game CreateGame(global::System.Int64 gameId, global::System.DateTime date, global::System.String mode, global::System.String status, global::System.DateTime createdDate, global::System.Int64 createdByPlayerId)
         {
             Game game = new Game();
             game.GameId = gameId;
             game.Date = date;
             game.Mode = mode;
             game.Status = status;
+            game.CreatedDate = createdDate;
+            game.CreatedByPlayerId = createdByPlayerId;
             return game;
         }
 
@@ -981,6 +1094,54 @@ namespace GoT.Data
         private global::System.String _Status;
         partial void OnStatusChanging(global::System.String value);
         partial void OnStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
+            }
+        }
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
+        partial void OnCreatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 CreatedByPlayerId
+        {
+            get
+            {
+                return _CreatedByPlayerId;
+            }
+            set
+            {
+                OnCreatedByPlayerIdChanging(value);
+                ReportPropertyChanging("CreatedByPlayerId");
+                _CreatedByPlayerId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedByPlayerId");
+                OnCreatedByPlayerIdChanged();
+            }
+        }
+        private global::System.Int64 _CreatedByPlayerId;
+        partial void OnCreatedByPlayerIdChanging(global::System.Int64 value);
+        partial void OnCreatedByPlayerIdChanged();
 
         #endregion
 
@@ -1200,6 +1361,28 @@ namespace GoT.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Game>("Model.GameGamePlayer", "Game", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "GamePlayerHouseCardStatus", "HouseCardStatus")]
+        public EntityCollection<HouseCardStatus> HouseCardStatuses
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HouseCardStatus>("Model.GamePlayerHouseCardStatus", "HouseCardStatus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HouseCardStatus>("Model.GamePlayerHouseCardStatus", "HouseCardStatus", value);
                 }
             }
         }
@@ -1511,6 +1694,28 @@ namespace GoT.Data
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "HouseHouseCard", "HouseCard")]
+        public EntityCollection<HouseCard> HouseCards
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HouseCard>("Model.HouseHouseCard", "HouseCard");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HouseCard>("Model.HouseHouseCard", "HouseCard", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -1534,7 +1739,8 @@ namespace GoT.Data
         /// <param name="combatStrength">Initial value of the CombatStrength property.</param>
         /// <param name="swordCount">Initial value of the SwordCount property.</param>
         /// <param name="towerCount">Initial value of the TowerCount property.</param>
-        public static HouseCard CreateHouseCard(global::System.Int32 houseCardId, global::System.String description, global::System.Int32 combatStrength, global::System.Int32 swordCount, global::System.Int32 towerCount)
+        /// <param name="characterId">Initial value of the CharacterId property.</param>
+        public static HouseCard CreateHouseCard(global::System.Int32 houseCardId, global::System.String description, global::System.Int32 combatStrength, global::System.Int32 swordCount, global::System.Int32 towerCount, global::System.Int64 characterId)
         {
             HouseCard houseCard = new HouseCard();
             houseCard.HouseCardId = houseCardId;
@@ -1542,6 +1748,7 @@ namespace GoT.Data
             houseCard.CombatStrength = combatStrength;
             houseCard.SwordCount = swordCount;
             houseCard.TowerCount = towerCount;
+            houseCard.CharacterId = characterId;
             return houseCard;
         }
 
@@ -1627,30 +1834,6 @@ namespace GoT.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Speciality
-        {
-            get
-            {
-                return _Speciality;
-            }
-            set
-            {
-                OnSpecialityChanging(value);
-                ReportPropertyChanging("Speciality");
-                _Speciality = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Speciality");
-                OnSpecialityChanged();
-            }
-        }
-        private global::System.String _Speciality;
-        partial void OnSpecialityChanging(global::System.String value);
-        partial void OnSpecialityChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 SwordCount
@@ -1695,6 +1878,30 @@ namespace GoT.Data
         private global::System.Int32 _TowerCount;
         partial void OnTowerCountChanging(global::System.Int32 value);
         partial void OnTowerCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 CharacterId
+        {
+            get
+            {
+                return _CharacterId;
+            }
+            set
+            {
+                OnCharacterIdChanging(value);
+                ReportPropertyChanging("CharacterId");
+                _CharacterId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CharacterId");
+                OnCharacterIdChanged();
+            }
+        }
+        private global::System.Int64 _CharacterId;
+        partial void OnCharacterIdChanging(global::System.Int64 value);
+        partial void OnCharacterIdChanged();
 
         #endregion
 
@@ -1707,16 +1914,16 @@ namespace GoT.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CharacterHouseCard", "Character")]
-        public Character Character
+        [EdmRelationshipNavigationPropertyAttribute("Model", "HouseHouseCard", "House")]
+        public House House
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Character>("Model.CharacterHouseCard", "Character").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<House>("Model.HouseHouseCard", "House").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Character>("Model.CharacterHouseCard", "Character").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<House>("Model.HouseHouseCard", "House").Value = value;
             }
         }
         /// <summary>
@@ -1724,23 +1931,132 @@ namespace GoT.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Character> CharacterReference
+        public EntityReference<House> HouseReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Character>("Model.CharacterHouseCard", "Character");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<House>("Model.HouseHouseCard", "House");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Character>("Model.CharacterHouseCard", "Character", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<House>("Model.HouseHouseCard", "House", value);
                 }
             }
         }
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="HouseCardStatus")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class HouseCardStatus : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new HouseCardStatus object.
+        /// </summary>
+        /// <param name="houseCardStatusId">Initial value of the HouseCardStatusId property.</param>
+        /// <param name="houseCardId">Initial value of the HouseCardId property.</param>
+        /// <param name="isAvailable">Initial value of the IsAvailable property.</param>
+        public static HouseCardStatus CreateHouseCardStatus(global::System.Int64 houseCardStatusId, global::System.Int64 houseCardId, global::System.Boolean isAvailable)
+        {
+            HouseCardStatus houseCardStatus = new HouseCardStatus();
+            houseCardStatus.HouseCardStatusId = houseCardStatusId;
+            houseCardStatus.HouseCardId = houseCardId;
+            houseCardStatus.IsAvailable = isAvailable;
+            return houseCardStatus;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 HouseCardStatusId
+        {
+            get
+            {
+                return _HouseCardStatusId;
+            }
+            set
+            {
+                if (_HouseCardStatusId != value)
+                {
+                    OnHouseCardStatusIdChanging(value);
+                    ReportPropertyChanging("HouseCardStatusId");
+                    _HouseCardStatusId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("HouseCardStatusId");
+                    OnHouseCardStatusIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _HouseCardStatusId;
+        partial void OnHouseCardStatusIdChanging(global::System.Int64 value);
+        partial void OnHouseCardStatusIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 HouseCardId
+        {
+            get
+            {
+                return _HouseCardId;
+            }
+            set
+            {
+                OnHouseCardIdChanging(value);
+                ReportPropertyChanging("HouseCardId");
+                _HouseCardId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HouseCardId");
+                OnHouseCardIdChanged();
+            }
+        }
+        private global::System.Int64 _HouseCardId;
+        partial void OnHouseCardIdChanging(global::System.Int64 value);
+        partial void OnHouseCardIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsAvailable
+        {
+            get
+            {
+                return _IsAvailable;
+            }
+            set
+            {
+                OnIsAvailableChanging(value);
+                ReportPropertyChanging("IsAvailable");
+                _IsAvailable = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsAvailable");
+                OnIsAvailableChanged();
+            }
+        }
+        private global::System.Boolean _IsAvailable;
+        partial void OnIsAvailableChanging(global::System.Boolean value);
+        partial void OnIsAvailableChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>
@@ -1965,10 +2281,10 @@ namespace GoT.Data
         /// <param name="attackerShipCount">Initial value of the AttackerShipCount property.</param>
         /// <param name="attackerSiegeCount">Initial value of the AttackerSiegeCount property.</param>
         /// <param name="attackerVictory">Initial value of the AttackerVictory property.</param>
-        /// <param name="attackerGamePlayerId">Initial value of the AttackerGamePlayerId property.</param>
+        /// <param name="gamePlayerId">Initial value of the GamePlayerId property.</param>
         /// <param name="fromRegionId">Initial value of the FromRegionId property.</param>
         /// <param name="toRegionId">Initial value of the ToRegionId property.</param>
-        public static Move CreateMove(global::System.Int64 moveId, global::System.Int32 attackerFootmanCount, global::System.Int32 attackerKnightCount, global::System.Int32 attackerShipCount, global::System.Int32 attackerSiegeCount, global::System.Boolean attackerVictory, global::System.Int64 attackerGamePlayerId, global::System.Int64 fromRegionId, global::System.Int64 toRegionId)
+        public static Move CreateMove(global::System.Int64 moveId, global::System.Int32 attackerFootmanCount, global::System.Int32 attackerKnightCount, global::System.Int32 attackerShipCount, global::System.Int32 attackerSiegeCount, global::System.Boolean attackerVictory, global::System.Int64 gamePlayerId, global::System.Int64 fromRegionId, global::System.Int64 toRegionId)
         {
             Move move = new Move();
             move.MoveId = moveId;
@@ -1977,7 +2293,7 @@ namespace GoT.Data
             move.AttackerShipCount = attackerShipCount;
             move.AttackerSiegeCount = attackerSiegeCount;
             move.AttackerVictory = attackerVictory;
-            move.AttackerGamePlayerId = attackerGamePlayerId;
+            move.GamePlayerId = gamePlayerId;
             move.FromRegionId = fromRegionId;
             move.ToRegionId = toRegionId;
             return move;
@@ -2235,24 +2551,24 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 AttackerGamePlayerId
+        public global::System.Int64 GamePlayerId
         {
             get
             {
-                return _AttackerGamePlayerId;
+                return _GamePlayerId;
             }
             set
             {
-                OnAttackerGamePlayerIdChanging(value);
-                ReportPropertyChanging("AttackerGamePlayerId");
-                _AttackerGamePlayerId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AttackerGamePlayerId");
-                OnAttackerGamePlayerIdChanged();
+                OnGamePlayerIdChanging(value);
+                ReportPropertyChanging("GamePlayerId");
+                _GamePlayerId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GamePlayerId");
+                OnGamePlayerIdChanged();
             }
         }
-        private global::System.Int64 _AttackerGamePlayerId;
-        partial void OnAttackerGamePlayerIdChanging(global::System.Int64 value);
-        partial void OnAttackerGamePlayerIdChanged();
+        private global::System.Int64 _GamePlayerId;
+        partial void OnGamePlayerIdChanging(global::System.Int64 value);
+        partial void OnGamePlayerIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2365,12 +2681,18 @@ namespace GoT.Data
         /// <param name="playerId">Initial value of the PlayerId property.</param>
         /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
-        public static Player CreatePlayer(global::System.Int32 playerId, global::System.String firstName, global::System.String lastName)
+        /// <param name="username">Initial value of the Username property.</param>
+        /// <param name="password">Initial value of the Password property.</param>
+        /// <param name="isAdmin">Initial value of the IsAdmin property.</param>
+        public static Player CreatePlayer(global::System.Int64 playerId, global::System.String firstName, global::System.String lastName, global::System.String username, global::System.String password, global::System.Boolean isAdmin)
         {
             Player player = new Player();
             player.PlayerId = playerId;
             player.FirstName = firstName;
             player.LastName = lastName;
+            player.Username = username;
+            player.Password = password;
+            player.IsAdmin = isAdmin;
             return player;
         }
 
@@ -2383,7 +2705,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 PlayerId
+        public global::System.Int64 PlayerId
         {
             get
             {
@@ -2401,8 +2723,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int32 _PlayerId;
-        partial void OnPlayerIdChanging(global::System.Int32 value);
+        private global::System.Int64 _PlayerId;
+        partial void OnPlayerIdChanging(global::System.Int64 value);
         partial void OnPlayerIdChanged();
     
         /// <summary>
@@ -2524,6 +2846,78 @@ namespace GoT.Data
         private global::System.String _Country;
         partial void OnCountryChanging(global::System.String value);
         partial void OnCountryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Username
+        {
+            get
+            {
+                return _Username;
+            }
+            set
+            {
+                OnUsernameChanging(value);
+                ReportPropertyChanging("Username");
+                _Username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Username");
+                OnUsernameChanged();
+            }
+        }
+        private global::System.String _Username;
+        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Password
+        {
+            get
+            {
+                return _Password;
+            }
+            set
+            {
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
+            }
+        }
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsAdmin
+        {
+            get
+            {
+                return _IsAdmin;
+            }
+            set
+            {
+                OnIsAdminChanging(value);
+                ReportPropertyChanging("IsAdmin");
+                _IsAdmin = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsAdmin");
+                OnIsAdminChanged();
+            }
+        }
+        private global::System.Boolean _IsAdmin;
+        partial void OnIsAdminChanging(global::System.Boolean value);
+        partial void OnIsAdminChanged();
 
         #endregion
 
@@ -2536,18 +2930,181 @@ namespace GoT.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "PlayerTrophy", "Trophy")]
-        public EntityCollection<Trophy> Trophys
+        [EdmRelationshipNavigationPropertyAttribute("Model", "PlayerPlayerTrophy", "PlayerTrophy")]
+        public EntityCollection<PlayerTrophy> PlayerTrophies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Trophy>("Model.PlayerTrophy", "Trophy");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PlayerTrophy>("Model.PlayerPlayerTrophy", "PlayerTrophy");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Trophy>("Model.PlayerTrophy", "Trophy", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PlayerTrophy>("Model.PlayerPlayerTrophy", "PlayerTrophy", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="PlayerTrophy")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PlayerTrophy : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PlayerTrophy object.
+        /// </summary>
+        /// <param name="playerTrophyId">Initial value of the PlayerTrophyId property.</param>
+        /// <param name="dateAchieved">Initial value of the DateAchieved property.</param>
+        public static PlayerTrophy CreatePlayerTrophy(global::System.Int64 playerTrophyId, global::System.DateTime dateAchieved)
+        {
+            PlayerTrophy playerTrophy = new PlayerTrophy();
+            playerTrophy.PlayerTrophyId = playerTrophyId;
+            playerTrophy.DateAchieved = dateAchieved;
+            return playerTrophy;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 PlayerTrophyId
+        {
+            get
+            {
+                return _PlayerTrophyId;
+            }
+            set
+            {
+                if (_PlayerTrophyId != value)
+                {
+                    OnPlayerTrophyIdChanging(value);
+                    ReportPropertyChanging("PlayerTrophyId");
+                    _PlayerTrophyId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PlayerTrophyId");
+                    OnPlayerTrophyIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _PlayerTrophyId;
+        partial void OnPlayerTrophyIdChanging(global::System.Int64 value);
+        partial void OnPlayerTrophyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateAchieved
+        {
+            get
+            {
+                return _DateAchieved;
+            }
+            set
+            {
+                OnDateAchievedChanging(value);
+                ReportPropertyChanging("DateAchieved");
+                _DateAchieved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateAchieved");
+                OnDateAchievedChanged();
+            }
+        }
+        private global::System.DateTime _DateAchieved;
+        partial void OnDateAchievedChanging(global::System.DateTime value);
+        partial void OnDateAchievedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "PlayerPlayerTrophy", "Player")]
+        public Player Player
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Player>("Model.PlayerPlayerTrophy", "Player").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Player>("Model.PlayerPlayerTrophy", "Player").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Player> PlayerReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Player>("Model.PlayerPlayerTrophy", "Player");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Player>("Model.PlayerPlayerTrophy", "Player", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "TrophyPlayerTrophy", "Trophy")]
+        public Trophy Trophy
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Trophy>("Model.TrophyPlayerTrophy", "Trophy").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Trophy>("Model.TrophyPlayerTrophy", "Trophy").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Trophy> TrophyReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Trophy>("Model.TrophyPlayerTrophy", "Trophy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Trophy>("Model.TrophyPlayerTrophy", "Trophy", value);
                 }
             }
         }
@@ -3047,13 +3604,11 @@ namespace GoT.Data
         /// </summary>
         /// <param name="regionRelationshipId">Initial value of the RegionRelationshipId property.</param>
         /// <param name="destinationRegionId">Initial value of the DestinationRegionId property.</param>
-        /// <param name="bridgeRegionId">Initial value of the BridgeRegionId property.</param>
-        public static RegionRelationship CreateRegionRelationship(global::System.Int64 regionRelationshipId, global::System.Int64 destinationRegionId, global::System.Int64 bridgeRegionId)
+        public static RegionRelationship CreateRegionRelationship(global::System.Int64 regionRelationshipId, global::System.Int64 destinationRegionId)
         {
             RegionRelationship regionRelationship = new RegionRelationship();
             regionRelationship.RegionRelationshipId = regionRelationshipId;
             regionRelationship.DestinationRegionId = destinationRegionId;
-            regionRelationship.BridgeRegionId = bridgeRegionId;
             return regionRelationship;
         }
 
@@ -3111,30 +3666,6 @@ namespace GoT.Data
         private global::System.Int64 _DestinationRegionId;
         partial void OnDestinationRegionIdChanging(global::System.Int64 value);
         partial void OnDestinationRegionIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 BridgeRegionId
-        {
-            get
-            {
-                return _BridgeRegionId;
-            }
-            set
-            {
-                OnBridgeRegionIdChanging(value);
-                ReportPropertyChanging("BridgeRegionId");
-                _BridgeRegionId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("BridgeRegionId");
-                OnBridgeRegionIdChanged();
-            }
-        }
-        private global::System.Int64 _BridgeRegionId;
-        partial void OnBridgeRegionIdChanging(global::System.Int64 value);
-        partial void OnBridgeRegionIdChanged();
 
         #endregion
 
@@ -3175,6 +3706,28 @@ namespace GoT.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Region>("Model.RegionRegionRelationship", "Region", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RegionRelationshipRelationshipBridge", "RelationshipBridge")]
+        public EntityCollection<RelationshipBridge> RelationshipBridges
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RelationshipBridge>("Model.RegionRelationshipRelationshipBridge", "RelationshipBridge");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RelationshipBridge>("Model.RegionRelationshipRelationshipBridge", "RelationshipBridge", value);
                 }
             }
         }
@@ -3517,6 +4070,89 @@ namespace GoT.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="RelationshipBridge")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RelationshipBridge : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RelationshipBridge object.
+        /// </summary>
+        /// <param name="relationshipBridgeId">Initial value of the RelationshipBridgeId property.</param>
+        /// <param name="bridgeRegionId">Initial value of the BridgeRegionId property.</param>
+        public static RelationshipBridge CreateRelationshipBridge(global::System.Int64 relationshipBridgeId, global::System.Int64 bridgeRegionId)
+        {
+            RelationshipBridge relationshipBridge = new RelationshipBridge();
+            relationshipBridge.RelationshipBridgeId = relationshipBridgeId;
+            relationshipBridge.BridgeRegionId = bridgeRegionId;
+            return relationshipBridge;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 RelationshipBridgeId
+        {
+            get
+            {
+                return _RelationshipBridgeId;
+            }
+            set
+            {
+                if (_RelationshipBridgeId != value)
+                {
+                    OnRelationshipBridgeIdChanging(value);
+                    ReportPropertyChanging("RelationshipBridgeId");
+                    _RelationshipBridgeId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RelationshipBridgeId");
+                    OnRelationshipBridgeIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _RelationshipBridgeId;
+        partial void OnRelationshipBridgeIdChanging(global::System.Int64 value);
+        partial void OnRelationshipBridgeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 BridgeRegionId
+        {
+            get
+            {
+                return _BridgeRegionId;
+            }
+            set
+            {
+                OnBridgeRegionIdChanging(value);
+                ReportPropertyChanging("BridgeRegionId");
+                _BridgeRegionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BridgeRegionId");
+                OnBridgeRegionIdChanged();
+            }
+        }
+        private global::System.Int64 _BridgeRegionId;
+        partial void OnBridgeRegionIdChanging(global::System.Int64 value);
+        partial void OnBridgeRegionIdChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Model", Name="Round")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -3530,15 +4166,13 @@ namespace GoT.Data
         /// <param name="roundId">Initial value of the RoundId property.</param>
         /// <param name="roundNumber">Initial value of the RoundNumber property.</param>
         /// <param name="wildlingCount">Initial value of the WildlingCount property.</param>
-        /// <param name="restriction">Initial value of the Restriction property.</param>
         /// <param name="wildlingAttack">Initial value of the WildlingAttack property.</param>
-        public static Round CreateRound(global::System.Int64 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingCount, global::System.String restriction, global::System.Boolean wildlingAttack)
+        public static Round CreateRound(global::System.Int64 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingCount, global::System.Boolean wildlingAttack)
         {
             Round round = new Round();
             round.RoundId = roundId;
             round.RoundNumber = roundNumber;
             round.WildlingCount = wildlingCount;
-            round.Restriction = restriction;
             round.WildlingAttack = wildlingAttack;
             return round;
         }
@@ -3621,30 +4255,6 @@ namespace GoT.Data
         private global::System.Int32 _WildlingCount;
         partial void OnWildlingCountChanging(global::System.Int32 value);
         partial void OnWildlingCountChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Restriction
-        {
-            get
-            {
-                return _Restriction;
-            }
-            set
-            {
-                OnRestrictionChanging(value);
-                ReportPropertyChanging("Restriction");
-                _Restriction = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Restriction");
-                OnRestrictionChanged();
-            }
-        }
-        private global::System.String _Restriction;
-        partial void OnRestrictionChanging(global::System.String value);
-        partial void OnRestrictionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3799,6 +4409,44 @@ namespace GoT.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<InfluenceTrackStatus>("Model.RoundInfluenceTrackStatus", "InfluenceTrackStatus", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RoundWesterosCardStatus", "WesterosCardStatus")]
+        public WesterosCardStatus WesterosCardStatus
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WesterosCardStatus>("Model.RoundWesterosCardStatus", "WesterosCardStatus").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WesterosCardStatus>("Model.RoundWesterosCardStatus", "WesterosCardStatus").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<WesterosCardStatus> WesterosCardStatusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WesterosCardStatus>("Model.RoundWesterosCardStatus", "WesterosCardStatus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<WesterosCardStatus>("Model.RoundWesterosCardStatus", "WesterosCardStatus", value);
                 }
             }
         }
@@ -4198,6 +4846,274 @@ namespace GoT.Data
         #endregion
 
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="WesterosCard")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class WesterosCard : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new WesterosCard object.
+        /// </summary>
+        /// <param name="westerosCardId">Initial value of the WesterosCardId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="deck">Initial value of the Deck property.</param>
+        public static WesterosCard CreateWesterosCard(global::System.Int64 westerosCardId, global::System.String name, global::System.Int32 deck)
+        {
+            WesterosCard westerosCard = new WesterosCard();
+            westerosCard.WesterosCardId = westerosCardId;
+            westerosCard.Name = name;
+            westerosCard.Deck = deck;
+            return westerosCard;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 WesterosCardId
+        {
+            get
+            {
+                return _WesterosCardId;
+            }
+            set
+            {
+                if (_WesterosCardId != value)
+                {
+                    OnWesterosCardIdChanging(value);
+                    ReportPropertyChanging("WesterosCardId");
+                    _WesterosCardId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("WesterosCardId");
+                    OnWesterosCardIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _WesterosCardId;
+        partial void OnWesterosCardIdChanging(global::System.Int64 value);
+        partial void OnWesterosCardIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Deck
+        {
+            get
+            {
+                return _Deck;
+            }
+            set
+            {
+                OnDeckChanging(value);
+                ReportPropertyChanging("Deck");
+                _Deck = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deck");
+                OnDeckChanged();
+            }
+        }
+        private global::System.Int32 _Deck;
+        partial void OnDeckChanging(global::System.Int32 value);
+        partial void OnDeckChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="WesterosCardStatus")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class WesterosCardStatus : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new WesterosCardStatus object.
+        /// </summary>
+        /// <param name="westerosCardStatusId">Initial value of the WesterosCardStatusId property.</param>
+        /// <param name="deckOneId">Initial value of the DeckOneId property.</param>
+        /// <param name="deckTwoId">Initial value of the DeckTwoId property.</param>
+        /// <param name="deckThreeId">Initial value of the DeckThreeId property.</param>
+        public static WesterosCardStatus CreateWesterosCardStatus(global::System.Int64 westerosCardStatusId, global::System.Int64 deckOneId, global::System.Int64 deckTwoId, global::System.Int64 deckThreeId)
+        {
+            WesterosCardStatus westerosCardStatus = new WesterosCardStatus();
+            westerosCardStatus.WesterosCardStatusId = westerosCardStatusId;
+            westerosCardStatus.DeckOneId = deckOneId;
+            westerosCardStatus.DeckTwoId = deckTwoId;
+            westerosCardStatus.DeckThreeId = deckThreeId;
+            return westerosCardStatus;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 WesterosCardStatusId
+        {
+            get
+            {
+                return _WesterosCardStatusId;
+            }
+            set
+            {
+                if (_WesterosCardStatusId != value)
+                {
+                    OnWesterosCardStatusIdChanging(value);
+                    ReportPropertyChanging("WesterosCardStatusId");
+                    _WesterosCardStatusId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("WesterosCardStatusId");
+                    OnWesterosCardStatusIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _WesterosCardStatusId;
+        partial void OnWesterosCardStatusIdChanging(global::System.Int64 value);
+        partial void OnWesterosCardStatusIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 DeckOneId
+        {
+            get
+            {
+                return _DeckOneId;
+            }
+            set
+            {
+                OnDeckOneIdChanging(value);
+                ReportPropertyChanging("DeckOneId");
+                _DeckOneId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DeckOneId");
+                OnDeckOneIdChanged();
+            }
+        }
+        private global::System.Int64 _DeckOneId;
+        partial void OnDeckOneIdChanging(global::System.Int64 value);
+        partial void OnDeckOneIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 DeckTwoId
+        {
+            get
+            {
+                return _DeckTwoId;
+            }
+            set
+            {
+                OnDeckTwoIdChanging(value);
+                ReportPropertyChanging("DeckTwoId");
+                _DeckTwoId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DeckTwoId");
+                OnDeckTwoIdChanged();
+            }
+        }
+        private global::System.Int64 _DeckTwoId;
+        partial void OnDeckTwoIdChanging(global::System.Int64 value);
+        partial void OnDeckTwoIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 DeckThreeId
+        {
+            get
+            {
+                return _DeckThreeId;
+            }
+            set
+            {
+                OnDeckThreeIdChanging(value);
+                ReportPropertyChanging("DeckThreeId");
+                _DeckThreeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DeckThreeId");
+                OnDeckThreeIdChanged();
+            }
+        }
+        private global::System.Int64 _DeckThreeId;
+        partial void OnDeckThreeIdChanging(global::System.Int64 value);
+        partial void OnDeckThreeIdChanged();
+
+        #endregion
+
+    
         #region Navigation Properties
     
         /// <summary>
@@ -4206,18 +5122,34 @@ namespace GoT.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "PlayerTrophy", "Player")]
-        public EntityCollection<Player> Player
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RoundWesterosCardStatus", "Round")]
+        public Round Round
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Player>("Model.PlayerTrophy", "Player");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Model.RoundWesterosCardStatus", "Round").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Model.RoundWesterosCardStatus", "Round").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Round> RoundReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Model.RoundWesterosCardStatus", "Round");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Player>("Model.PlayerTrophy", "Player", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Round>("Model.RoundWesterosCardStatus", "Round", value);
                 }
             }
         }

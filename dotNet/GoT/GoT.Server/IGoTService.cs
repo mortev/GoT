@@ -18,6 +18,15 @@ namespace GoT.Server
     public interface IGoTService
     {
         /// <summary>
+        /// Authenticate user.
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
+        PlayerDto Login(LoginDto login);
+
+        /// <summary>
         /// Get list of Houses.
         /// </summary>
         /// <returns></returns>
@@ -58,26 +67,47 @@ namespace GoT.Server
         List<TriviaDto> GetTrivias();
 
         /// <summary>
-        /// Get list of Games.
-        /// Pass in number of games to be included in response.
+        /// Get list of games.
+        /// This method returns GameDto entities with header information only.
+        /// Use GetGame method with game id paramter to get all information about a game.
         /// </summary>
-        /// <param name="maxNumberOfGamesToReturn"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
+        List<GameDto> GetGames(GameFilterDto filter);
+
+        /// <summary>
+        /// Get single game.
+        /// This method returns a single GameDto with all information about a game.
+        /// </summary>
+        /// <param name="gameId"></param>
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        List<GameDto> GetGames(int maxNumberOfGamesToReturn);
+        GameDto GetGame(long gameId);
 
         /// <summary>
-        /// Create new Game.
+        /// Create new game.
+        /// Returns unique game id to be used when later updating the game.
         /// </summary>
         /// <param name="game"></param>
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        void CreateGame(GameDto game);
+        long CreateGame(GameDto game);
 
         /// <summary>
-        /// Add round to Game.
+        /// Updates an existing game.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
+        void UpdateGame(GameDto game);
+
+        /// <summary>
+        /// Add round to existing game.
         /// </summary>
         /// <param name="round"></param>
         /// <returns></returns>
@@ -85,6 +115,14 @@ namespace GoT.Server
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
         void CreateRound(RoundDto round);
 
-        
+        /// <summary>
+        /// Create new player.
+        /// </summary>
+        /// <param name="playerDto"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
+        PlayerDto CreatePlayer(PlayerDto playerDto);
+
     }
 }

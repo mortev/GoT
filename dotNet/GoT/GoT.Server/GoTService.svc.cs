@@ -8,6 +8,8 @@ using System.ServiceModel.Activation;
 using GoT.Data;
 using GoT.Server.Messages;
 using GoT.Server.Visitors;
+using GoT.Server.Utils;
+using System.Security;
 
 namespace GoT.Server
 {
@@ -22,6 +24,29 @@ namespace GoT.Server
         public GoTService()
         {
 
+        }
+
+        /// <inheritdoc />
+        public PlayerDto Login(LoginDto login)
+        {
+            var response = new PlayerDto();
+
+            if (login == null)
+                return response;
+            if(string.IsNullOrWhiteSpace(login.Username))
+                return response;
+            if(string.IsNullOrWhiteSpace(login.Password))
+                return response;
+
+            using (var ctx = new GoTDataContext())
+            {
+                var encrypted = Cryptography.EncryptData(login.Password);
+                var player = ctx.Players.FirstOrDefault(w => w.Username.Equals(login.Username) && w.Password.Equals(encrypted));
+                if(player != null)
+                    response = PlayerVisitor.Visit(player, ctx);
+            }
+
+            return response;
         }
 
         /// <inheritdoc />
@@ -76,7 +101,7 @@ namespace GoT.Server
                 using (var ctx = new GoTDataContext())
                 {
                     var players = ctx.Players.ToList();
-                    response = PlayerVisitor.Visit(players);
+                    response = PlayerVisitor.Visit(players, ctx);
                 }
             }
             catch (Exception exc)
@@ -100,13 +125,25 @@ namespace GoT.Server
         }
 
         /// <inheritdoc />
-        public List<GameDto> GetGames(int maxNumberOfGamesToReturn)
+        public List<GameDto> GetGames(GameFilterDto filter)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public void CreateGame(GameDto game)
+        public GameDto GetGame(long gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public long CreateGame(GameDto game)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public void UpdateGame(GameDto game)
         {
             throw new NotImplementedException();
         }
@@ -115,6 +152,42 @@ namespace GoT.Server
         public void CreateRound(RoundDto round)
         {
             throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public PlayerDto CreatePlayer(PlayerDto playerDto)
+        {
+            var response = new PlayerDto();
+
+            if (playerDto == null)
+                return response;
+
+            try
+            {
+                using (var ctx = new GoTDataContext())
+                {
+                    var player = ctx.Players.FirstOrDefault(w => w.Username.Equals(playerDto.Username));
+                    if (player != null)
+                    {
+                        //TODO:: Add error
+                    }
+                    else
+                    {
+                        player = ctx.Players.CreateObject();
+                        player = PlayerVisitor.Visit(playerDto, player, ctx);
+                        ctx.Players.AddObject(player);
+                        ctx.SaveChanges();
+
+                        response = PlayerVisitor.Visit(player, ctx);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                //TODO:: Add error
+            }
+
+            return response;
         }
 
         /// <summary>

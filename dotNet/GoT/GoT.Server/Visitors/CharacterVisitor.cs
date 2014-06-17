@@ -33,7 +33,7 @@ namespace GoT.Server.Visitors
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
-        public static CharacterDto Visit(Character character)
+        private static CharacterDto Visit(Character character)
         {
             if (character == null)
                 return null;
@@ -44,7 +44,8 @@ namespace GoT.Server.Visitors
                 FirstName = character.FirstName,
                 LastName = character.LastName,
                 NickName = character.NickName,
-                Gender = character.Gender
+                Gender = character.Gender,
+                Image = character.Image
             };
         }
     }

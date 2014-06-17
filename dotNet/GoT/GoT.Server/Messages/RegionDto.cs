@@ -12,10 +12,10 @@ namespace GoT.Server.Messages
         public string Description { get; set; }
         public Int32 SupplyCount { get; set; }
         public Int32 ConsolidatePowerCount { get; set; }
-        public bool IsStronghold { get; set; }
-        public bool IsCastle { get; set; }
         public Int32 MinimumUnitsToEnter { get; set; }
         public Nullable<Int32> DefenseCount { get; set; }
+        public bool IsStronghold { get; set; }
+        public bool IsCastle { get; set; }
         public bool IsOcean { get; set; }
 
         public PortDto Port { get; set; }

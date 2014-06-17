@@ -33,17 +33,41 @@ namespace GoT.Server.Visitors
         /// </summary>
         /// <param name="regionRelationship"></param>
         /// <returns></returns>
-        public static RegionRelationshipDto Visit(RegionRelationship regionRelationship)
+        private static RegionRelationshipDto Visit(RegionRelationship regionRelationship)
         {
             if (regionRelationship == null)
                 return null;
 
             return new RegionRelationshipDto
             {
-                RegionRelationshipId = regionRelationship.RegionRelationshipId,
                 SourceRegionId = regionRelationship.SourceRegion.RegionId,
                 DestinationRegionId = regionRelationship.DestinationRegionId,
-                BridgeRegionId = regionRelationship.BridgeRegionId
+                Bridges = Visit(regionRelationship.RelationshipBridges.ToList())
+            };
+        }
+
+        private static List<RelationshipBridgeDto> Visit(List<RelationshipBridge> relationshipBridges)
+        {
+            List<RelationshipBridgeDto> response = new List<RelationshipBridgeDto>();
+
+            foreach (var relationshipBridge in relationshipBridges)
+            {
+                var relationshipBridgeDto = Visit(relationshipBridge);
+                if (relationshipBridgeDto != null)
+                    response.Add(relationshipBridgeDto);
+            }
+
+            return response;
+        }
+
+        private static RelationshipBridgeDto Visit(RelationshipBridge relationshipBridge)
+        {
+            if (relationshipBridge == null)
+                return null;
+
+            return new RelationshipBridgeDto
+            {
+                BridgeRegionId = relationshipBridge.BridgeRegionId
             };
         }
     }

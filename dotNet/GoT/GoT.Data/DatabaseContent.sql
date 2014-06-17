@@ -22,5 +22,5 @@ INSERT INTO [dbo].[Regions] VALUES (8,'The Shivering Sea','',0,0,0,0,0,0,1);
 --			 ,[IsOcean])
 
 
-INSERT INTO [dbo].[Houses] VALUES('House Stark','House Stark',null,3);
+INSERT INTO [dbo].[Houses] VALUES(1,'House Stark','House Stark',null,3);
 

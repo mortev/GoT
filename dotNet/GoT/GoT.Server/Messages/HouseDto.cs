@@ -14,5 +14,6 @@ namespace GoT.Server.Messages
         
         public Int64 CapitalRegionId { get; set; }
         public List<CharacterDto> Characters { get; set; }
+        public List<HouseCardDto> HouseCards { get; set; }
     }
 }
