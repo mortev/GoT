@@ -95,7 +95,7 @@ namespace GoT.Server
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        long CreateGame(GameDto game);
+        GameDto CreateGame(GameDto game);
 
         /// <summary>
         /// Updates an existing game.

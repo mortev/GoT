@@ -81,6 +81,7 @@
     <Compile Include="Messages\RelationshipBridgeDto.cs" />
     <Compile Include="Utils\Cryptography.cs" />
     <Compile Include="Visitors\CharacterVisitor.cs" />
+    <Compile Include="Visitors\GameVisitor.cs" />
     <Compile Include="Visitors\HouseCardVisitor.cs" />
     <Compile Include="Visitors\HouseVisitor.cs" />
     <Compile Include="Visitors\PlayerVisitor.cs" />

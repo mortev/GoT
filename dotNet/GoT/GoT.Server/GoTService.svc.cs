@@ -127,19 +127,93 @@ namespace GoT.Server
         /// <inheritdoc />
         public List<GameDto> GetGames(GameFilterDto filter)
         {
-            throw new NotImplementedException();
+            var response = new List<GameDto>();
+
+            try
+            {
+                using (var ctx = new GoTDataContext())
+                {
+                    //TODO:: Add paging in order to return games continuously::
+                    //Get last 20 games::
+                    var games = ctx.Games.OrderByDescending(o => o.Date).Take(10).ToList();
+
+                    //Add filter::
+                    if(filter != null)
+                    {
+                        //Player id filter::
+                        if (filter.PlayerId != null && filter.PlayerId > 0)
+                            games = games.Where(w => w.GamePlayers.Select(s => s.PlayerId).Contains(filter.PlayerId)).ToList();
+                        //From date filter::
+                        if (filter.FromDate != null && filter.FromDate > DateTime.MinValue)
+                            games = games.Where(w => w.Date > filter.FromDate).ToList();
+                        //To date filter::
+                        if (filter.ToDate != null && filter.ToDate > DateTime.MinValue)
+                            games = games.Where(w => w.Date < filter.ToDate).ToList();
+
+                        //TODO:: Add more filters if needed::
+                    }
+                    
+                    response = GameVisitor.Visit(games);
+                }
+            }
+            catch (Exception exc)
+            {
+                //TODO:: Handle error
+            }
+
+            return response;
         }
 
         /// <inheritdoc />
         public GameDto GetGame(long gameId)
         {
-            throw new NotImplementedException();
+            var response = new GameDto();
+
+            try
+            {
+                using (var ctx = new GoTDataContext())
+                {
+                    var game = ctx.Games.FirstOrDefault(w => w.GameId == gameId);
+                    if (game != null)
+                    {
+                        response = GameVisitor.Visit(game, true);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                //TODO:: Handle error
+            }
+
+            return response;
         }
 
         /// <inheritdoc />
-        public long CreateGame(GameDto game)
+        public GameDto CreateGame(GameDto gameDto)
         {
-            throw new NotImplementedException();
+            if (gameDto == null)
+                throw new NullReferenceException("Missing method input parameter.");
+
+            var response = new GameDto();
+
+            try
+            {
+                using (var ctx = new GoTDataContext())
+                {
+                    var game = ctx.Games.CreateObject();
+                    game = GameVisitor.Visit(gameDto, game);
+                    ctx.Games.AddObject(game);
+                    ctx.SaveChanges();
+
+                    response = GameVisitor.Visit(game, true);
+                }
+            }
+            catch (Exception exc)
+            {
+                //TODO:: Handle error
+            }
+
+            return response;
         }
 
         /// <inheritdoc />
@@ -157,10 +231,10 @@ namespace GoT.Server
         /// <inheritdoc />
         public PlayerDto CreatePlayer(PlayerDto playerDto)
         {
-            var response = new PlayerDto();
-
             if (playerDto == null)
-                return response;
+                throw new NullReferenceException("Missing method input parameter.");
+
+            var response = new PlayerDto();
 
             try
             {
@@ -169,7 +243,7 @@ namespace GoT.Server
                     var player = ctx.Players.FirstOrDefault(w => w.Username.Equals(playerDto.Username));
                     if (player != null)
                     {
-                        //TODO:: Add error
+                        //TODO:: Handle error
                     }
                     else
                     {
@@ -184,7 +258,7 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-                //TODO:: Add error
+                //TODO:: Handle error
             }
 
             return response;
