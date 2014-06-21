@@ -1531,7 +1531,7 @@
           <ConnectorPoint PointX="10.5625" PointY="3.4417936197916661" />
           <ConnectorPoint PointX="10.5625" PointY="4.375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.WesterosCard" Width="1.875" PointX="9.625" PointY="7" Height="1.7879850260416657" />
+        <EntityTypeShape EntityType="Model.WesterosCard" Width="1.875" PointX="9.625" PointY="7" Height="1.8079850260416652" />
         <EntityTypeShape EntityType="Model.HouseCardStatus" Width="1.625" PointX="7.5" PointY="6.625" Height="1.5956835937499996" />
         <AssociationConnector Association="Model.GamePlayerHouseCardStatus">
           <ConnectorPoint PointX="8.3125" PointY="5.9802864583333326" />
