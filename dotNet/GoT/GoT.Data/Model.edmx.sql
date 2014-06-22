@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/17/2014 21:33:23
+-- Date Created: 06/22/2014 14:09:02
 -- Generated from EDMX file: C:\Data\Repository\GoT\dotNet\GoT\GoT.Data\Model.edmx
 -- --------------------------------------------------
 
@@ -147,6 +147,9 @@ IF OBJECT_ID(N'[dbo].[WesterosCards]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[HouseCardStatuses]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HouseCardStatuses];
+GO
+IF OBJECT_ID(N'[dbo].[ErrorLogs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ErrorLogs];
 GO
 
 -- --------------------------------------------------
@@ -394,6 +397,17 @@ CREATE TABLE [dbo].[HouseCardStatuses] (
 );
 GO
 
+-- Creating table 'ErrorLogs'
+CREATE TABLE [dbo].[ErrorLogs] (
+    [ErrorLogId] bigint IDENTITY(1,1) NOT NULL,
+    [Timestamp] datetime  NOT NULL,
+    [ErrorCode] nvarchar(max)  NULL,
+    [ErrorMessage] nvarchar(max)  NOT NULL,
+    [Method] nvarchar(max)  NOT NULL,
+    [StackTrace] nvarchar(max)  NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -534,6 +548,12 @@ GO
 ALTER TABLE [dbo].[HouseCardStatuses]
 ADD CONSTRAINT [PK_HouseCardStatuses]
     PRIMARY KEY CLUSTERED ([HouseCardStatusId] ASC);
+GO
+
+-- Creating primary key on [ErrorLogId] in table 'ErrorLogs'
+ALTER TABLE [dbo].[ErrorLogs]
+ADD CONSTRAINT [PK_ErrorLogs]
+    PRIMARY KEY CLUSTERED ([ErrorLogId] ASC);
 GO
 
 -- --------------------------------------------------

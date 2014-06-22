@@ -456,6 +456,22 @@ namespace GoT.Data
             }
         }
         private ObjectSet<HouseCardStatus> _HouseCardStatuses;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ErrorLog> ErrorLogs
+        {
+            get
+            {
+                if ((_ErrorLogs == null))
+                {
+                    _ErrorLogs = base.CreateObjectSet<ErrorLog>("ErrorLogs");
+                }
+                return _ErrorLogs;
+            }
+        }
+        private ObjectSet<ErrorLog> _ErrorLogs;
 
         #endregion
 
@@ -643,6 +659,14 @@ namespace GoT.Data
         public void AddToHouseCardStatuses(HouseCardStatus houseCardStatus)
         {
             base.AddObject("HouseCardStatuses", houseCardStatus);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ErrorLogs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToErrorLogs(ErrorLog errorLog)
+        {
+            base.AddObject("ErrorLogs", errorLog);
         }
 
         #endregion
@@ -955,6 +979,189 @@ namespace GoT.Data
         private global::System.String _Text;
         partial void OnTextChanging(global::System.String value);
         partial void OnTextChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="ErrorLog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ErrorLog : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ErrorLog object.
+        /// </summary>
+        /// <param name="errorLogId">Initial value of the ErrorLogId property.</param>
+        /// <param name="timestamp">Initial value of the Timestamp property.</param>
+        /// <param name="errorMessage">Initial value of the ErrorMessage property.</param>
+        /// <param name="method">Initial value of the Method property.</param>
+        public static ErrorLog CreateErrorLog(global::System.Int64 errorLogId, global::System.DateTime timestamp, global::System.String errorMessage, global::System.String method)
+        {
+            ErrorLog errorLog = new ErrorLog();
+            errorLog.ErrorLogId = errorLogId;
+            errorLog.Timestamp = timestamp;
+            errorLog.ErrorMessage = errorMessage;
+            errorLog.Method = method;
+            return errorLog;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ErrorLogId
+        {
+            get
+            {
+                return _ErrorLogId;
+            }
+            set
+            {
+                if (_ErrorLogId != value)
+                {
+                    OnErrorLogIdChanging(value);
+                    ReportPropertyChanging("ErrorLogId");
+                    _ErrorLogId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ErrorLogId");
+                    OnErrorLogIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _ErrorLogId;
+        partial void OnErrorLogIdChanging(global::System.Int64 value);
+        partial void OnErrorLogIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Timestamp
+        {
+            get
+            {
+                return _Timestamp;
+            }
+            set
+            {
+                OnTimestampChanging(value);
+                ReportPropertyChanging("Timestamp");
+                _Timestamp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Timestamp");
+                OnTimestampChanged();
+            }
+        }
+        private global::System.DateTime _Timestamp;
+        partial void OnTimestampChanging(global::System.DateTime value);
+        partial void OnTimestampChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ErrorCode
+        {
+            get
+            {
+                return _ErrorCode;
+            }
+            set
+            {
+                OnErrorCodeChanging(value);
+                ReportPropertyChanging("ErrorCode");
+                _ErrorCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ErrorCode");
+                OnErrorCodeChanged();
+            }
+        }
+        private global::System.String _ErrorCode;
+        partial void OnErrorCodeChanging(global::System.String value);
+        partial void OnErrorCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ErrorMessage
+        {
+            get
+            {
+                return _ErrorMessage;
+            }
+            set
+            {
+                OnErrorMessageChanging(value);
+                ReportPropertyChanging("ErrorMessage");
+                _ErrorMessage = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ErrorMessage");
+                OnErrorMessageChanged();
+            }
+        }
+        private global::System.String _ErrorMessage;
+        partial void OnErrorMessageChanging(global::System.String value);
+        partial void OnErrorMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Method
+        {
+            get
+            {
+                return _Method;
+            }
+            set
+            {
+                OnMethodChanging(value);
+                ReportPropertyChanging("Method");
+                _Method = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Method");
+                OnMethodChanged();
+            }
+        }
+        private global::System.String _Method;
+        partial void OnMethodChanging(global::System.String value);
+        partial void OnMethodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String StackTrace
+        {
+            get
+            {
+                return _StackTrace;
+            }
+            set
+            {
+                OnStackTraceChanging(value);
+                ReportPropertyChanging("StackTrace");
+                _StackTrace = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("StackTrace");
+                OnStackTraceChanged();
+            }
+        }
+        private global::System.String _StackTrace;
+        partial void OnStackTraceChanging(global::System.String value);
+        partial void OnStackTraceChanged();
 
         #endregion
 

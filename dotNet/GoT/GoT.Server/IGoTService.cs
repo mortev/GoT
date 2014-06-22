@@ -20,11 +20,11 @@ namespace GoT.Server
         /// <summary>
         /// Authenticate user.
         /// </summary>
-        /// <param name="login"></param>
+        /// <param name="loginDto"></param>
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        PlayerDto Login(LoginDto login);
+        PlayerDto Login(LoginDto loginDto);
 
         /// <summary>
         /// Get list of Houses.
@@ -91,11 +91,11 @@ namespace GoT.Server
         /// Create new game.
         /// Returns unique game id to be used when later updating the game.
         /// </summary>
-        /// <param name="game"></param>
+        /// <param name="gameDto"></param>
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        GameDto CreateGame(GameDto game);
+        GameDto CreateGame(GameDto gameDto);
 
         /// <summary>
         /// Updates an existing game.
@@ -104,16 +104,16 @@ namespace GoT.Server
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        void UpdateGame(GameDto game);
+        void UpdateGame(GameDto gameDto);
 
         /// <summary>
         /// Add round to existing game.
         /// </summary>
-        /// <param name="round"></param>
+        /// <param name="roundDto"></param>
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        void CreateRound(RoundDto round);
+        void CreateRound(RoundDto roundDto);
 
         /// <summary>
         /// Create new player.

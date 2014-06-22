@@ -29,6 +29,7 @@
     <EntitySet Name="WesterosCardStatuses" EntityType="Model.Store.WesterosCardStatuses" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WesterosCards" EntityType="Model.Store.WesterosCards" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HouseCardStatuses" EntityType="Model.Store.HouseCardStatuses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ErrorLogs" EntityType="Model.Store.ErrorLogs" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HouseCharacter" Association="Model.Store.HouseCharacter">
       <End Role="House" EntitySet="Houses" />
       <End Role="Character" EntitySet="Characters" />
@@ -346,6 +347,17 @@
     <Property Name="HouseCardId" Type="bigint" Nullable="false" />
     <Property Name="IsAvailable" Type="bit" Nullable="false" />
     <Property Name="GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ErrorLogs">
+    <Key>
+      <PropertyRef Name="ErrorLogId" />
+    </Key>
+    <Property Name="ErrorLogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="ErrorCode" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ErrorMessage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Method" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StackTrace" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <Association Name="HouseCharacter">
     <End Role="House" Type="Model.Store.Houses" Multiplicity="1" />
@@ -679,6 +691,7 @@
             <End Role="GamePlayer" EntitySet="GamePlayers" />
             <End Role="HouseCardStatus" EntitySet="HouseCardStatuses" />
           </AssociationSet>
+          <EntitySet Name="ErrorLogs" EntityType="Model.ErrorLog" />
           </EntityContainer>
         <EntityType Name="Player">
           <Key>
@@ -1009,6 +1022,17 @@
           <End Type="Model.GamePlayer" Role="GamePlayer" Multiplicity="1" />
           <End Type="Model.HouseCardStatus" Role="HouseCardStatus" Multiplicity="*" />
         </Association>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="ErrorLogId" />
+          </Key>
+          <Property Type="Int64" Name="ErrorLogId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+          <Property Type="String" Name="ErrorCode" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="false" />
+          <Property Type="String" Name="Method" Nullable="false" />
+          <Property Type="String" Name="StackTrace" Nullable="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1257,6 +1281,18 @@
           <ScalarProperty Name="HouseCardStatusId" ColumnName="HouseCardStatusId" />
           <ScalarProperty Name="HouseCardId" ColumnName="HouseCardId" />
           <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ErrorLog)">
+        <MappingFragment StoreEntitySet="ErrorLogs">
+          <ScalarProperty Name="ErrorLogId" ColumnName="ErrorLogId" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="Method" ColumnName="Method" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1531,12 +1567,13 @@
           <ConnectorPoint PointX="10.5625" PointY="3.4417936197916661" />
           <ConnectorPoint PointX="10.5625" PointY="4.375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.WesterosCard" Width="1.875" PointX="9.625" PointY="7" Height="1.8079850260416652" />
+        <EntityTypeShape EntityType="Model.WesterosCard" Width="1.875" PointX="9.625" PointY="7" Height="1.7879850260416657" />
         <EntityTypeShape EntityType="Model.HouseCardStatus" Width="1.625" PointX="7.5" PointY="6.625" Height="1.5956835937499996" />
         <AssociationConnector Association="Model.GamePlayerHouseCardStatus">
           <ConnectorPoint PointX="8.3125" PointY="5.9802864583333326" />
           <ConnectorPoint PointX="8.3125" PointY="6.625" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="Model.ErrorLog" Width="1.5" PointX="20.25" PointY="0.5" Height="2.172587890625" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -10,6 +10,8 @@ using GoT.Server.Messages;
 using GoT.Server.Visitors;
 using GoT.Server.Utils;
 using System.Security;
+using System.Reflection;
+using System.Security.Authentication;
 
 namespace GoT.Server
 {
@@ -27,23 +29,25 @@ namespace GoT.Server
         }
 
         /// <inheritdoc />
-        public PlayerDto Login(LoginDto login)
+        public PlayerDto Login(LoginDto loginDto)
         {
-            var response = new PlayerDto();
+            if (loginDto == null)
+                throw new ArgumentNullException("loginDto");
+            if (string.IsNullOrWhiteSpace(loginDto.Username))
+                throw new ArgumentNullException("loginDto.Username");
+            if (string.IsNullOrWhiteSpace(loginDto.Password))
+                throw new ArgumentNullException("loginDto.Password");
 
-            if (login == null)
-                return response;
-            if(string.IsNullOrWhiteSpace(login.Username))
-                return response;
-            if(string.IsNullOrWhiteSpace(login.Password))
-                return response;
+            var response = new PlayerDto();
 
             using (var ctx = new GoTDataContext())
             {
-                var encrypted = Cryptography.EncryptData(login.Password);
-                var player = ctx.Players.FirstOrDefault(w => w.Username.Equals(login.Username) && w.Password.Equals(encrypted));
-                if(player != null)
+                var encrypted = Cryptography.EncryptData(loginDto.Password);
+                var player = ctx.Players.FirstOrDefault(w => w.Username.Equals(loginDto.Username) && w.Password.Equals(encrypted));
+                if (player != null)
                     response = PlayerVisitor.Visit(player, ctx);
+                else
+                    throw new AuthenticationException("Login failed.");
             }
 
             return response;
@@ -64,7 +68,8 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception(string.Format("Failed to get list of houses."));
             }
 
             return response;
@@ -85,7 +90,8 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception(string.Format("Failed to get list of regions."));
             }
 
             return response;
@@ -106,7 +112,8 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception(string.Format("Failed to get list of players."));
             }
 
             return response;
@@ -141,7 +148,7 @@ namespace GoT.Server
                     if(filter != null)
                     {
                         //Player id filter::
-                        if (filter.PlayerId != null && filter.PlayerId > 0)
+                        if (filter.PlayerId > 0)
                             games = games.Where(w => w.GamePlayers.Select(s => s.PlayerId).Contains(filter.PlayerId)).ToList();
                         //From date filter::
                         if (filter.FromDate != null && filter.FromDate > DateTime.MinValue)
@@ -158,7 +165,8 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-                //TODO:: Handle error
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception(string.Format("Failed to get list of games."));
             }
 
             return response;
@@ -182,7 +190,8 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-                //TODO:: Handle error
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception(string.Format("Failed to get game with id {0}.", gameId));
             }
 
             return response;
@@ -192,7 +201,7 @@ namespace GoT.Server
         public GameDto CreateGame(GameDto gameDto)
         {
             if (gameDto == null)
-                throw new NullReferenceException("Missing method input parameter.");
+                throw new ArgumentNullException("gameDto");
 
             var response = new GameDto();
 
@@ -210,7 +219,8 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-                //TODO:: Handle error
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception("Failed to create game.");
             }
 
             return response;
@@ -232,7 +242,7 @@ namespace GoT.Server
         public PlayerDto CreatePlayer(PlayerDto playerDto)
         {
             if (playerDto == null)
-                throw new NullReferenceException("Missing method input parameter.");
+                throw new ArgumentNullException("playerDto");
 
             var response = new PlayerDto();
 
@@ -243,7 +253,7 @@ namespace GoT.Server
                     var player = ctx.Players.FirstOrDefault(w => w.Username.Equals(playerDto.Username));
                     if (player != null)
                     {
-                        //TODO:: Handle error
+                        throw new Exception(string.Format("Player with username {0} already exists.", playerDto.Username));
                     }
                     else
                     {
@@ -258,7 +268,8 @@ namespace GoT.Server
             }
             catch (Exception exc)
             {
-                //TODO:: Handle error
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception("Failed to create player.");
             }
 
             return response;
