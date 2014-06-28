@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface PlayerDto : NSObject
-
+@property NSString *FirstName;
+@property NSString *LastName;
 @end

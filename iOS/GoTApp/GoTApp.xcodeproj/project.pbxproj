@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A86D0BB195EF5450007465F /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A86D0BA195EF5450007465F /* ServerCommunicator.m */; };
+		5A86D0C4195EF83F0007465F /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A86D0C3195EF83F0007465F /* ServerManager.m */; };
+		5A86D0C7195EFA900007465F /* PlayerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A86D0C6195EFA900007465F /* PlayerBuilder.m */; };
+		5A86D0CA195EFE540007465F /* PlayerDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A86D0C9195EFE540007465F /* PlayerDetailCell.m */; };
 		79BF4F24195EE49900284938 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F23195EE49900284938 /* Foundation.framework */; };
 		79BF4F26195EE49900284938 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F25195EE49900284938 /* CoreGraphics.framework */; };
 		79BF4F28195EE49900284938 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F27195EE49900284938 /* UIKit.framework */; };
@@ -44,6 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A86D0B9195EF5450007465F /* ServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicator.h; sourceTree = "<group>"; };
+		5A86D0BA195EF5450007465F /* ServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicator.m; sourceTree = "<group>"; };
+		5A86D0BC195EF7860007465F /* ServerCommunicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicatorDelegate.h; sourceTree = "<group>"; };
+		5A86D0BF195EF7F90007465F /* ServerManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManagerDelegate.h; sourceTree = "<group>"; };
+		5A86D0C2195EF83F0007465F /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
+		5A86D0C3195EF83F0007465F /* ServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManager.m; sourceTree = "<group>"; };
+		5A86D0C5195EFA900007465F /* PlayerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBuilder.h; sourceTree = "<group>"; };
+		5A86D0C6195EFA900007465F /* PlayerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerBuilder.m; sourceTree = "<group>"; };
+		5A86D0C8195EFE540007465F /* PlayerDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDetailCell.h; sourceTree = "<group>"; };
+		5A86D0C9195EFE540007465F /* PlayerDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDetailCell.m; sourceTree = "<group>"; };
 		79BF4F20195EE49900284938 /* GoTApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoTApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79BF4F23195EE49900284938 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		79BF4F25195EE49900284938 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,6 +122,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A86D0B8195EF5020007465F /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				5A86D0B9195EF5450007465F /* ServerCommunicator.h */,
+				5A86D0BA195EF5450007465F /* ServerCommunicator.m */,
+				5A86D0BC195EF7860007465F /* ServerCommunicatorDelegate.h */,
+				5A86D0BF195EF7F90007465F /* ServerManagerDelegate.h */,
+				5A86D0C2195EF83F0007465F /* ServerManager.h */,
+				5A86D0C3195EF83F0007465F /* ServerManager.m */,
+				5A86D0C5195EFA900007465F /* PlayerBuilder.h */,
+				5A86D0C6195EFA900007465F /* PlayerBuilder.m */,
+			);
+			name = Communication;
+			sourceTree = "<group>";
+		};
 		79BF4F17195EE49900284938 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +170,7 @@
 		79BF4F29195EE49900284938 /* GoTApp */ = {
 			isa = PBXGroup;
 			children = (
+				5A86D0B8195EF5020007465F /* Communication */,
 				79BF4F5E195EEDB400284938 /* Messages */,
 				79BF4F32195EE49900284938 /* AppDelegate.h */,
 				79BF4F33195EE49900284938 /* AppDelegate.m */,
@@ -152,6 +182,8 @@
 				79BF4F3F195EE49900284938 /* SecondViewController.m */,
 				79BF4F41195EE49900284938 /* Images.xcassets */,
 				79BF4F2A195EE49900284938 /* Supporting Files */,
+				5A86D0C8195EFE540007465F /* PlayerDetailCell.h */,
+				5A86D0C9195EFE540007465F /* PlayerDetailCell.m */,
 			);
 			path = GoTApp;
 			sourceTree = "<group>";
@@ -310,6 +342,7 @@
 				79BF4F64195EEE1200284938 /* RegionDto.m in Sources */,
 				79BF4F6B195EEE3300284938 /* PlayerDto.m in Sources */,
 				79BF4F61195EEE0100284938 /* GameDto.m in Sources */,
+				5A86D0C4195EF83F0007465F /* ServerManager.m in Sources */,
 				79BF4F6E195EEE4600284938 /* HouseCardDto.m in Sources */,
 				79BF4F74195EEE7900284938 /* RoundDto.m in Sources */,
 				79BF4F71195EEE5900284938 /* GameFilterDto.m in Sources */,
@@ -317,6 +350,9 @@
 				79BF4F34195EE49900284938 /* AppDelegate.m in Sources */,
 				79BF4F77195EEE9100284938 /* LoginDto.m in Sources */,
 				79BF4F3D195EE49900284938 /* FirstViewController.m in Sources */,
+				5A86D0C7195EFA900007465F /* PlayerBuilder.m in Sources */,
+				5A86D0CA195EFE540007465F /* PlayerDetailCell.m in Sources */,
+				5A86D0BB195EF5450007465F /* ServerCommunicator.m in Sources */,
 				79BF4F30195EE49900284938 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +570,7 @@
 				79BF4F5A195EE49900284938 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		79BF4F5B195EE49900284938 /* Build configuration list for PBXNativeTarget "GoTAppTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +579,7 @@
 				79BF4F5D195EE49900284938 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
