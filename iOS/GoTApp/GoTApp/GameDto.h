@@ -10,4 +10,10 @@
 
 @interface GameDto : NSObject
 
+@property NSInteger *GameId;
+@property NSDate *Date;
+@property NSDate *CreatedDate;
+@property NSString *Status;
+@property NSInteger *CreatedByPlayerId;
+
 @end

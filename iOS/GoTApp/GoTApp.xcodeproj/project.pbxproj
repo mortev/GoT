@@ -23,6 +23,14 @@
 		79BF4F4B195EE49900284938 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F27195EE49900284938 /* UIKit.framework */; };
 		79BF4F53195EE49900284938 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79BF4F51195EE49900284938 /* InfoPlist.strings */; };
 		79BF4F55195EE49900284938 /* GoTAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F54195EE49900284938 /* GoTAppTests.m */; };
+		79BF4F61195EEE0100284938 /* GameDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F60195EEE0100284938 /* GameDto.m */; };
+		79BF4F64195EEE1200284938 /* RegionDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F63195EEE1200284938 /* RegionDto.m */; };
+		79BF4F68195EEE2600284938 /* HouseDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F67195EEE2600284938 /* HouseDto.m */; };
+		79BF4F6B195EEE3300284938 /* PlayerDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F6A195EEE3300284938 /* PlayerDto.m */; };
+		79BF4F6E195EEE4600284938 /* HouseCardDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F6D195EEE4600284938 /* HouseCardDto.m */; };
+		79BF4F71195EEE5900284938 /* GameFilterDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F70195EEE5900284938 /* GameFilterDto.m */; };
+		79BF4F74195EEE7900284938 /* RoundDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F73195EEE7900284938 /* RoundDto.m */; };
+		79BF4F77195EEE9100284938 /* LoginDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F76195EEE9100284938 /* LoginDto.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +66,22 @@
 		79BF4F50195EE49900284938 /* GoTAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoTAppTests-Info.plist"; sourceTree = "<group>"; };
 		79BF4F52195EE49900284938 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		79BF4F54195EE49900284938 /* GoTAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoTAppTests.m; sourceTree = "<group>"; };
+		79BF4F5F195EEE0100284938 /* GameDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDto.h; sourceTree = "<group>"; };
+		79BF4F60195EEE0100284938 /* GameDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDto.m; sourceTree = "<group>"; };
+		79BF4F62195EEE1200284938 /* RegionDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionDto.h; sourceTree = "<group>"; };
+		79BF4F63195EEE1200284938 /* RegionDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionDto.m; sourceTree = "<group>"; };
+		79BF4F66195EEE2600284938 /* HouseDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseDto.h; sourceTree = "<group>"; };
+		79BF4F67195EEE2600284938 /* HouseDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseDto.m; sourceTree = "<group>"; };
+		79BF4F69195EEE3300284938 /* PlayerDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDto.h; sourceTree = "<group>"; };
+		79BF4F6A195EEE3300284938 /* PlayerDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDto.m; sourceTree = "<group>"; };
+		79BF4F6C195EEE4600284938 /* HouseCardDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseCardDto.h; sourceTree = "<group>"; };
+		79BF4F6D195EEE4600284938 /* HouseCardDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseCardDto.m; sourceTree = "<group>"; };
+		79BF4F6F195EEE5900284938 /* GameFilterDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameFilterDto.h; sourceTree = "<group>"; };
+		79BF4F70195EEE5900284938 /* GameFilterDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameFilterDto.m; sourceTree = "<group>"; };
+		79BF4F72195EEE7900284938 /* RoundDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundDto.h; sourceTree = "<group>"; };
+		79BF4F73195EEE7900284938 /* RoundDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundDto.m; sourceTree = "<group>"; };
+		79BF4F75195EEE9100284938 /* LoginDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDto.h; sourceTree = "<group>"; };
+		79BF4F76195EEE9100284938 /* LoginDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDto.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +141,7 @@
 		79BF4F29195EE49900284938 /* GoTApp */ = {
 			isa = PBXGroup;
 			children = (
+				79BF4F5E195EEDB400284938 /* Messages */,
 				79BF4F32195EE49900284938 /* AppDelegate.h */,
 				79BF4F33195EE49900284938 /* AppDelegate.m */,
 				79BF4F35195EE49900284938 /* Main_iPhone.storyboard */,
@@ -158,6 +183,29 @@
 				79BF4F51195EE49900284938 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79BF4F5E195EEDB400284938 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				79BF4F5F195EEE0100284938 /* GameDto.h */,
+				79BF4F60195EEE0100284938 /* GameDto.m */,
+				79BF4F6F195EEE5900284938 /* GameFilterDto.h */,
+				79BF4F70195EEE5900284938 /* GameFilterDto.m */,
+				79BF4F66195EEE2600284938 /* HouseDto.h */,
+				79BF4F67195EEE2600284938 /* HouseDto.m */,
+				79BF4F6C195EEE4600284938 /* HouseCardDto.h */,
+				79BF4F6D195EEE4600284938 /* HouseCardDto.m */,
+				79BF4F75195EEE9100284938 /* LoginDto.h */,
+				79BF4F76195EEE9100284938 /* LoginDto.m */,
+				79BF4F69195EEE3300284938 /* PlayerDto.h */,
+				79BF4F6A195EEE3300284938 /* PlayerDto.m */,
+				79BF4F62195EEE1200284938 /* RegionDto.h */,
+				79BF4F63195EEE1200284938 /* RegionDto.m */,
+				79BF4F72195EEE7900284938 /* RoundDto.h */,
+				79BF4F73195EEE7900284938 /* RoundDto.m */,
+			);
+			name = Messages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +307,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				79BF4F40195EE49900284938 /* SecondViewController.m in Sources */,
+				79BF4F64195EEE1200284938 /* RegionDto.m in Sources */,
+				79BF4F6B195EEE3300284938 /* PlayerDto.m in Sources */,
+				79BF4F61195EEE0100284938 /* GameDto.m in Sources */,
+				79BF4F6E195EEE4600284938 /* HouseCardDto.m in Sources */,
+				79BF4F74195EEE7900284938 /* RoundDto.m in Sources */,
+				79BF4F71195EEE5900284938 /* GameFilterDto.m in Sources */,
+				79BF4F68195EEE2600284938 /* HouseDto.m in Sources */,
 				79BF4F34195EE49900284938 /* AppDelegate.m in Sources */,
+				79BF4F77195EEE9100284938 /* LoginDto.m in Sources */,
 				79BF4F3D195EE49900284938 /* FirstViewController.m in Sources */,
 				79BF4F30195EE49900284938 /* main.m in Sources */,
 			);

@@ -10,4 +10,8 @@
 
 @interface RegionDto : NSObject
 
+@property NSInteger *RegionId;
+@property NSString *Name;
+@property NSString *Description;
+
 @end
