@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		79BF4F24195EE49900284938 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F23195EE49900284938 /* Foundation.framework */; };
+		79BF4F26195EE49900284938 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F25195EE49900284938 /* CoreGraphics.framework */; };
+		79BF4F28195EE49900284938 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F27195EE49900284938 /* UIKit.framework */; };
+		79BF4F2E195EE49900284938 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79BF4F2C195EE49900284938 /* InfoPlist.strings */; };
+		79BF4F30195EE49900284938 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F2F195EE49900284938 /* main.m */; };
+		79BF4F34195EE49900284938 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F33195EE49900284938 /* AppDelegate.m */; };
+		79BF4F37195EE49900284938 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79BF4F35195EE49900284938 /* Main_iPhone.storyboard */; };
+		79BF4F3A195EE49900284938 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79BF4F38195EE49900284938 /* Main_iPad.storyboard */; };
+		79BF4F3D195EE49900284938 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F3C195EE49900284938 /* FirstViewController.m */; };
+		79BF4F40195EE49900284938 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F3F195EE49900284938 /* SecondViewController.m */; };
+		79BF4F42195EE49900284938 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BF4F41195EE49900284938 /* Images.xcassets */; };
+		79BF4F49195EE49900284938 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F48195EE49900284938 /* XCTest.framework */; };
+		79BF4F4A195EE49900284938 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F23195EE49900284938 /* Foundation.framework */; };
+		79BF4F4B195EE49900284938 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BF4F27195EE49900284938 /* UIKit.framework */; };
+		79BF4F53195EE49900284938 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79BF4F51195EE49900284938 /* InfoPlist.strings */; };
+		79BF4F55195EE49900284938 /* GoTAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF4F54195EE49900284938 /* GoTAppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		79BF4F4C195EE49900284938 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 79BF4F18195EE49900284938 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79BF4F1F195EE49900284938;
+			remoteInfo = GoTApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		79BF4F20195EE49900284938 /* GoTApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoTApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79BF4F23195EE49900284938 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		79BF4F25195EE49900284938 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		79BF4F27195EE49900284938 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		79BF4F2B195EE49900284938 /* GoTApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoTApp-Info.plist"; sourceTree = "<group>"; };
+		79BF4F2D195EE49900284938 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		79BF4F2F195EE49900284938 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		79BF4F31195EE49900284938 /* GoTApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoTApp-Prefix.pch"; sourceTree = "<group>"; };
+		79BF4F32195EE49900284938 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		79BF4F33195EE49900284938 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		79BF4F36195EE49900284938 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		79BF4F39195EE49900284938 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		79BF4F3B195EE49900284938 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		79BF4F3C195EE49900284938 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		79BF4F3E195EE49900284938 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		79BF4F3F195EE49900284938 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		79BF4F41195EE49900284938 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		79BF4F47195EE49900284938 /* GoTAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoTAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79BF4F48195EE49900284938 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		79BF4F50195EE49900284938 /* GoTAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoTAppTests-Info.plist"; sourceTree = "<group>"; };
+		79BF4F52195EE49900284938 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		79BF4F54195EE49900284938 /* GoTAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoTAppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79BF4F1D195EE49900284938 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BF4F26195EE49900284938 /* CoreGraphics.framework in Frameworks */,
+				79BF4F28195EE49900284938 /* UIKit.framework in Frameworks */,
+				79BF4F24195EE49900284938 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79BF4F44195EE49900284938 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BF4F49195EE49900284938 /* XCTest.framework in Frameworks */,
+				79BF4F4B195EE49900284938 /* UIKit.framework in Frameworks */,
+				79BF4F4A195EE49900284938 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		79BF4F17195EE49900284938 = {
+			isa = PBXGroup;
+			children = (
+				79BF4F29195EE49900284938 /* GoTApp */,
+				79BF4F4E195EE49900284938 /* GoTAppTests */,
+				79BF4F22195EE49900284938 /* Frameworks */,
+				79BF4F21195EE49900284938 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		79BF4F21195EE49900284938 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				79BF4F20195EE49900284938 /* GoTApp.app */,
+				79BF4F47195EE49900284938 /* GoTAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		79BF4F22195EE49900284938 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79BF4F23195EE49900284938 /* Foundation.framework */,
+				79BF4F25195EE49900284938 /* CoreGraphics.framework */,
+				79BF4F27195EE49900284938 /* UIKit.framework */,
+				79BF4F48195EE49900284938 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79BF4F29195EE49900284938 /* GoTApp */ = {
+			isa = PBXGroup;
+			children = (
+				79BF4F32195EE49900284938 /* AppDelegate.h */,
+				79BF4F33195EE49900284938 /* AppDelegate.m */,
+				79BF4F35195EE49900284938 /* Main_iPhone.storyboard */,
+				79BF4F38195EE49900284938 /* Main_iPad.storyboard */,
+				79BF4F3B195EE49900284938 /* FirstViewController.h */,
+				79BF4F3C195EE49900284938 /* FirstViewController.m */,
+				79BF4F3E195EE49900284938 /* SecondViewController.h */,
+				79BF4F3F195EE49900284938 /* SecondViewController.m */,
+				79BF4F41195EE49900284938 /* Images.xcassets */,
+				79BF4F2A195EE49900284938 /* Supporting Files */,
+			);
+			path = GoTApp;
+			sourceTree = "<group>";
+		};
+		79BF4F2A195EE49900284938 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79BF4F2B195EE49900284938 /* GoTApp-Info.plist */,
+				79BF4F2C195EE49900284938 /* InfoPlist.strings */,
+				79BF4F2F195EE49900284938 /* main.m */,
+				79BF4F31195EE49900284938 /* GoTApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79BF4F4E195EE49900284938 /* GoTAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				79BF4F54195EE49900284938 /* GoTAppTests.m */,
+				79BF4F4F195EE49900284938 /* Supporting Files */,
+			);
+			path = GoTAppTests;
+			sourceTree = "<group>";
+		};
+		79BF4F4F195EE49900284938 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79BF4F50195EE49900284938 /* GoTAppTests-Info.plist */,
+				79BF4F51195EE49900284938 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79BF4F1F195EE49900284938 /* GoTApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79BF4F58195EE49900284938 /* Build configuration list for PBXNativeTarget "GoTApp" */;
+			buildPhases = (
+				79BF4F1C195EE49900284938 /* Sources */,
+				79BF4F1D195EE49900284938 /* Frameworks */,
+				79BF4F1E195EE49900284938 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoTApp;
+			productName = GoTApp;
+			productReference = 79BF4F20195EE49900284938 /* GoTApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		79BF4F46195EE49900284938 /* GoTAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79BF4F5B195EE49900284938 /* Build configuration list for PBXNativeTarget "GoTAppTests" */;
+			buildPhases = (
+				79BF4F43195EE49900284938 /* Sources */,
+				79BF4F44195EE49900284938 /* Frameworks */,
+				79BF4F45195EE49900284938 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79BF4F4D195EE49900284938 /* PBXTargetDependency */,
+			);
+			name = GoTAppTests;
+			productName = GoTAppTests;
+			productReference = 79BF4F47195EE49900284938 /* GoTAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		79BF4F18195EE49900284938 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = MortenRoarTony;
+				TargetAttributes = {
+					79BF4F46195EE49900284938 = {
+						TestTargetID = 79BF4F1F195EE49900284938;
+					};
+				};
+			};
+			buildConfigurationList = 79BF4F1B195EE49900284938 /* Build configuration list for PBXProject "GoTApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 79BF4F17195EE49900284938;
+			productRefGroup = 79BF4F21195EE49900284938 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79BF4F1F195EE49900284938 /* GoTApp */,
+				79BF4F46195EE49900284938 /* GoTAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79BF4F1E195EE49900284938 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BF4F3A195EE49900284938 /* Main_iPad.storyboard in Resources */,
+				79BF4F42195EE49900284938 /* Images.xcassets in Resources */,
+				79BF4F37195EE49900284938 /* Main_iPhone.storyboard in Resources */,
+				79BF4F2E195EE49900284938 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79BF4F45195EE49900284938 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BF4F53195EE49900284938 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		79BF4F1C195EE49900284938 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BF4F40195EE49900284938 /* SecondViewController.m in Sources */,
+				79BF4F34195EE49900284938 /* AppDelegate.m in Sources */,
+				79BF4F3D195EE49900284938 /* FirstViewController.m in Sources */,
+				79BF4F30195EE49900284938 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79BF4F43195EE49900284938 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BF4F55195EE49900284938 /* GoTAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		79BF4F4D195EE49900284938 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79BF4F1F195EE49900284938 /* GoTApp */;
+			targetProxy = 79BF4F4C195EE49900284938 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		79BF4F2C195EE49900284938 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BF4F2D195EE49900284938 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		79BF4F35195EE49900284938 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BF4F36195EE49900284938 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		79BF4F38195EE49900284938 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BF4F39195EE49900284938 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		79BF4F51195EE49900284938 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BF4F52195EE49900284938 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		79BF4F56195EE49900284938 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		79BF4F57195EE49900284938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79BF4F59195EE49900284938 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoTApp/GoTApp-Prefix.pch";
+				INFOPLIST_FILE = "GoTApp/GoTApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		79BF4F5A195EE49900284938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoTApp/GoTApp-Prefix.pch";
+				INFOPLIST_FILE = "GoTApp/GoTApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		79BF4F5C195EE49900284938 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GoTApp.app/GoTApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoTApp/GoTApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GoTAppTests/GoTAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		79BF4F5D195EE49900284938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GoTApp.app/GoTApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoTApp/GoTApp-Prefix.pch";
+				INFOPLIST_FILE = "GoTAppTests/GoTAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79BF4F1B195EE49900284938 /* Build configuration list for PBXProject "GoTApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79BF4F56195EE49900284938 /* Debug */,
+				79BF4F57195EE49900284938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79BF4F58195EE49900284938 /* Build configuration list for PBXNativeTarget "GoTApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79BF4F59195EE49900284938 /* Debug */,
+				79BF4F5A195EE49900284938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		79BF4F5B195EE49900284938 /* Build configuration list for PBXNativeTarget "GoTAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79BF4F5C195EE49900284938 /* Debug */,
+				79BF4F5D195EE49900284938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 79BF4F18195EE49900284938 /* Project object */;
+}
