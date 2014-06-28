@@ -7,8 +7,8 @@ namespace GoT.Server.Messages
 {
     public class RegionRelationshipDto
     {
-        public Int64 SourceRegionId { get; set; }
-        public Int64 DestinationRegionId { get; set; }
+        public Int32 SourceRegionId { get; set; }
+        public Int32 DestinationRegionId { get; set; }
 
         public List<RelationshipBridgeDto> Bridges { get; set; }
     }

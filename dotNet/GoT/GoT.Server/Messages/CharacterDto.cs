@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class CharacterDto
     {
-        public Int64 CharacterId { get; set; }
+        public Int32 CharacterId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NickName { get; set; }

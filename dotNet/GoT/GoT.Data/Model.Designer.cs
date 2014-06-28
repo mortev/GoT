@@ -694,7 +694,7 @@ namespace GoT.Data
         /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="gender">Initial value of the Gender property.</param>
-        public static Character CreateCharacter(global::System.Int64 characterId, global::System.String firstName, global::System.String lastName, global::System.String gender)
+        public static Character CreateCharacter(global::System.Int32 characterId, global::System.String firstName, global::System.String lastName, global::System.String gender)
         {
             Character character = new Character();
             character.CharacterId = characterId;
@@ -713,7 +713,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 CharacterId
+        public global::System.Int32 CharacterId
         {
             get
             {
@@ -731,8 +731,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _CharacterId;
-        partial void OnCharacterIdChanging(global::System.Int64 value);
+        private global::System.Int32 _CharacterId;
+        partial void OnCharacterIdChanging(global::System.Int32 value);
         partial void OnCharacterIdChanged();
     
         /// <summary>
@@ -917,7 +917,7 @@ namespace GoT.Data
         /// </summary>
         /// <param name="didYouKnowId">Initial value of the DidYouKnowId property.</param>
         /// <param name="text">Initial value of the Text property.</param>
-        public static DidYouKnow CreateDidYouKnow(global::System.Int64 didYouKnowId, global::System.String text)
+        public static DidYouKnow CreateDidYouKnow(global::System.Int32 didYouKnowId, global::System.String text)
         {
             DidYouKnow didYouKnow = new DidYouKnow();
             didYouKnow.DidYouKnowId = didYouKnowId;
@@ -934,7 +934,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 DidYouKnowId
+        public global::System.Int32 DidYouKnowId
         {
             get
             {
@@ -952,8 +952,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _DidYouKnowId;
-        partial void OnDidYouKnowIdChanging(global::System.Int64 value);
+        private global::System.Int32 _DidYouKnowId;
+        partial void OnDidYouKnowIdChanging(global::System.Int32 value);
         partial void OnDidYouKnowIdChanged();
     
         /// <summary>
@@ -1187,7 +1187,7 @@ namespace GoT.Data
         /// <param name="status">Initial value of the Status property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
         /// <param name="createdByPlayerId">Initial value of the CreatedByPlayerId property.</param>
-        public static Game CreateGame(global::System.Int64 gameId, global::System.DateTime date, global::System.String mode, global::System.String status, global::System.DateTime createdDate, global::System.Int64 createdByPlayerId)
+        public static Game CreateGame(global::System.Int32 gameId, global::System.DateTime date, global::System.String mode, global::System.String status, global::System.DateTime createdDate, global::System.Int32 createdByPlayerId)
         {
             Game game = new Game();
             game.GameId = gameId;
@@ -1208,7 +1208,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 GameId
+        public global::System.Int32 GameId
         {
             get
             {
@@ -1226,8 +1226,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _GameId;
-        partial void OnGameIdChanging(global::System.Int64 value);
+        private global::System.Int32 _GameId;
+        partial void OnGameIdChanging(global::System.Int32 value);
         partial void OnGameIdChanged();
     
         /// <summary>
@@ -1331,7 +1331,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 CreatedByPlayerId
+        public global::System.Int32 CreatedByPlayerId
         {
             get
             {
@@ -1346,8 +1346,8 @@ namespace GoT.Data
                 OnCreatedByPlayerIdChanged();
             }
         }
-        private global::System.Int64 _CreatedByPlayerId;
-        partial void OnCreatedByPlayerIdChanging(global::System.Int64 value);
+        private global::System.Int32 _CreatedByPlayerId;
+        partial void OnCreatedByPlayerIdChanging(global::System.Int32 value);
         partial void OnCreatedByPlayerIdChanged();
 
         #endregion
@@ -1441,7 +1441,7 @@ namespace GoT.Data
         /// <param name="gamePlayerId">Initial value of the GamePlayerId property.</param>
         /// <param name="houseId">Initial value of the HouseId property.</param>
         /// <param name="playerId">Initial value of the PlayerId property.</param>
-        public static GamePlayer CreateGamePlayer(global::System.Int64 gamePlayerId, global::System.Int64 houseId, global::System.Int64 playerId)
+        public static GamePlayer CreateGamePlayer(global::System.Int32 gamePlayerId, global::System.Int64 houseId, global::System.Int64 playerId)
         {
             GamePlayer gamePlayer = new GamePlayer();
             gamePlayer.GamePlayerId = gamePlayerId;
@@ -1459,7 +1459,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 GamePlayerId
+        public global::System.Int32 GamePlayerId
         {
             get
             {
@@ -1477,8 +1477,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _GamePlayerId;
-        partial void OnGamePlayerIdChanging(global::System.Int64 value);
+        private global::System.Int32 _GamePlayerId;
+        partial void OnGamePlayerIdChanging(global::System.Int32 value);
         partial void OnGamePlayerIdChanged();
     
         /// <summary>
@@ -1613,7 +1613,7 @@ namespace GoT.Data
         /// </summary>
         /// <param name="gameResultId">Initial value of the GameResultId property.</param>
         /// <param name="place">Initial value of the Place property.</param>
-        public static GameResult CreateGameResult(global::System.Int64 gameResultId, global::System.Int32 place)
+        public static GameResult CreateGameResult(global::System.Int32 gameResultId, global::System.Int32 place)
         {
             GameResult gameResult = new GameResult();
             gameResult.GameResultId = gameResultId;
@@ -1630,7 +1630,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 GameResultId
+        public global::System.Int32 GameResultId
         {
             get
             {
@@ -1648,8 +1648,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _GameResultId;
-        partial void OnGameResultIdChanging(global::System.Int64 value);
+        private global::System.Int32 _GameResultId;
+        partial void OnGameResultIdChanging(global::System.Int32 value);
         partial void OnGameResultIdChanged();
     
         /// <summary>
@@ -1739,7 +1739,7 @@ namespace GoT.Data
         /// <param name="houseId">Initial value of the HouseId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="capitalRegionId">Initial value of the CapitalRegionId property.</param>
-        public static House CreateHouse(global::System.Int32 houseId, global::System.String name, global::System.Int64 capitalRegionId)
+        public static House CreateHouse(global::System.Int32 houseId, global::System.String name, global::System.Int32 capitalRegionId)
         {
             House house = new House();
             house.HouseId = houseId;
@@ -1856,7 +1856,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 CapitalRegionId
+        public global::System.Int32 CapitalRegionId
         {
             get
             {
@@ -1871,8 +1871,8 @@ namespace GoT.Data
                 OnCapitalRegionIdChanged();
             }
         }
-        private global::System.Int64 _CapitalRegionId;
-        partial void OnCapitalRegionIdChanging(global::System.Int64 value);
+        private global::System.Int32 _CapitalRegionId;
+        partial void OnCapitalRegionIdChanging(global::System.Int32 value);
         partial void OnCapitalRegionIdChanged();
 
         #endregion
@@ -1947,7 +1947,7 @@ namespace GoT.Data
         /// <param name="swordCount">Initial value of the SwordCount property.</param>
         /// <param name="towerCount">Initial value of the TowerCount property.</param>
         /// <param name="characterId">Initial value of the CharacterId property.</param>
-        public static HouseCard CreateHouseCard(global::System.Int32 houseCardId, global::System.String description, global::System.Int32 combatStrength, global::System.Int32 swordCount, global::System.Int32 towerCount, global::System.Int64 characterId)
+        public static HouseCard CreateHouseCard(global::System.Int32 houseCardId, global::System.String description, global::System.Int32 combatStrength, global::System.Int32 swordCount, global::System.Int32 towerCount, global::System.Int32 characterId)
         {
             HouseCard houseCard = new HouseCard();
             houseCard.HouseCardId = houseCardId;
@@ -2091,7 +2091,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 CharacterId
+        public global::System.Int32 CharacterId
         {
             get
             {
@@ -2106,8 +2106,8 @@ namespace GoT.Data
                 OnCharacterIdChanged();
             }
         }
-        private global::System.Int64 _CharacterId;
-        partial void OnCharacterIdChanging(global::System.Int64 value);
+        private global::System.Int32 _CharacterId;
+        partial void OnCharacterIdChanging(global::System.Int32 value);
         partial void OnCharacterIdChanged();
 
         #endregion
@@ -2173,7 +2173,7 @@ namespace GoT.Data
         /// <param name="houseCardStatusId">Initial value of the HouseCardStatusId property.</param>
         /// <param name="houseCardId">Initial value of the HouseCardId property.</param>
         /// <param name="isAvailable">Initial value of the IsAvailable property.</param>
-        public static HouseCardStatus CreateHouseCardStatus(global::System.Int64 houseCardStatusId, global::System.Int64 houseCardId, global::System.Boolean isAvailable)
+        public static HouseCardStatus CreateHouseCardStatus(global::System.Int32 houseCardStatusId, global::System.Int32 houseCardId, global::System.Boolean isAvailable)
         {
             HouseCardStatus houseCardStatus = new HouseCardStatus();
             houseCardStatus.HouseCardStatusId = houseCardStatusId;
@@ -2191,7 +2191,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 HouseCardStatusId
+        public global::System.Int32 HouseCardStatusId
         {
             get
             {
@@ -2209,8 +2209,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _HouseCardStatusId;
-        partial void OnHouseCardStatusIdChanging(global::System.Int64 value);
+        private global::System.Int32 _HouseCardStatusId;
+        partial void OnHouseCardStatusIdChanging(global::System.Int32 value);
         partial void OnHouseCardStatusIdChanged();
     
         /// <summary>
@@ -2218,7 +2218,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 HouseCardId
+        public global::System.Int32 HouseCardId
         {
             get
             {
@@ -2233,8 +2233,8 @@ namespace GoT.Data
                 OnHouseCardIdChanged();
             }
         }
-        private global::System.Int64 _HouseCardId;
-        partial void OnHouseCardIdChanging(global::System.Int64 value);
+        private global::System.Int32 _HouseCardId;
+        partial void OnHouseCardIdChanging(global::System.Int32 value);
         partial void OnHouseCardIdChanged();
     
         /// <summary>
@@ -2284,7 +2284,7 @@ namespace GoT.Data
         /// <param name="fiefdomPosition">Initial value of the FiefdomPosition property.</param>
         /// <param name="kingsCourtPosition">Initial value of the KingsCourtPosition property.</param>
         /// <param name="gamePlayerId">Initial value of the GamePlayerId property.</param>
-        public static InfluenceTrackStatus CreateInfluenceTrackStatus(global::System.Int64 influenceTrackId, global::System.Int32 ironThronePosition, global::System.Int32 fiefdomPosition, global::System.Int32 kingsCourtPosition, global::System.Int64 gamePlayerId)
+        public static InfluenceTrackStatus CreateInfluenceTrackStatus(global::System.Int32 influenceTrackId, global::System.Int32 ironThronePosition, global::System.Int32 fiefdomPosition, global::System.Int32 kingsCourtPosition, global::System.Int32 gamePlayerId)
         {
             InfluenceTrackStatus influenceTrackStatus = new InfluenceTrackStatus();
             influenceTrackStatus.InfluenceTrackId = influenceTrackId;
@@ -2304,7 +2304,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 InfluenceTrackId
+        public global::System.Int32 InfluenceTrackId
         {
             get
             {
@@ -2322,8 +2322,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _InfluenceTrackId;
-        partial void OnInfluenceTrackIdChanging(global::System.Int64 value);
+        private global::System.Int32 _InfluenceTrackId;
+        partial void OnInfluenceTrackIdChanging(global::System.Int32 value);
         partial void OnInfluenceTrackIdChanged();
     
         /// <summary>
@@ -2403,7 +2403,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 GamePlayerId
+        public global::System.Int32 GamePlayerId
         {
             get
             {
@@ -2418,8 +2418,8 @@ namespace GoT.Data
                 OnGamePlayerIdChanged();
             }
         }
-        private global::System.Int64 _GamePlayerId;
-        partial void OnGamePlayerIdChanging(global::System.Int64 value);
+        private global::System.Int32 _GamePlayerId;
+        partial void OnGamePlayerIdChanging(global::System.Int32 value);
         partial void OnGamePlayerIdChanged();
 
         #endregion
@@ -2491,7 +2491,7 @@ namespace GoT.Data
         /// <param name="gamePlayerId">Initial value of the GamePlayerId property.</param>
         /// <param name="fromRegionId">Initial value of the FromRegionId property.</param>
         /// <param name="toRegionId">Initial value of the ToRegionId property.</param>
-        public static Move CreateMove(global::System.Int64 moveId, global::System.Int32 attackerFootmanCount, global::System.Int32 attackerKnightCount, global::System.Int32 attackerShipCount, global::System.Int32 attackerSiegeCount, global::System.Boolean attackerVictory, global::System.Int64 gamePlayerId, global::System.Int64 fromRegionId, global::System.Int64 toRegionId)
+        public static Move CreateMove(global::System.Int32 moveId, global::System.Int32 attackerFootmanCount, global::System.Int32 attackerKnightCount, global::System.Int32 attackerShipCount, global::System.Int32 attackerSiegeCount, global::System.Boolean attackerVictory, global::System.Int32 gamePlayerId, global::System.Int32 fromRegionId, global::System.Int32 toRegionId)
         {
             Move move = new Move();
             move.MoveId = moveId;
@@ -2515,7 +2515,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 MoveId
+        public global::System.Int32 MoveId
         {
             get
             {
@@ -2533,8 +2533,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _MoveId;
-        partial void OnMoveIdChanging(global::System.Int64 value);
+        private global::System.Int32 _MoveId;
+        partial void OnMoveIdChanging(global::System.Int32 value);
         partial void OnMoveIdChanged();
     
         /// <summary>
@@ -2710,7 +2710,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> AttackerHouseCardId
+        public Nullable<global::System.Int32> AttackerHouseCardId
         {
             get
             {
@@ -2725,8 +2725,8 @@ namespace GoT.Data
                 OnAttackerHouseCardIdChanged();
             }
         }
-        private Nullable<global::System.Int64> _AttackerHouseCardId;
-        partial void OnAttackerHouseCardIdChanging(Nullable<global::System.Int64> value);
+        private Nullable<global::System.Int32> _AttackerHouseCardId;
+        partial void OnAttackerHouseCardIdChanging(Nullable<global::System.Int32> value);
         partial void OnAttackerHouseCardIdChanged();
     
         /// <summary>
@@ -2734,7 +2734,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> DefenderHouseCardId
+        public Nullable<global::System.Int32> DefenderHouseCardId
         {
             get
             {
@@ -2749,8 +2749,8 @@ namespace GoT.Data
                 OnDefenderHouseCardIdChanged();
             }
         }
-        private Nullable<global::System.Int64> _DefenderHouseCardId;
-        partial void OnDefenderHouseCardIdChanging(Nullable<global::System.Int64> value);
+        private Nullable<global::System.Int32> _DefenderHouseCardId;
+        partial void OnDefenderHouseCardIdChanging(Nullable<global::System.Int32> value);
         partial void OnDefenderHouseCardIdChanged();
     
         /// <summary>
@@ -2758,7 +2758,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 GamePlayerId
+        public global::System.Int32 GamePlayerId
         {
             get
             {
@@ -2773,8 +2773,8 @@ namespace GoT.Data
                 OnGamePlayerIdChanged();
             }
         }
-        private global::System.Int64 _GamePlayerId;
-        partial void OnGamePlayerIdChanging(global::System.Int64 value);
+        private global::System.Int32 _GamePlayerId;
+        partial void OnGamePlayerIdChanging(global::System.Int32 value);
         partial void OnGamePlayerIdChanged();
     
         /// <summary>
@@ -2782,7 +2782,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 FromRegionId
+        public global::System.Int32 FromRegionId
         {
             get
             {
@@ -2797,8 +2797,8 @@ namespace GoT.Data
                 OnFromRegionIdChanged();
             }
         }
-        private global::System.Int64 _FromRegionId;
-        partial void OnFromRegionIdChanging(global::System.Int64 value);
+        private global::System.Int32 _FromRegionId;
+        partial void OnFromRegionIdChanging(global::System.Int32 value);
         partial void OnFromRegionIdChanged();
     
         /// <summary>
@@ -2806,7 +2806,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 ToRegionId
+        public global::System.Int32 ToRegionId
         {
             get
             {
@@ -2821,8 +2821,8 @@ namespace GoT.Data
                 OnToRegionIdChanged();
             }
         }
-        private global::System.Int64 _ToRegionId;
-        partial void OnToRegionIdChanging(global::System.Int64 value);
+        private global::System.Int32 _ToRegionId;
+        partial void OnToRegionIdChanging(global::System.Int32 value);
         partial void OnToRegionIdChanged();
 
         #endregion
@@ -2891,7 +2891,7 @@ namespace GoT.Data
         /// <param name="username">Initial value of the Username property.</param>
         /// <param name="password">Initial value of the Password property.</param>
         /// <param name="isAdmin">Initial value of the IsAdmin property.</param>
-        public static Player CreatePlayer(global::System.Int64 playerId, global::System.String firstName, global::System.String lastName, global::System.String username, global::System.String password, global::System.Boolean isAdmin)
+        public static Player CreatePlayer(global::System.Int32 playerId, global::System.String firstName, global::System.String lastName, global::System.String username, global::System.String password, global::System.Boolean isAdmin)
         {
             Player player = new Player();
             player.PlayerId = playerId;
@@ -2912,7 +2912,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 PlayerId
+        public global::System.Int32 PlayerId
         {
             get
             {
@@ -2930,8 +2930,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _PlayerId;
-        partial void OnPlayerIdChanging(global::System.Int64 value);
+        private global::System.Int32 _PlayerId;
+        partial void OnPlayerIdChanging(global::System.Int32 value);
         partial void OnPlayerIdChanged();
     
         /// <summary>
@@ -3172,7 +3172,7 @@ namespace GoT.Data
         /// </summary>
         /// <param name="playerTrophyId">Initial value of the PlayerTrophyId property.</param>
         /// <param name="dateAchieved">Initial value of the DateAchieved property.</param>
-        public static PlayerTrophy CreatePlayerTrophy(global::System.Int64 playerTrophyId, global::System.DateTime dateAchieved)
+        public static PlayerTrophy CreatePlayerTrophy(global::System.Int32 playerTrophyId, global::System.DateTime dateAchieved)
         {
             PlayerTrophy playerTrophy = new PlayerTrophy();
             playerTrophy.PlayerTrophyId = playerTrophyId;
@@ -3189,7 +3189,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 PlayerTrophyId
+        public global::System.Int32 PlayerTrophyId
         {
             get
             {
@@ -3207,8 +3207,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _PlayerTrophyId;
-        partial void OnPlayerTrophyIdChanging(global::System.Int64 value);
+        private global::System.Int32 _PlayerTrophyId;
+        partial void OnPlayerTrophyIdChanging(global::System.Int32 value);
         partial void OnPlayerTrophyIdChanged();
     
         /// <summary>
@@ -3335,7 +3335,7 @@ namespace GoT.Data
         /// </summary>
         /// <param name="portId">Initial value of the PortId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Port CreatePort(global::System.Int64 portId, global::System.String name)
+        public static Port CreatePort(global::System.Int32 portId, global::System.String name)
         {
             Port port = new Port();
             port.PortId = portId;
@@ -3352,7 +3352,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 PortId
+        public global::System.Int32 PortId
         {
             get
             {
@@ -3370,8 +3370,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _PortId;
-        partial void OnPortIdChanging(global::System.Int64 value);
+        private global::System.Int32 _PortId;
+        partial void OnPortIdChanging(global::System.Int32 value);
         partial void OnPortIdChanged();
     
         /// <summary>
@@ -3466,7 +3466,7 @@ namespace GoT.Data
         /// <param name="minimumUnitsToEnter">Initial value of the MinimumUnitsToEnter property.</param>
         /// <param name="consolidatePowerCount">Initial value of the ConsolidatePowerCount property.</param>
         /// <param name="isOcean">Initial value of the IsOcean property.</param>
-        public static Region CreateRegion(global::System.Int64 regionId, global::System.String name, global::System.Int32 supplyCount, global::System.Boolean isStronghold, global::System.Boolean isCastle, global::System.Int32 minimumUnitsToEnter, global::System.Int32 consolidatePowerCount, global::System.Boolean isOcean)
+        public static Region CreateRegion(global::System.Int32 regionId, global::System.String name, global::System.Int32 supplyCount, global::System.Boolean isStronghold, global::System.Boolean isCastle, global::System.Int32 minimumUnitsToEnter, global::System.Int32 consolidatePowerCount, global::System.Boolean isOcean)
         {
             Region region = new Region();
             region.RegionId = regionId;
@@ -3489,7 +3489,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 RegionId
+        public global::System.Int32 RegionId
         {
             get
             {
@@ -3507,8 +3507,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _RegionId;
-        partial void OnRegionIdChanging(global::System.Int64 value);
+        private global::System.Int32 _RegionId;
+        partial void OnRegionIdChanging(global::System.Int32 value);
         partial void OnRegionIdChanged();
     
         /// <summary>
@@ -3811,7 +3811,7 @@ namespace GoT.Data
         /// </summary>
         /// <param name="regionRelationshipId">Initial value of the RegionRelationshipId property.</param>
         /// <param name="destinationRegionId">Initial value of the DestinationRegionId property.</param>
-        public static RegionRelationship CreateRegionRelationship(global::System.Int64 regionRelationshipId, global::System.Int64 destinationRegionId)
+        public static RegionRelationship CreateRegionRelationship(global::System.Int32 regionRelationshipId, global::System.Int32 destinationRegionId)
         {
             RegionRelationship regionRelationship = new RegionRelationship();
             regionRelationship.RegionRelationshipId = regionRelationshipId;
@@ -3828,7 +3828,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 RegionRelationshipId
+        public global::System.Int32 RegionRelationshipId
         {
             get
             {
@@ -3846,8 +3846,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _RegionRelationshipId;
-        partial void OnRegionRelationshipIdChanging(global::System.Int64 value);
+        private global::System.Int32 _RegionRelationshipId;
+        partial void OnRegionRelationshipIdChanging(global::System.Int32 value);
         partial void OnRegionRelationshipIdChanged();
     
         /// <summary>
@@ -3855,7 +3855,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 DestinationRegionId
+        public global::System.Int32 DestinationRegionId
         {
             get
             {
@@ -3870,8 +3870,8 @@ namespace GoT.Data
                 OnDestinationRegionIdChanged();
             }
         }
-        private global::System.Int64 _DestinationRegionId;
-        partial void OnDestinationRegionIdChanging(global::System.Int64 value);
+        private global::System.Int32 _DestinationRegionId;
+        partial void OnDestinationRegionIdChanging(global::System.Int32 value);
         partial void OnDestinationRegionIdChanged();
 
         #endregion
@@ -3963,7 +3963,7 @@ namespace GoT.Data
         /// <param name="shipCount">Initial value of the ShipCount property.</param>
         /// <param name="siegeCount">Initial value of the SiegeCount property.</param>
         /// <param name="controlledByGamePlayerId">Initial value of the ControlledByGamePlayerId property.</param>
-        public static RegionStatus CreateRegionStatus(global::System.Int64 regionStatusId, global::System.String orderToken, global::System.Int32 footmanCount, global::System.Int32 knightCount, global::System.Int32 shipCount, global::System.Int32 siegeCount, global::System.Int64 controlledByGamePlayerId)
+        public static RegionStatus CreateRegionStatus(global::System.Int32 regionStatusId, global::System.String orderToken, global::System.Int32 footmanCount, global::System.Int32 knightCount, global::System.Int32 shipCount, global::System.Int32 siegeCount, global::System.Int32 controlledByGamePlayerId)
         {
             RegionStatus regionStatus = new RegionStatus();
             regionStatus.RegionStatusId = regionStatusId;
@@ -3985,7 +3985,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 RegionStatusId
+        public global::System.Int32 RegionStatusId
         {
             get
             {
@@ -4003,8 +4003,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _RegionStatusId;
-        partial void OnRegionStatusIdChanging(global::System.Int64 value);
+        private global::System.Int32 _RegionStatusId;
+        partial void OnRegionStatusIdChanging(global::System.Int32 value);
         partial void OnRegionStatusIdChanged();
     
         /// <summary>
@@ -4132,7 +4132,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 ControlledByGamePlayerId
+        public global::System.Int32 ControlledByGamePlayerId
         {
             get
             {
@@ -4147,8 +4147,8 @@ namespace GoT.Data
                 OnControlledByGamePlayerIdChanged();
             }
         }
-        private global::System.Int64 _ControlledByGamePlayerId;
-        partial void OnControlledByGamePlayerIdChanging(global::System.Int64 value);
+        private global::System.Int32 _ControlledByGamePlayerId;
+        partial void OnControlledByGamePlayerIdChanging(global::System.Int32 value);
         partial void OnControlledByGamePlayerIdChanged();
 
         #endregion
@@ -4289,7 +4289,7 @@ namespace GoT.Data
         /// </summary>
         /// <param name="relationshipBridgeId">Initial value of the RelationshipBridgeId property.</param>
         /// <param name="bridgeRegionId">Initial value of the BridgeRegionId property.</param>
-        public static RelationshipBridge CreateRelationshipBridge(global::System.Int64 relationshipBridgeId, global::System.Int64 bridgeRegionId)
+        public static RelationshipBridge CreateRelationshipBridge(global::System.Int32 relationshipBridgeId, global::System.Int32 bridgeRegionId)
         {
             RelationshipBridge relationshipBridge = new RelationshipBridge();
             relationshipBridge.RelationshipBridgeId = relationshipBridgeId;
@@ -4306,7 +4306,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 RelationshipBridgeId
+        public global::System.Int32 RelationshipBridgeId
         {
             get
             {
@@ -4324,8 +4324,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _RelationshipBridgeId;
-        partial void OnRelationshipBridgeIdChanging(global::System.Int64 value);
+        private global::System.Int32 _RelationshipBridgeId;
+        partial void OnRelationshipBridgeIdChanging(global::System.Int32 value);
         partial void OnRelationshipBridgeIdChanged();
     
         /// <summary>
@@ -4333,7 +4333,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 BridgeRegionId
+        public global::System.Int32 BridgeRegionId
         {
             get
             {
@@ -4348,8 +4348,8 @@ namespace GoT.Data
                 OnBridgeRegionIdChanged();
             }
         }
-        private global::System.Int64 _BridgeRegionId;
-        partial void OnBridgeRegionIdChanging(global::System.Int64 value);
+        private global::System.Int32 _BridgeRegionId;
+        partial void OnBridgeRegionIdChanging(global::System.Int32 value);
         partial void OnBridgeRegionIdChanged();
 
         #endregion
@@ -4374,7 +4374,7 @@ namespace GoT.Data
         /// <param name="roundNumber">Initial value of the RoundNumber property.</param>
         /// <param name="wildlingCount">Initial value of the WildlingCount property.</param>
         /// <param name="wildlingAttack">Initial value of the WildlingAttack property.</param>
-        public static Round CreateRound(global::System.Int64 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingCount, global::System.Boolean wildlingAttack)
+        public static Round CreateRound(global::System.Int32 roundId, global::System.Int32 roundNumber, global::System.Int32 wildlingCount, global::System.Boolean wildlingAttack)
         {
             Round round = new Round();
             round.RoundId = roundId;
@@ -4393,7 +4393,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 RoundId
+        public global::System.Int32 RoundId
         {
             get
             {
@@ -4411,8 +4411,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _RoundId;
-        partial void OnRoundIdChanging(global::System.Int64 value);
+        private global::System.Int32 _RoundId;
+        partial void OnRoundIdChanging(global::System.Int32 value);
         partial void OnRoundIdChanged();
     
         /// <summary>
@@ -4677,7 +4677,7 @@ namespace GoT.Data
         /// </summary>
         /// <param name="triviaId">Initial value of the TriviaId property.</param>
         /// <param name="questionText">Initial value of the QuestionText property.</param>
-        public static Trivia CreateTrivia(global::System.Int64 triviaId, global::System.String questionText)
+        public static Trivia CreateTrivia(global::System.Int32 triviaId, global::System.String questionText)
         {
             Trivia trivia = new Trivia();
             trivia.TriviaId = triviaId;
@@ -4694,7 +4694,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 TriviaId
+        public global::System.Int32 TriviaId
         {
             get
             {
@@ -4712,8 +4712,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _TriviaId;
-        partial void OnTriviaIdChanging(global::System.Int64 value);
+        private global::System.Int32 _TriviaId;
+        partial void OnTriviaIdChanging(global::System.Int32 value);
         partial void OnTriviaIdChanged();
     
         /// <summary>
@@ -4811,7 +4811,7 @@ namespace GoT.Data
         /// <param name="triviaAlternativeId">Initial value of the TriviaAlternativeId property.</param>
         /// <param name="text">Initial value of the Text property.</param>
         /// <param name="isCorrect">Initial value of the IsCorrect property.</param>
-        public static TriviaAlternative CreateTriviaAlternative(global::System.Int64 triviaAlternativeId, global::System.String text, global::System.Boolean isCorrect)
+        public static TriviaAlternative CreateTriviaAlternative(global::System.Int32 triviaAlternativeId, global::System.String text, global::System.Boolean isCorrect)
         {
             TriviaAlternative triviaAlternative = new TriviaAlternative();
             triviaAlternative.TriviaAlternativeId = triviaAlternativeId;
@@ -4829,7 +4829,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 TriviaAlternativeId
+        public global::System.Int32 TriviaAlternativeId
         {
             get
             {
@@ -4847,8 +4847,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _TriviaAlternativeId;
-        partial void OnTriviaAlternativeIdChanging(global::System.Int64 value);
+        private global::System.Int32 _TriviaAlternativeId;
+        partial void OnTriviaAlternativeIdChanging(global::System.Int32 value);
         partial void OnTriviaAlternativeIdChanged();
     
         /// <summary>
@@ -5071,7 +5071,7 @@ namespace GoT.Data
         /// <param name="westerosCardId">Initial value of the WesterosCardId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="deck">Initial value of the Deck property.</param>
-        public static WesterosCard CreateWesterosCard(global::System.Int64 westerosCardId, global::System.String name, global::System.Int32 deck)
+        public static WesterosCard CreateWesterosCard(global::System.Int32 westerosCardId, global::System.String name, global::System.Int32 deck)
         {
             WesterosCard westerosCard = new WesterosCard();
             westerosCard.WesterosCardId = westerosCardId;
@@ -5089,7 +5089,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 WesterosCardId
+        public global::System.Int32 WesterosCardId
         {
             get
             {
@@ -5107,8 +5107,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _WesterosCardId;
-        partial void OnWesterosCardIdChanging(global::System.Int64 value);
+        private global::System.Int32 _WesterosCardId;
+        partial void OnWesterosCardIdChanging(global::System.Int32 value);
         partial void OnWesterosCardIdChanged();
     
         /// <summary>
@@ -5205,7 +5205,7 @@ namespace GoT.Data
         /// <param name="deckOneId">Initial value of the DeckOneId property.</param>
         /// <param name="deckTwoId">Initial value of the DeckTwoId property.</param>
         /// <param name="deckThreeId">Initial value of the DeckThreeId property.</param>
-        public static WesterosCardStatus CreateWesterosCardStatus(global::System.Int64 westerosCardStatusId, global::System.Int64 deckOneId, global::System.Int64 deckTwoId, global::System.Int64 deckThreeId)
+        public static WesterosCardStatus CreateWesterosCardStatus(global::System.Int32 westerosCardStatusId, global::System.Int64 deckOneId, global::System.Int64 deckTwoId, global::System.Int64 deckThreeId)
         {
             WesterosCardStatus westerosCardStatus = new WesterosCardStatus();
             westerosCardStatus.WesterosCardStatusId = westerosCardStatusId;
@@ -5224,7 +5224,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 WesterosCardStatusId
+        public global::System.Int32 WesterosCardStatusId
         {
             get
             {
@@ -5242,8 +5242,8 @@ namespace GoT.Data
                 }
             }
         }
-        private global::System.Int64 _WesterosCardStatusId;
-        partial void OnWesterosCardStatusIdChanging(global::System.Int64 value);
+        private global::System.Int32 _WesterosCardStatusId;
+        partial void OnWesterosCardStatusIdChanging(global::System.Int32 value);
         partial void OnWesterosCardStatusIdChanged();
     
         /// <summary>

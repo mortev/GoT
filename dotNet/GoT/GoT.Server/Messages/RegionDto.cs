@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class RegionDto
     {
-        public Int64 RegionId { get; set; }
+        public Int32 RegionId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Int32 SupplyCount { get; set; }

@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class DidYouKnowDto
     {
-        public Int64 DidYouKnowId { get; set; }
+        public Int32 DidYouKnowId { get; set; }
         public string Text { get; set; }
     }
 }

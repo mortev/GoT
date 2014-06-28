@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class TrophyDto
     {
-        public Int64 TrophyId { get; set; }
+        public Int32 TrophyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

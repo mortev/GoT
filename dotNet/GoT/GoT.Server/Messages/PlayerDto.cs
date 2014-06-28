@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class PlayerDto
     {
-        public Int64 PlayerId { get; set; }
+        public Int32 PlayerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Nullable<DateTime> DateOfBirth { get; set; }

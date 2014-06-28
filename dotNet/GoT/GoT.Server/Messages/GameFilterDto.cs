@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class GameFilterDto
     {
-        public long PlayerId { get; set; }
+        public Int32 PlayerId { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
     }

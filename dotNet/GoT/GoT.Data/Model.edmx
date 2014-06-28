@@ -111,7 +111,7 @@
     <Key>
       <PropertyRef Name="PlayerId" />
     </Key>
-    <Property Name="PlayerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateOfBirth" Type="datetime" Nullable="true" />
@@ -129,13 +129,13 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Sigil" Type="varbinary(max)" Nullable="true" />
-    <Property Name="CapitalRegionId" Type="bigint" Nullable="false" />
+    <Property Name="CapitalRegionId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Characters">
     <Key>
       <PropertyRef Name="CharacterId" />
     </Key>
-    <Property Name="CharacterId" Type="bigint" Nullable="false" />
+    <Property Name="CharacterId" Type="int" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="NickName" Type="nvarchar(max)" Nullable="true" />
@@ -147,7 +147,7 @@
     <Key>
       <PropertyRef Name="RegionId" />
     </Key>
-    <Property Name="RegionId" Type="bigint" Nullable="false" />
+    <Property Name="RegionId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SupplyCount" Type="int" Nullable="false" />
@@ -167,7 +167,7 @@
     <Property Name="CombatStrength" Type="int" Nullable="false" />
     <Property Name="SwordCount" Type="int" Nullable="false" />
     <Property Name="TowerCount" Type="int" Nullable="false" />
-    <Property Name="CharacterId" Type="bigint" Nullable="false" />
+    <Property Name="CharacterId" Type="int" Nullable="false" />
     <Property Name="House_HouseId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Trophys">
@@ -182,45 +182,45 @@
     <Key>
       <PropertyRef Name="GameId" />
     </Key>
-    <Property Name="GameId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="Mode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-    <Property Name="CreatedByPlayerId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedByPlayerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rounds">
     <Key>
       <PropertyRef Name="RoundId" />
     </Key>
-    <Property Name="RoundId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoundId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoundNumber" Type="int" Nullable="false" />
     <Property Name="WildlingCount" Type="int" Nullable="false" />
     <Property Name="WildlingAttack" Type="bit" Nullable="false" />
     <Property Name="WildlingVictory" Type="bit" Nullable="true" />
-    <Property Name="Game_GameId" Type="bigint" Nullable="false" />
-    <Property Name="WesterosCardStatus_WesterosCardStatusId" Type="bigint" Nullable="false" />
+    <Property Name="Game_GameId" Type="int" Nullable="false" />
+    <Property Name="WesterosCardStatus_WesterosCardStatusId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RegionStatuses">
     <Key>
       <PropertyRef Name="RegionStatusId" />
     </Key>
-    <Property Name="RegionStatusId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegionStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderToken" Type="nvarchar(max)" Nullable="false" />
     <Property Name="FootmanCount" Type="int" Nullable="false" />
     <Property Name="KnightCount" Type="int" Nullable="false" />
     <Property Name="ShipCount" Type="int" Nullable="false" />
     <Property Name="SiegeCount" Type="int" Nullable="false" />
-    <Property Name="ControlledByGamePlayerId" Type="bigint" Nullable="false" />
-    <Property Name="Region_RegionId" Type="bigint" Nullable="false" />
-    <Property Name="Round_RoundId" Type="bigint" Nullable="false" />
-    <Property Name="Port_PortId" Type="bigint" Nullable="true" />
+    <Property Name="ControlledByGamePlayerId" Type="int" Nullable="false" />
+    <Property Name="Region_RegionId" Type="int" Nullable="false" />
+    <Property Name="Round_RoundId" Type="int" Nullable="false" />
+    <Property Name="Port_PortId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Moves">
     <Key>
       <PropertyRef Name="MoveId" />
     </Key>
-    <Property Name="MoveId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MoveId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AttackerFootmanCount" Type="int" Nullable="false" />
     <Property Name="AttackerKnightCount" Type="int" Nullable="false" />
     <Property Name="AttackerShipCount" Type="int" Nullable="false" />
@@ -228,63 +228,63 @@
     <Property Name="AttackerBattleCardStrength" Type="int" Nullable="true" />
     <Property Name="DefenderBattleCardStrength" Type="int" Nullable="true" />
     <Property Name="AttackerVictory" Type="bit" Nullable="false" />
-    <Property Name="AttackerHouseCardId" Type="bigint" Nullable="true" />
-    <Property Name="DefenderHouseCardId" Type="bigint" Nullable="true" />
-    <Property Name="GamePlayerId" Type="bigint" Nullable="false" />
-    <Property Name="FromRegionId" Type="bigint" Nullable="false" />
-    <Property Name="ToRegionId" Type="bigint" Nullable="false" />
-    <Property Name="Round_RoundId" Type="bigint" Nullable="false" />
+    <Property Name="AttackerHouseCardId" Type="int" Nullable="true" />
+    <Property Name="DefenderHouseCardId" Type="int" Nullable="true" />
+    <Property Name="GamePlayerId" Type="int" Nullable="false" />
+    <Property Name="FromRegionId" Type="int" Nullable="false" />
+    <Property Name="ToRegionId" Type="int" Nullable="false" />
+    <Property Name="Round_RoundId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="InfluenceTrackStatuses">
     <Key>
       <PropertyRef Name="InfluenceTrackId" />
     </Key>
-    <Property Name="InfluenceTrackId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InfluenceTrackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IronThronePosition" Type="int" Nullable="false" />
     <Property Name="FiefdomPosition" Type="int" Nullable="false" />
     <Property Name="KingsCourtPosition" Type="int" Nullable="false" />
-    <Property Name="GamePlayerId" Type="bigint" Nullable="false" />
-    <Property Name="Round_RoundId" Type="bigint" Nullable="false" />
+    <Property Name="GamePlayerId" Type="int" Nullable="false" />
+    <Property Name="Round_RoundId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="GamePlayers">
     <Key>
       <PropertyRef Name="GamePlayerId" />
     </Key>
-    <Property Name="GamePlayerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GamePlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HouseId" Type="bigint" Nullable="false" />
     <Property Name="PlayerId" Type="bigint" Nullable="false" />
-    <Property Name="Game_GameId" Type="bigint" Nullable="false" />
+    <Property Name="Game_GameId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="GameResults">
     <Key>
       <PropertyRef Name="GameResultId" />
     </Key>
-    <Property Name="GameResultId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Place" Type="int" Nullable="false" />
-    <Property Name="GameGameResult_GameResult_GameId" Type="bigint" Nullable="false" />
-    <Property Name="GamePlayer_GamePlayerId" Type="bigint" Nullable="false" />
+    <Property Name="GameGameResult_GameResult_GameId" Type="int" Nullable="false" />
+    <Property Name="GamePlayer_GamePlayerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Ports">
     <Key>
       <PropertyRef Name="PortId" />
     </Key>
-    <Property Name="PortId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PortId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Region_RegionId" Type="bigint" Nullable="false" />
+    <Property Name="Region_RegionId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RegionRelationships">
     <Key>
       <PropertyRef Name="RegionRelationshipId" />
     </Key>
-    <Property Name="RegionRelationshipId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DestinationRegionId" Type="bigint" Nullable="false" />
-    <Property Name="SourceRegion_RegionId" Type="bigint" Nullable="false" />
+    <Property Name="RegionRelationshipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DestinationRegionId" Type="int" Nullable="false" />
+    <Property Name="SourceRegion_RegionId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Trivias">
     <Key>
       <PropertyRef Name="TriviaId" />
     </Key>
-    <Property Name="TriviaId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TriviaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="QuestionText" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AnswerText" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
@@ -292,40 +292,40 @@
     <Key>
       <PropertyRef Name="DidYouKnowId" />
     </Key>
-    <Property Name="DidYouKnowId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DidYouKnowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="TriviaAlternatives">
     <Key>
       <PropertyRef Name="TriviaAlternativeId" />
     </Key>
-    <Property Name="TriviaAlternativeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TriviaAlternativeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsCorrect" Type="bit" Nullable="false" />
-    <Property Name="Trivia_TriviaId" Type="bigint" Nullable="false" />
+    <Property Name="Trivia_TriviaId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PlayerTrophies">
     <Key>
       <PropertyRef Name="PlayerTrophyId" />
     </Key>
-    <Property Name="PlayerTrophyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerTrophyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DateAchieved" Type="datetime" Nullable="false" />
-    <Property Name="Player_PlayerId" Type="bigint" Nullable="false" />
+    <Property Name="Player_PlayerId" Type="int" Nullable="false" />
     <Property Name="Trophy_TrophyId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RelationshipBridges">
     <Key>
       <PropertyRef Name="RelationshipBridgeId" />
     </Key>
-    <Property Name="RelationshipBridgeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="BridgeRegionId" Type="bigint" Nullable="false" />
-    <Property Name="RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId" Type="bigint" Nullable="false" />
+    <Property Name="RelationshipBridgeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BridgeRegionId" Type="int" Nullable="false" />
+    <Property Name="RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="WesterosCardStatuses">
     <Key>
       <PropertyRef Name="WesterosCardStatusId" />
     </Key>
-    <Property Name="WesterosCardStatusId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WesterosCardStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DeckOneId" Type="bigint" Nullable="false" />
     <Property Name="DeckTwoId" Type="bigint" Nullable="false" />
     <Property Name="DeckThreeId" Type="bigint" Nullable="false" />
@@ -334,7 +334,7 @@
     <Key>
       <PropertyRef Name="WesterosCardId" />
     </Key>
-    <Property Name="WesterosCardId" Type="bigint" Nullable="false" />
+    <Property Name="WesterosCardId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Deck" Type="int" Nullable="false" />
@@ -343,10 +343,10 @@
     <Key>
       <PropertyRef Name="HouseCardStatusId" />
     </Key>
-    <Property Name="HouseCardStatusId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HouseCardId" Type="bigint" Nullable="false" />
+    <Property Name="HouseCardStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HouseCardId" Type="int" Nullable="false" />
     <Property Name="IsAvailable" Type="bit" Nullable="false" />
-    <Property Name="GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId" Type="bigint" Nullable="false" />
+    <Property Name="GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ErrorLogs">
     <Key>
@@ -697,7 +697,7 @@
           <Key>
             <PropertyRef Name="PlayerId" />
           </Key>
-          <Property Type="Int64" Name="PlayerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PlayerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="FirstName" Nullable="false" />
           <Property Type="String" Name="LastName" Nullable="false" />
           <Property Type="DateTime" Name="DateOfBirth" Nullable="true" />
@@ -717,14 +717,14 @@
           <Property Type="String" Name="Description" Nullable="true" />
           <Property Type="Binary" Name="Sigil" Nullable="true" />
           <NavigationProperty Name="Characters" Relationship="Model.HouseCharacter" FromRole="House" ToRole="Character" />
-          <Property Type="Int64" Name="CapitalRegionId" Nullable="false" />
+          <Property Type="Int32" Name="CapitalRegionId" Nullable="false" />
           <NavigationProperty Name="HouseCards" Relationship="Model.HouseHouseCard" FromRole="House" ToRole="HouseCard" />
         </EntityType>
         <EntityType Name="Character">
           <Key>
             <PropertyRef Name="CharacterId" />
           </Key>
-          <Property Type="Int64" Name="CharacterId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="String" Name="FirstName" Nullable="false" />
           <Property Type="String" Name="LastName" Nullable="false" />
           <Property Type="String" Name="NickName" Nullable="true" />
@@ -736,7 +736,7 @@
           <Key>
             <PropertyRef Name="RegionId" />
           </Key>
-          <Property Type="Int64" Name="RegionId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="RegionId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="Description" Nullable="true" />
           <Property Type="Int32" Name="SupplyCount" Nullable="false" />
@@ -759,7 +759,7 @@
           <Property Type="Int32" Name="SwordCount" Nullable="false" />
           <Property Type="Int32" Name="TowerCount" Nullable="false" />
           <NavigationProperty Name="House" Relationship="Model.HouseHouseCard" FromRole="HouseCard" ToRole="House" />
-          <Property Type="Int64" Name="CharacterId" Nullable="false" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" />
         </EntityType>
         <Association Name="HouseCharacter">
           <End Type="Model.House" Role="House" Multiplicity="1" />
@@ -777,7 +777,7 @@
           <Key>
             <PropertyRef Name="GameId" />
           </Key>
-          <Property Type="Int64" Name="GameId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="GameId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="Date" Nullable="false" />
           <Property Type="String" Name="Mode" Nullable="false" />
           <NavigationProperty Name="Rounds" Relationship="Model.GameRound" FromRole="Game" ToRole="Round" />
@@ -785,13 +785,13 @@
           <NavigationProperty Name="GamePlayers" Relationship="Model.GameGamePlayer" FromRole="Game" ToRole="GamePlayer" />
           <NavigationProperty Name="GameResults" Relationship="Model.GameGameResult" FromRole="Game" ToRole="GameResult" />
           <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
-          <Property Type="Int64" Name="CreatedByPlayerId" Nullable="false" />
+          <Property Type="Int32" Name="CreatedByPlayerId" Nullable="false" />
         </EntityType>
         <EntityType Name="Round">
           <Key>
             <PropertyRef Name="RoundId" />
           </Key>
-          <Property Type="Int64" Name="RoundId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RoundId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="RoundNumber" Nullable="false" />
           <Property Type="Int32" Name="WildlingCount" Nullable="false" />
           <NavigationProperty Name="Game" Relationship="Model.GameRound" FromRole="Round" ToRole="Game" />
@@ -806,7 +806,7 @@
           <Key>
             <PropertyRef Name="RegionStatusId" />
           </Key>
-          <Property Type="Int64" Name="RegionStatusId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RegionStatusId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="OrderToken" Nullable="false" />
           <Property Type="Int32" Name="FootmanCount" Nullable="false" />
           <Property Type="Int32" Name="KnightCount" Nullable="false" />
@@ -814,7 +814,7 @@
           <Property Type="Int32" Name="SiegeCount" Nullable="false" />
           <NavigationProperty Name="Region" Relationship="Model.RegionRegionStatus" FromRole="RegionStatus" ToRole="Region" />
           <NavigationProperty Name="Round" Relationship="Model.RoundRegionStatus" FromRole="RegionStatus" ToRole="Round" />
-          <Property Type="Int64" Name="ControlledByGamePlayerId" Nullable="false" />
+          <Property Type="Int32" Name="ControlledByGamePlayerId" Nullable="false" />
           <NavigationProperty Name="Port" Relationship="Model.RegionStatusPort" FromRole="RegionStatus" ToRole="Port" />
         </EntityType>
         <Association Name="GameRound">
@@ -825,7 +825,7 @@
           <Key>
             <PropertyRef Name="MoveId" />
           </Key>
-          <Property Type="Int64" Name="MoveId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="MoveId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="AttackerFootmanCount" Nullable="false" />
           <Property Type="Int32" Name="AttackerKnightCount" Nullable="false" />
           <Property Type="Int32" Name="AttackerShipCount" Nullable="false" />
@@ -834,28 +834,28 @@
           <Property Type="Int32" Name="DefenderBattleCardStrength" Nullable="true" />
           <Property Type="Boolean" Name="AttackerVictory" Nullable="false" />
           <NavigationProperty Name="Round" Relationship="Model.RoundMove" FromRole="Move" ToRole="Round" />
-          <Property Type="Int64" Name="AttackerHouseCardId" Nullable="true" />
-          <Property Type="Int64" Name="DefenderHouseCardId" Nullable="true" />
-          <Property Type="Int64" Name="GamePlayerId" Nullable="false" />
-          <Property Type="Int64" Name="FromRegionId" Nullable="false" />
-          <Property Type="Int64" Name="ToRegionId" Nullable="false" />
+          <Property Type="Int32" Name="AttackerHouseCardId" Nullable="true" />
+          <Property Type="Int32" Name="DefenderHouseCardId" Nullable="true" />
+          <Property Type="Int32" Name="GamePlayerId" Nullable="false" />
+          <Property Type="Int32" Name="FromRegionId" Nullable="false" />
+          <Property Type="Int32" Name="ToRegionId" Nullable="false" />
           </EntityType>
         <EntityType Name="InfluenceTrackStatus">
           <Key>
             <PropertyRef Name="InfluenceTrackId" />
           </Key>
-          <Property Type="Int64" Name="InfluenceTrackId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="InfluenceTrackId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="IronThronePosition" Nullable="false" />
           <Property Type="Int32" Name="FiefdomPosition" Nullable="false" />
           <Property Type="Int32" Name="KingsCourtPosition" Nullable="false" />
           <NavigationProperty Name="Round" Relationship="Model.RoundInfluenceTrackStatus" FromRole="InfluenceTrackStatus" ToRole="Round" />
-          <Property Type="Int64" Name="GamePlayerId" Nullable="false" />
+          <Property Type="Int32" Name="GamePlayerId" Nullable="false" />
         </EntityType>
         <EntityType Name="GamePlayer">
           <Key>
             <PropertyRef Name="GamePlayerId" />
           </Key>
-          <Property Type="Int64" Name="GamePlayerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="GamePlayerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Game" Relationship="Model.GameGamePlayer" FromRole="GamePlayer" ToRole="Game" />
           <Property Type="Int64" Name="HouseId" Nullable="false" />
           <Property Type="Int64" Name="PlayerId" Nullable="false" />
@@ -885,7 +885,7 @@
           <Key>
             <PropertyRef Name="GameResultId" />
           </Key>
-          <Property Type="Int64" Name="GameResultId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="GameResultId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="Place" Nullable="false" />
           <NavigationProperty Name="GamePlayer" Relationship="Model.GamePlayerGameResult" FromRole="GameResult" ToRole="GamePlayer" />
         </EntityType>
@@ -901,7 +901,7 @@
           <Key>
             <PropertyRef Name="PortId" />
           </Key>
-          <Property Type="Int64" Name="PortId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PortId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" />
           <NavigationProperty Name="Region" Relationship="Model.RegionPort" FromRole="Port" ToRole="Region" />
         </EntityType>
@@ -913,8 +913,8 @@
           <Key>
             <PropertyRef Name="RegionRelationshipId" />
           </Key>
-          <Property Type="Int64" Name="RegionRelationshipId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="DestinationRegionId" Nullable="false" />
+          <Property Type="Int32" Name="RegionRelationshipId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DestinationRegionId" Nullable="false" />
           <NavigationProperty Name="SourceRegion" Relationship="Model.RegionRegionRelationship" FromRole="RegionRelationship" ToRole="Region" />
           <NavigationProperty Name="RelationshipBridges" Relationship="Model.RegionRelationshipRelationshipBridge" FromRole="RegionRelationship" ToRole="RelationshipBridge" />
         </EntityType>
@@ -930,7 +930,7 @@
           <Key>
             <PropertyRef Name="TriviaId" />
           </Key>
-          <Property Type="Int64" Name="TriviaId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TriviaId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="QuestionText" Nullable="false" />
           <Property Type="String" Name="AnswerText" Nullable="true" />
           <NavigationProperty Name="TriviaAlternatives" Relationship="Model.TriviaTriviaAlternative" FromRole="Trivia" ToRole="TriviaAlternative" />
@@ -939,14 +939,14 @@
           <Key>
             <PropertyRef Name="DidYouKnowId" />
           </Key>
-          <Property Type="Int64" Name="DidYouKnowId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DidYouKnowId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Text" Nullable="false" />
         </EntityType>
         <EntityType Name="TriviaAlternative">
           <Key>
             <PropertyRef Name="TriviaAlternativeId" />
           </Key>
-          <Property Type="Int64" Name="TriviaAlternativeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TriviaAlternativeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Text" Nullable="false" />
           <Property Type="Boolean" Name="IsCorrect" Nullable="false" />
           <NavigationProperty Name="Trivia" Relationship="Model.TriviaTriviaAlternative" FromRole="TriviaAlternative" ToRole="Trivia" />
@@ -965,7 +965,7 @@
           </Key>
           <NavigationProperty Name="Player" Relationship="Model.PlayerPlayerTrophy" FromRole="PlayerTrophy" ToRole="Player" />
           <NavigationProperty Name="Trophy" Relationship="Model.TrophyPlayerTrophy" FromRole="PlayerTrophy" ToRole="Trophy" />
-          <Property Type="Int64" Name="PlayerTrophyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PlayerTrophyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="DateAchieved" Nullable="false" />
         </EntityType>
         <Association Name="PlayerPlayerTrophy">
@@ -980,8 +980,8 @@
           <Key>
             <PropertyRef Name="RelationshipBridgeId" />
           </Key>
-          <Property Type="Int64" Name="RelationshipBridgeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="BridgeRegionId" Nullable="false" />
+          <Property Type="Int32" Name="RelationshipBridgeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="BridgeRegionId" Nullable="false" />
         </EntityType>
         <Association Name="RegionRelationshipRelationshipBridge">
           <End Type="Model.RegionRelationship" Role="RegionRelationship" Multiplicity="1" />
@@ -991,7 +991,7 @@
           <Key>
             <PropertyRef Name="WesterosCardStatusId" />
           </Key>
-          <Property Type="Int64" Name="WesterosCardStatusId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="WesterosCardStatusId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Round" Relationship="Model.RoundWesterosCardStatus" FromRole="WesterosCardStatus" ToRole="Round" />
           <Property Type="Int64" Name="DeckOneId" Nullable="false" />
           <Property Type="Int64" Name="DeckTwoId" Nullable="false" />
@@ -1005,7 +1005,7 @@
           <Key>
             <PropertyRef Name="WesterosCardId" />
           </Key>
-          <Property Type="Int64" Name="WesterosCardId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="WesterosCardId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="Description" Nullable="true" />
           <Property Type="Int32" Name="Deck" Nullable="false" />
@@ -1014,8 +1014,8 @@
           <Key>
             <PropertyRef Name="HouseCardStatusId" />
           </Key>
-          <Property Type="Int64" Name="HouseCardStatusId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="HouseCardId" Nullable="false" />
+          <Property Type="Int32" Name="HouseCardStatusId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="HouseCardId" Nullable="false" />
           <Property Type="Boolean" Name="IsAvailable" Nullable="false" />
         </EntityType>
         <Association Name="GamePlayerHouseCardStatus">

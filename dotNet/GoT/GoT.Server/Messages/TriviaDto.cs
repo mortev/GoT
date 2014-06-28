@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class TriviaDto
     {
-        public Int64 TriviaId { get; set; }
+        public Int32 TriviaId { get; set; }
         public string QuestionText { get; set; }
         public string AnswerText { get; set; }
 

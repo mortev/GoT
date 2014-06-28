@@ -7,7 +7,7 @@ namespace GoT.Server.Messages
 {
     public class RoundDto
     {
-        public Int64 RoundId { get; set; }
+        public Int32 RoundId { get; set; }
         public Int32 RoundNumber { get; set; }
         public Int32 WildlingCount { get; set; }
         public bool WildlingAttack { get; set; }

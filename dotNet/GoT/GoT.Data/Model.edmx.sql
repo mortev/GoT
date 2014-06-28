@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/22/2014 14:09:02
+-- Date Created: 06/28/2014 15:00:06
 -- Generated from EDMX file: C:\Data\Repository\GoT\dotNet\GoT\GoT.Data\Model.edmx
 -- --------------------------------------------------
 
@@ -158,7 +158,7 @@ GO
 
 -- Creating table 'Players'
 CREATE TABLE [dbo].[Players] (
-    [PlayerId] bigint IDENTITY(1,1) NOT NULL,
+    [PlayerId] int IDENTITY(1,1) NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [DateOfBirth] datetime  NULL,
@@ -176,13 +176,13 @@ CREATE TABLE [dbo].[Houses] (
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL,
     [Sigil] varbinary(max)  NULL,
-    [CapitalRegionId] bigint  NOT NULL
+    [CapitalRegionId] int  NOT NULL
 );
 GO
 
 -- Creating table 'Characters'
 CREATE TABLE [dbo].[Characters] (
-    [CharacterId] bigint  NOT NULL,
+    [CharacterId] int  NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [NickName] nvarchar(max)  NULL,
@@ -194,7 +194,7 @@ GO
 
 -- Creating table 'Regions'
 CREATE TABLE [dbo].[Regions] (
-    [RegionId] bigint  NOT NULL,
+    [RegionId] int  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL,
     [SupplyCount] int  NOT NULL,
@@ -214,7 +214,7 @@ CREATE TABLE [dbo].[HouseCards] (
     [CombatStrength] int  NOT NULL,
     [SwordCount] int  NOT NULL,
     [TowerCount] int  NOT NULL,
-    [CharacterId] bigint  NOT NULL,
+    [CharacterId] int  NOT NULL,
     [House_HouseId] int  NOT NULL
 );
 GO
@@ -229,45 +229,45 @@ GO
 
 -- Creating table 'Games'
 CREATE TABLE [dbo].[Games] (
-    [GameId] bigint IDENTITY(1,1) NOT NULL,
+    [GameId] int IDENTITY(1,1) NOT NULL,
     [Date] datetime  NOT NULL,
     [Mode] nvarchar(max)  NOT NULL,
     [Status] nvarchar(max)  NOT NULL,
     [CreatedDate] datetime  NOT NULL,
-    [CreatedByPlayerId] bigint  NOT NULL
+    [CreatedByPlayerId] int  NOT NULL
 );
 GO
 
 -- Creating table 'Rounds'
 CREATE TABLE [dbo].[Rounds] (
-    [RoundId] bigint IDENTITY(1,1) NOT NULL,
+    [RoundId] int IDENTITY(1,1) NOT NULL,
     [RoundNumber] int  NOT NULL,
     [WildlingCount] int  NOT NULL,
     [WildlingAttack] bit  NOT NULL,
     [WildlingVictory] bit  NULL,
-    [Game_GameId] bigint  NOT NULL,
-    [WesterosCardStatus_WesterosCardStatusId] bigint  NOT NULL
+    [Game_GameId] int  NOT NULL,
+    [WesterosCardStatus_WesterosCardStatusId] int  NOT NULL
 );
 GO
 
 -- Creating table 'RegionStatuses'
 CREATE TABLE [dbo].[RegionStatuses] (
-    [RegionStatusId] bigint IDENTITY(1,1) NOT NULL,
+    [RegionStatusId] int IDENTITY(1,1) NOT NULL,
     [OrderToken] nvarchar(max)  NOT NULL,
     [FootmanCount] int  NOT NULL,
     [KnightCount] int  NOT NULL,
     [ShipCount] int  NOT NULL,
     [SiegeCount] int  NOT NULL,
-    [ControlledByGamePlayerId] bigint  NOT NULL,
-    [Region_RegionId] bigint  NOT NULL,
-    [Round_RoundId] bigint  NOT NULL,
-    [Port_PortId] bigint  NULL
+    [ControlledByGamePlayerId] int  NOT NULL,
+    [Region_RegionId] int  NOT NULL,
+    [Round_RoundId] int  NOT NULL,
+    [Port_PortId] int  NULL
 );
 GO
 
 -- Creating table 'Moves'
 CREATE TABLE [dbo].[Moves] (
-    [MoveId] bigint IDENTITY(1,1) NOT NULL,
+    [MoveId] int IDENTITY(1,1) NOT NULL,
     [AttackerFootmanCount] int  NOT NULL,
     [AttackerKnightCount] int  NOT NULL,
     [AttackerShipCount] int  NOT NULL,
@@ -275,63 +275,63 @@ CREATE TABLE [dbo].[Moves] (
     [AttackerBattleCardStrength] int  NULL,
     [DefenderBattleCardStrength] int  NULL,
     [AttackerVictory] bit  NOT NULL,
-    [AttackerHouseCardId] bigint  NULL,
-    [DefenderHouseCardId] bigint  NULL,
-    [GamePlayerId] bigint  NOT NULL,
-    [FromRegionId] bigint  NOT NULL,
-    [ToRegionId] bigint  NOT NULL,
-    [Round_RoundId] bigint  NOT NULL
+    [AttackerHouseCardId] int  NULL,
+    [DefenderHouseCardId] int  NULL,
+    [GamePlayerId] int  NOT NULL,
+    [FromRegionId] int  NOT NULL,
+    [ToRegionId] int  NOT NULL,
+    [Round_RoundId] int  NOT NULL
 );
 GO
 
 -- Creating table 'InfluenceTrackStatuses'
 CREATE TABLE [dbo].[InfluenceTrackStatuses] (
-    [InfluenceTrackId] bigint IDENTITY(1,1) NOT NULL,
+    [InfluenceTrackId] int IDENTITY(1,1) NOT NULL,
     [IronThronePosition] int  NOT NULL,
     [FiefdomPosition] int  NOT NULL,
     [KingsCourtPosition] int  NOT NULL,
-    [GamePlayerId] bigint  NOT NULL,
-    [Round_RoundId] bigint  NOT NULL
+    [GamePlayerId] int  NOT NULL,
+    [Round_RoundId] int  NOT NULL
 );
 GO
 
 -- Creating table 'GamePlayers'
 CREATE TABLE [dbo].[GamePlayers] (
-    [GamePlayerId] bigint IDENTITY(1,1) NOT NULL,
+    [GamePlayerId] int IDENTITY(1,1) NOT NULL,
     [HouseId] bigint  NOT NULL,
     [PlayerId] bigint  NOT NULL,
-    [Game_GameId] bigint  NOT NULL
+    [Game_GameId] int  NOT NULL
 );
 GO
 
 -- Creating table 'GameResults'
 CREATE TABLE [dbo].[GameResults] (
-    [GameResultId] bigint IDENTITY(1,1) NOT NULL,
+    [GameResultId] int IDENTITY(1,1) NOT NULL,
     [Place] int  NOT NULL,
-    [GameGameResult_GameResult_GameId] bigint  NOT NULL,
-    [GamePlayer_GamePlayerId] bigint  NOT NULL
+    [GameGameResult_GameResult_GameId] int  NOT NULL,
+    [GamePlayer_GamePlayerId] int  NOT NULL
 );
 GO
 
 -- Creating table 'Ports'
 CREATE TABLE [dbo].[Ports] (
-    [PortId] bigint IDENTITY(1,1) NOT NULL,
+    [PortId] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Region_RegionId] bigint  NOT NULL
+    [Region_RegionId] int  NOT NULL
 );
 GO
 
 -- Creating table 'RegionRelationships'
 CREATE TABLE [dbo].[RegionRelationships] (
-    [RegionRelationshipId] bigint IDENTITY(1,1) NOT NULL,
-    [DestinationRegionId] bigint  NOT NULL,
-    [SourceRegion_RegionId] bigint  NOT NULL
+    [RegionRelationshipId] int IDENTITY(1,1) NOT NULL,
+    [DestinationRegionId] int  NOT NULL,
+    [SourceRegion_RegionId] int  NOT NULL
 );
 GO
 
 -- Creating table 'Trivias'
 CREATE TABLE [dbo].[Trivias] (
-    [TriviaId] bigint IDENTITY(1,1) NOT NULL,
+    [TriviaId] int IDENTITY(1,1) NOT NULL,
     [QuestionText] nvarchar(max)  NOT NULL,
     [AnswerText] nvarchar(max)  NULL
 );
@@ -339,40 +339,40 @@ GO
 
 -- Creating table 'DidYouKnows'
 CREATE TABLE [dbo].[DidYouKnows] (
-    [DidYouKnowId] bigint IDENTITY(1,1) NOT NULL,
+    [DidYouKnowId] int IDENTITY(1,1) NOT NULL,
     [Text] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'TriviaAlternatives'
 CREATE TABLE [dbo].[TriviaAlternatives] (
-    [TriviaAlternativeId] bigint IDENTITY(1,1) NOT NULL,
+    [TriviaAlternativeId] int IDENTITY(1,1) NOT NULL,
     [Text] nvarchar(max)  NOT NULL,
     [IsCorrect] bit  NOT NULL,
-    [Trivia_TriviaId] bigint  NOT NULL
+    [Trivia_TriviaId] int  NOT NULL
 );
 GO
 
 -- Creating table 'PlayerTrophies'
 CREATE TABLE [dbo].[PlayerTrophies] (
-    [PlayerTrophyId] bigint IDENTITY(1,1) NOT NULL,
+    [PlayerTrophyId] int IDENTITY(1,1) NOT NULL,
     [DateAchieved] datetime  NOT NULL,
-    [Player_PlayerId] bigint  NOT NULL,
+    [Player_PlayerId] int  NOT NULL,
     [Trophy_TrophyId] int  NOT NULL
 );
 GO
 
 -- Creating table 'RelationshipBridges'
 CREATE TABLE [dbo].[RelationshipBridges] (
-    [RelationshipBridgeId] bigint IDENTITY(1,1) NOT NULL,
-    [BridgeRegionId] bigint  NOT NULL,
-    [RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId] bigint  NOT NULL
+    [RelationshipBridgeId] int IDENTITY(1,1) NOT NULL,
+    [BridgeRegionId] int  NOT NULL,
+    [RegionRelationshipRelationshipBridge_RelationshipBridge_RegionRelationshipId] int  NOT NULL
 );
 GO
 
 -- Creating table 'WesterosCardStatuses'
 CREATE TABLE [dbo].[WesterosCardStatuses] (
-    [WesterosCardStatusId] bigint IDENTITY(1,1) NOT NULL,
+    [WesterosCardStatusId] int IDENTITY(1,1) NOT NULL,
     [DeckOneId] bigint  NOT NULL,
     [DeckTwoId] bigint  NOT NULL,
     [DeckThreeId] bigint  NOT NULL
@@ -381,7 +381,7 @@ GO
 
 -- Creating table 'WesterosCards'
 CREATE TABLE [dbo].[WesterosCards] (
-    [WesterosCardId] bigint  NOT NULL,
+    [WesterosCardId] int  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL,
     [Deck] int  NOT NULL
@@ -390,10 +390,10 @@ GO
 
 -- Creating table 'HouseCardStatuses'
 CREATE TABLE [dbo].[HouseCardStatuses] (
-    [HouseCardStatusId] bigint IDENTITY(1,1) NOT NULL,
-    [HouseCardId] bigint  NOT NULL,
+    [HouseCardStatusId] int IDENTITY(1,1) NOT NULL,
+    [HouseCardId] int  NOT NULL,
     [IsAvailable] bit  NOT NULL,
-    [GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId] bigint  NOT NULL
+    [GamePlayerHouseCardStatus_HouseCardStatus_GamePlayerId] int  NOT NULL
 );
 GO
 
