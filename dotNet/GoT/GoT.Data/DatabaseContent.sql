@@ -22,5 +22,10 @@ INSERT INTO [dbo].[Regions] VALUES (8,'The Shivering Sea','',0,0,0,0,0,0,1);
 --			 ,[IsOcean])
 
 
-INSERT INTO [dbo].[Houses] VALUES(1,'House Stark','House Stark',null,3);
+INSERT INTO [dbo].[Houses] VALUES(1,'House Stark','House Stark',null,3, 'F0F0F0');
+INSERT INTO [dbo].[Houses] VALUES(2,'House Baratheon','House Baratheon',null,3, 'FFFF00');
+INSERT INTO [dbo].[Houses] VALUES(3,'House Greyjoy','House Greyjoy',null,3, '000000');
+INSERT INTO [dbo].[Houses] VALUES(4,'House Lannister','House Lannister',null,3, 'FF0000');
+INSERT INTO [dbo].[Houses] VALUES(5,'House Martell','House Martell',null,3, 'FF9900');
+INSERT INTO [dbo].[Houses] VALUES(6,'House Tyrell','House Tyrell',null,3, '00FF00');
 

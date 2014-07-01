@@ -106,7 +106,7 @@ namespace GoT.Server
             {
                 using (var ctx = new GoTDataContext())
                 {
-                    var players = ctx.Players.ToList();
+                    var players = ctx.Players.OrderBy(o => o.FirstName).ToList();
                     response = PlayerVisitor.Visit(players, ctx);
                 }
             }
@@ -160,7 +160,7 @@ namespace GoT.Server
                         //TODO:: Add more filters if needed::
                     }
                     
-                    response = GameVisitor.Visit(games);
+                    response = GameVisitor.Visit(games, ctx);
                 }
             }
             catch (Exception exc)
@@ -184,7 +184,7 @@ namespace GoT.Server
                     var game = ctx.Games.FirstOrDefault(w => w.GameId == gameId);
                     if (game != null)
                     {
-                        response = GameVisitor.Visit(game, true);
+                        response = GameVisitor.Visit(game, true, ctx);
                     }
                 }
             }
@@ -211,10 +211,26 @@ namespace GoT.Server
                 {
                     var game = ctx.Games.CreateObject();
                     game = GameVisitor.Visit(gameDto, game);
+
+                    var houses = ctx.Houses.ToList();
+                    Random rnd = new Random();
+
+                    foreach (var player in gameDto.Players)
+                    {
+                        int houseIndex = rnd.Next(houses.Count);
+
+                        var gamePlayer = ctx.GamePlayers.CreateObject();
+                        gamePlayer.PlayerId = player.PlayerId;
+                        gamePlayer.HouseId = houses.ElementAt(houseIndex).HouseId;
+                        houses.RemoveAt(houseIndex);
+
+                        game.GamePlayers.Add(gamePlayer);
+                    }
+
                     ctx.Games.AddObject(game);
                     ctx.SaveChanges();
 
-                    response = GameVisitor.Visit(game, true);
+                    response = GameVisitor.Visit(game, true, ctx);
                 }
             }
             catch (Exception exc)

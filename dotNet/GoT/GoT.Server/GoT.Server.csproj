@@ -76,6 +76,7 @@
       <DependentUpon>GoTService.svc</DependentUpon>
     </Compile>
     <Compile Include="Messages\GameFilterDto.cs" />
+    <Compile Include="Messages\GamePlayerDto.cs" />
     <Compile Include="Messages\LoginDto.cs" />
     <Compile Include="Messages\RelationshipBridgeDto.cs" />
     <Compile Include="Utils\Cryptography.cs" />
@@ -134,6 +135,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "C:\inetpub\wwwroot\GoT\bin" /Y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

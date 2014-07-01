@@ -41,7 +41,9 @@ namespace GoT.Server.Visitors
             if (player == null)
                 return null;
 
-            return new PlayerDto
+            var games = ctx.Games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId));
+
+            var response = new PlayerDto
             {
                 PlayerId = player.PlayerId,
                 FirstName = player.FirstName,
@@ -50,8 +52,18 @@ namespace GoT.Server.Visitors
                 City = player.City,
                 Country = player.Country,
                 IsAdmin = player.IsAdmin,
+                NumberOfGames = games.Count(),
+                NumberOfWins = games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId && a.Place == 1)).Count(),
+                LannisterCount = games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId && a.HouseId  == 4)).Count(),
+                StarkCount = games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId && a.HouseId == 1)).Count(),
+                BaratheonCount = games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId && a.HouseId == 2)).Count(),
+                GreyjoyCount = games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId && a.HouseId == 3)).Count(),
+                MartellCount = games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId && a.HouseId == 5)).Count(),
+                TyrellCount = games.Where(w => w.GamePlayers.Any(a => a.PlayerId == player.PlayerId && a.HouseId == 6)).Count(),
                 Trophies = TrophyVisitor.Visit(player.PlayerTrophies.ToList(), ctx)
             };
+
+            return response;  
         }
 
         /// <summary>

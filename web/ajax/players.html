@@ -1,0 +1,111 @@
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+    <!-- row -->
+    <div class="row">
+
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
+
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-user"></i> </span>
+                    <h2>Players </h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+
+                        <table id="dt_basic" class="table table-striped table-bordered table-hover players-table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Games</th>
+                                    <th>Wins</th>
+                                    <th><img src="./img/got/sigils/stark-s.png" alt="House Stark" title="House Stark" width="20px" height="24px" /></th>
+                                    <th><img src="./img/got/sigils/lannister-s.png" alt="House Lannister" title="House Lannister" width="20px" height="24px" /></th>
+                                    <th><img src="./img/got/sigils/baratheon-s.png" alt="House Baratheon" title="House Baratheon" width="20px" height="24px" /></th>
+                                    <th><img src="./img/got/sigils/greyjoy-s.png" alt="House Greyjoy" title="House Greyjoy" width="20px" height="24px" /></th>
+                                    <th><img src="./img/got/sigils/martell-s.png" alt="House Martell" title="House Martell" width="20px" height="20px" /></th>
+                                    <th><img src="./img/got/sigils/tyrell-s.png" alt="House Tyrell" title="House Tyrell" width="20px" height="24px" /></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+        </article>
+        <!-- WIDGET END -->
+
+    </div>
+
+    <!-- end row -->
+    <!-- end row -->
+
+</section>
+<!-- end widget grid -->
+
+<script type="text/javascript">
+
+
+    pageSetUp();
+
+    /* remove previous elems */
+    if ($('.DTTT_dropdown.dropdown-menu').length) {
+        $('.DTTT_dropdown.dropdown-menu').remove();
+    }
+
+
+    // pagefunction
+    var pagefunction = function () {
+
+  
+        $.getJSON(webApiUrl + "/GetPlayers", function (json) {
+
+            $.each(json, function (i, key) {
+
+                var row = "<tr><td>" + key.FirstName + " " + key.LastName + "</td>";
+                row += "<td>" + key.NumberOfGames + "</td>";
+                row += "<td>" + key.NumberOfWins + "</td>";
+                row += "<td>" + key.StarkCount + "</td>";
+                row += "<td>" + key.LannisterCount + "</td>";
+                row += "<td>" + key.BaratheonCount + "</td>";
+                row += "<td>" + key.GreyjoyCount + "</td>";
+                row += "<td>" + key.MartellCount + "</td>";
+                row += "<td>" + key.TyrellCount + "</td>";
+                row += "</tr>";
+
+                $(".players-table tbody").append(row);
+            });
+
+            $('#dt_basic').dataTable();
+
+            $("#dt_basic_length").hide();
+        });
+
+    };
+
+    // load related plugins
+
+    loadScript("js/plugin/datatables/jquery.dataTables.min.js", function () {
+        loadScript("js/plugin/datatables/dataTables.colVis.min.js", function () {
+            loadScript("js/plugin/datatables/dataTables.tableTools.min.js", function () {
+                loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+            });
+        });
+    });
+
+
+</script>

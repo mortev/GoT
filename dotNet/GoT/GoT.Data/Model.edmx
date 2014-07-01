@@ -18,7 +18,6 @@
     <EntitySet Name="Moves" EntityType="Model.Store.Moves" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InfluenceTrackStatuses" EntityType="Model.Store.InfluenceTrackStatuses" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GamePlayers" EntityType="Model.Store.GamePlayers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="GameResults" EntityType="Model.Store.GameResults" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Ports" EntityType="Model.Store.Ports" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RegionRelationships" EntityType="Model.Store.RegionRelationships" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Trivias" EntityType="Model.Store.Trivias" store:Type="Tables" Schema="dbo" />
@@ -57,14 +56,6 @@
     <AssociationSet Name="RoundInfluenceTrackStatus" Association="Model.Store.RoundInfluenceTrackStatus">
       <End Role="Round" EntitySet="Rounds" />
       <End Role="InfluenceTrackStatus" EntitySet="InfluenceTrackStatuses" />
-    </AssociationSet>
-    <AssociationSet Name="GameGameResult" Association="Model.Store.GameGameResult">
-      <End Role="Game" EntitySet="Games" />
-      <End Role="GameResult" EntitySet="GameResults" />
-    </AssociationSet>
-    <AssociationSet Name="GamePlayerGameResult" Association="Model.Store.GamePlayerGameResult">
-      <End Role="GamePlayer" EntitySet="GamePlayers" />
-      <End Role="GameResult" EntitySet="GameResults" />
     </AssociationSet>
     <AssociationSet Name="RegionPort" Association="Model.Store.RegionPort">
       <End Role="Region" EntitySet="Regions" />
@@ -130,6 +121,7 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Sigil" Type="varbinary(max)" Nullable="true" />
     <Property Name="CapitalRegionId" Type="int" Nullable="false" />
+    <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Characters">
     <Key>
@@ -251,18 +243,10 @@
       <PropertyRef Name="GamePlayerId" />
     </Key>
     <Property Name="GamePlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HouseId" Type="bigint" Nullable="false" />
-    <Property Name="PlayerId" Type="bigint" Nullable="false" />
+    <Property Name="HouseId" Type="int" Nullable="false" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="Place" Type="int" Nullable="true" />
     <Property Name="Game_GameId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="GameResults">
-    <Key>
-      <PropertyRef Name="GameResultId" />
-    </Key>
-    <Property Name="GameResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Place" Type="int" Nullable="false" />
-    <Property Name="GameGameResult_GameResult_GameId" Type="int" Nullable="false" />
-    <Property Name="GamePlayer_GamePlayerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Ports">
     <Key>
@@ -443,30 +427,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="GameGameResult">
-    <End Role="Game" Type="Model.Store.Games" Multiplicity="1" />
-    <End Role="GameResult" Type="Model.Store.GameResults" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Game">
-        <PropertyRef Name="GameId" />
-      </Principal>
-      <Dependent Role="GameResult">
-        <PropertyRef Name="GameGameResult_GameResult_GameId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="GamePlayerGameResult">
-    <End Role="GamePlayer" Type="Model.Store.GamePlayers" Multiplicity="1" />
-    <End Role="GameResult" Type="Model.Store.GameResults" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GamePlayer">
-        <PropertyRef Name="GamePlayerId" />
-      </Principal>
-      <Dependent Role="GameResult">
-        <PropertyRef Name="GamePlayer_GamePlayerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="RegionPort">
     <End Role="Region" Type="Model.Store.Regions" Multiplicity="1" />
     <End Role="Port" Type="Model.Store.Ports" Multiplicity="*" />
@@ -632,15 +592,6 @@
             <End Role="Round" EntitySet="Rounds" />
             <End Role="InfluenceTrackStatus" EntitySet="InfluenceTrackStatuses" />
           </AssociationSet>
-          <EntitySet Name="GameResults" EntityType="Model.GameResult" />
-          <AssociationSet Name="GameGameResult" Association="Model.GameGameResult">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="GameResult" EntitySet="GameResults" />
-          </AssociationSet>
-          <AssociationSet Name="GamePlayerGameResult" Association="Model.GamePlayerGameResult">
-            <End Role="GamePlayer" EntitySet="GamePlayers" />
-            <End Role="GameResult" EntitySet="GameResults" />
-          </AssociationSet>
           <EntitySet Name="Ports" EntityType="Model.Port" />
           <AssociationSet Name="RegionPort" Association="Model.RegionPort">
             <End Role="Region" EntitySet="Regions" />
@@ -719,6 +670,7 @@
           <NavigationProperty Name="Characters" Relationship="Model.HouseCharacter" FromRole="House" ToRole="Character" />
           <Property Type="Int32" Name="CapitalRegionId" Nullable="false" />
           <NavigationProperty Name="HouseCards" Relationship="Model.HouseHouseCard" FromRole="House" ToRole="HouseCard" />
+          <Property Type="String" Name="Color" Nullable="false" />
         </EntityType>
         <EntityType Name="Character">
           <Key>
@@ -783,7 +735,6 @@
           <NavigationProperty Name="Rounds" Relationship="Model.GameRound" FromRole="Game" ToRole="Round" />
           <Property Type="String" Name="Status" Nullable="false" />
           <NavigationProperty Name="GamePlayers" Relationship="Model.GameGamePlayer" FromRole="Game" ToRole="GamePlayer" />
-          <NavigationProperty Name="GameResults" Relationship="Model.GameGameResult" FromRole="Game" ToRole="GameResult" />
           <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
           <Property Type="Int32" Name="CreatedByPlayerId" Nullable="false" />
         </EntityType>
@@ -857,9 +808,10 @@
           </Key>
           <Property Type="Int32" Name="GamePlayerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Game" Relationship="Model.GameGamePlayer" FromRole="GamePlayer" ToRole="Game" />
-          <Property Type="Int64" Name="HouseId" Nullable="false" />
-          <Property Type="Int64" Name="PlayerId" Nullable="false" />
+          <Property Type="Int32" Name="HouseId" Nullable="false" />
+          <Property Type="Int32" Name="PlayerId" Nullable="false" />
           <NavigationProperty Name="HouseCardStatuses" Relationship="Model.GamePlayerHouseCardStatus" FromRole="GamePlayer" ToRole="HouseCardStatus" />
+          <Property Type="Int32" Name="Place" Nullable="true" />
         </EntityType>
         <Association Name="GameGamePlayer">
           <End Type="Model.Game" Role="Game" Multiplicity="1" />
@@ -880,22 +832,6 @@
         <Association Name="RoundInfluenceTrackStatus">
           <End Type="Model.Round" Role="Round" Multiplicity="1" />
           <End Type="Model.InfluenceTrackStatus" Role="InfluenceTrackStatus" Multiplicity="*" />
-        </Association>
-        <EntityType Name="GameResult">
-          <Key>
-            <PropertyRef Name="GameResultId" />
-          </Key>
-          <Property Type="Int32" Name="GameResultId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Place" Nullable="false" />
-          <NavigationProperty Name="GamePlayer" Relationship="Model.GamePlayerGameResult" FromRole="GameResult" ToRole="GamePlayer" />
-        </EntityType>
-        <Association Name="GameGameResult">
-          <End Type="Model.Game" Role="Game" Multiplicity="1" />
-          <End Type="Model.GameResult" Role="GameResult" Multiplicity="*" />
-        </Association>
-        <Association Name="GamePlayerGameResult">
-          <End Type="Model.GamePlayer" Role="GamePlayer" Multiplicity="1" />
-          <End Type="Model.GameResult" Role="GameResult" Multiplicity="*" />
         </Association>
         <EntityType Name="Port">
           <Key>
@@ -1062,6 +998,7 @@
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Sigil" ColumnName="Sigil" />
           <ScalarProperty Name="CapitalRegionId" ColumnName="CapitalRegionId" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1186,13 +1123,6 @@
           <ScalarProperty Name="GamePlayerId" ColumnName="GamePlayerId" />
           <ScalarProperty Name="HouseId" ColumnName="HouseId" />
           <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="GameResults">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.GameResult)">
-        <MappingFragment StoreEntitySet="GameResults">
-          <ScalarProperty Name="GameResultId" ColumnName="GameResultId" />
           <ScalarProperty Name="Place" ColumnName="Place" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1352,22 +1282,6 @@
         <ScalarProperty Name="InfluenceTrackId" ColumnName="InfluenceTrackId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="GameGameResult" TypeName="Model.GameGameResult" StoreEntitySet="GameResults">
-      <EndProperty Name="Game">
-        <ScalarProperty Name="GameId" ColumnName="GameGameResult_GameResult_GameId" />
-      </EndProperty>
-      <EndProperty Name="GameResult">
-        <ScalarProperty Name="GameResultId" ColumnName="GameResultId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="GamePlayerGameResult" TypeName="Model.GamePlayerGameResult" StoreEntitySet="GameResults">
-      <EndProperty Name="GamePlayer">
-        <ScalarProperty Name="GamePlayerId" ColumnName="GamePlayer_GamePlayerId" />
-      </EndProperty>
-      <EndProperty Name="GameResult">
-        <ScalarProperty Name="GameResultId" ColumnName="GameResultId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="RegionPort" TypeName="Model.RegionPort" StoreEntitySet="Ports">
       <EndProperty Name="Region">
         <ScalarProperty Name="RegionId" ColumnName="Region_RegionId" />
@@ -1469,9 +1383,9 @@
     <edmx:Diagrams>
       <Diagram Name="Model" ZoomLevel="81" >
         <EntityTypeShape EntityType="Model.Player" Width="1.5" PointX="5.5" PointY="5" Height="2.9417936197916656" />
-        <EntityTypeShape EntityType="Model.House" Width="1.5" PointX="0.5" PointY="3.625" Height="2.172587890625" />
+        <EntityTypeShape EntityType="Model.House" Width="1.5" PointX="0.5" PointY="3.625" Height="2.5571907552083326" />
         <EntityTypeShape EntityType="Model.Character" Width="1.5" PointX="0.5" PointY="0.5" Height="2.364889322916667" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Region" Width="2" PointX="17.375" PointY="0.5" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="Model.Region" Width="2" PointX="17.375" PointY="0.5" Height="3.326396484375" />
         <EntityTypeShape EntityType="Model.HouseCard" Width="1.5" PointX="0.5" PointY="6.75" Height="2.3648893229166656" />
         <AssociationConnector Association="Model.HouseCharacter">
           <ConnectorPoint PointX="1.25" PointY="3.625" />
@@ -1487,14 +1401,14 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.Move" Width="2.125" PointX="12" PointY="6.625" Height="3.7109993489583317" />
         <EntityTypeShape EntityType="Model.InfluenceTrackStatus" Width="2.375" PointX="14.125" PointY="4.25" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="Model.GamePlayer" Width="1.625" PointX="7.5" PointY="4" Height="1.9802864583333326" />
+        <EntityTypeShape EntityType="Model.GamePlayer" Width="1.625" PointX="7.5" PointY="4" Height="2.1725878906249996" />
         <AssociationConnector Association="Model.GameGamePlayer">
-          <ConnectorPoint PointX="8.25" PointY="3.2494921875" />
+          <ConnectorPoint PointX="8.25" PointY="3.0571907552083331" />
           <ConnectorPoint PointX="8.25" PointY="4" />
         </AssociationConnector>
         <AssociationConnector Association="Model.RegionRegionStatus">
-          <ConnectorPoint PointX="17.375" PointY="1.9708968098958333" />
-          <ConnectorPoint PointX="16.5" PointY="1.9708968098958333" />
+          <ConnectorPoint PointX="17.375" PointY="1.9708968098958335" />
+          <ConnectorPoint PointX="16.5" PointY="1.9708968098958335" />
         </AssociationConnector>
         <AssociationConnector Association="Model.RoundRegionStatus">
           <ConnectorPoint PointX="11.5" PointY="2.3456034761873097" />
@@ -1511,28 +1425,18 @@
           <ConnectorPoint PointX="12.982638923893333" PointY="5.5289075376762291" />
           <ConnectorPoint PointX="14.125" PointY="5.5289075376762291" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.GameResult" Width="1.5" PointX="5.375" PointY="0.5" Height="1.59568359375" />
-        <AssociationConnector Association="Model.GameGameResult">
-          <ConnectorPoint PointX="7.5" PointY="1.2978417968749998" />
-          <ConnectorPoint PointX="6.875" PointY="1.2978417968749998" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.GamePlayerGameResult">
-          <ConnectorPoint PointX="7.5" PointY="4.46875" />
-          <ConnectorPoint PointX="5.40625" PointY="4.46875" />
-          <ConnectorPoint PointX="5.40625" PointY="2.09568359375" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="Model.Port" Width="1.5" PointX="17.375" PointY="4.75" Height="1.5956835937499996" />
         <AssociationConnector Association="Model.RegionPort">
-          <ConnectorPoint PointX="18.125" PointY="3.8263964843749996" />
+          <ConnectorPoint PointX="18.125" PointY="3.826396484375" />
           <ConnectorPoint PointX="18.125" PointY="4.75" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.RegionRelationship" Width="1.875" PointX="17.5" PointY="7" Height="1.7879850260416674" />
         <AssociationConnector Association="Model.RegionRegionRelationship">
-          <ConnectorPoint PointX="19.15625" PointY="3.8263964843749996" />
+          <ConnectorPoint PointX="19.15625" PointY="3.826396484375" />
           <ConnectorPoint PointX="19.15625" PointY="7" />
         </AssociationConnector>
         <AssociationConnector Association="Model.RegionStatusPort">
-          <ConnectorPoint PointX="16.5" PointY="3.4399656967147432" />
+          <ConnectorPoint PointX="16.5" PointY="3.4399656967147441" />
           <ConnectorPoint PointX="16.875" PointY="3.8149656967147436" />
           <ConnectorPoint PointX="16.875" PointY="5.547841796875" />
           <ConnectorPoint PointX="17.375" PointY="5.547841796875" />
@@ -1545,7 +1449,7 @@
           <ConnectorPoint PointX="4.125" PointY="2.875" />
         </AssociationConnector>
         <AssociationConnector Association="Model.HouseHouseCard">
-          <ConnectorPoint PointX="1.25" PointY="5.9898893229166656" />
+          <ConnectorPoint PointX="1.25" PointY="6.1821907552083326" />
           <ConnectorPoint PointX="1.25" PointY="6.75" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.PlayerTrophy" Width="1.5" PointX="5.5" PointY="8.625" Height="1.7879850260416674" />
@@ -1570,7 +1474,7 @@
         <EntityTypeShape EntityType="Model.WesterosCard" Width="1.875" PointX="9.625" PointY="7" Height="1.7879850260416657" />
         <EntityTypeShape EntityType="Model.HouseCardStatus" Width="1.625" PointX="7.5" PointY="6.625" Height="1.5956835937499996" />
         <AssociationConnector Association="Model.GamePlayerHouseCardStatus">
-          <ConnectorPoint PointX="8.3125" PointY="5.9802864583333326" />
+          <ConnectorPoint PointX="8.3125" PointY="6.172587890625" />
           <ConnectorPoint PointX="8.3125" PointY="6.625" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.ErrorLog" Width="1.5" PointX="20.25" PointY="0.5" Height="2.172587890625" />

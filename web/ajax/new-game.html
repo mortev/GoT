@@ -1,0 +1,273 @@
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+
+		<!-- NEW WIDGET START -->
+		<article class="col-sm-12 col-md-12 col-lg-6">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
+
+                <header>
+                    <h2>New Game </h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <form class="" id="new-game-form-1">
+
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <label>Mode:</label>
+                                    <select style="width:100%" id="new-game-mode">
+                                        <option value="6">6-Player</option>
+                                        <option value="5">5-Player</option>
+                                        <option value="4">4-Player</option>
+                                        <option value="3">3-Player</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Date:</label>
+                                    <div class="input-group">
+                                        <input type="text" id="new-game-date" placeholder="Select a date" class="form-control datepicker" data-dateformat="dd.mm.yy">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Players:</label>
+                                    <select multiple style="width:100%" id="new-game-players" />
+                                </div>
+
+                            </fieldset>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary" type="button" id="new-game-save-btn">
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+			<!-- end widget -->
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
+
+                <header>
+                    <h2><label id="new-game-house-draw-label"></label></h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <form class="" id="new-game-form-2">
+
+                            <fieldset>
+
+                                <div class="form-group">
+
+                                    <table class="table table-bordered table-striped responsive-utilities" id="new-game-house-draw-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Player</th>
+                                                <th>House</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                            </fieldset>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary disabled" type="button" id="new-game-reshuffle-btn">
+                                            Reshuffle
+                                        </button>
+                                        <button class="btn btn-primary" type="button" id="new-game-start-btn">
+                                            Start
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+		</article>
+		<!-- WIDGET END -->
+
+	</div>
+
+	<!-- end row -->
+
+</section>
+<!-- end widget grid -->
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var pagefunction = function() {
+
+        //Load players::
+	    $.getJSON(webApiUrl + "/GetPlayers", function (json) {
+
+	        $.each(json, function (i, key) {
+	            $('#new-game-players')
+                    .append($("<option></option>")
+                    .attr("value", key.PlayerId)
+                    .text(key.FirstName + " " + key.LastName));
+	        });
+	    });
+
+        //Set initial player select box::
+	    $("#new-game-players").select2(
+            {
+                maximumSelectionSize: 6,
+                formatSelectionTooBig: function (limit) {
+                    return 'Max ' + limit + ' players allowed.';
+                }
+            });
+
+        //Disable search in mode selectbox::
+	    $('#new-game-mode').select2({
+	        minimumResultsForSearch: -1
+	    });
+
+	    $("#wid-id-1").hide();
+
+        //Set player limit when changing mode::
+	    $('#new-game-mode').on('change', function () {
+	        var mode = this.value;
+	        $('#new-game-players').select2(
+                {
+                    maximumSelectionSize: mode,
+                    formatSelectionTooBig: function (limit) {
+                        return 'Max ' + limit + ' players allowed.';
+                    }
+                });
+	    });
+
+	    $("#new-game-start-btn").click(function () {
+	        window.location.href = "#ajax/games-overview.html";
+	    });
+
+
+	    $("#new-game-save-btn").click(function () {
+	        var mode = $("#new-game-mode option:selected").text();
+	        var inputDate = $("#new-game-date").val();
+	        var isoDate = $.datepicker.parseDate("dd.mm.yy", inputDate);
+	        var jsonDate = Date.parse(isoDate);
+
+	        var game = new Object();
+	        game.Mode = mode;
+            game.Status = "Created",
+	        game.CreatedByPlayerId = 2;
+            game.Date = "\/Date(" + jsonDate + ")\/";
+	        game.Players = [];
+
+	        $("#new-game-players option:selected").each(function () {
+	            var gamePlayer = new Object();
+	            gamePlayer.PlayerId = $(this).attr("value");
+	            game.Players.push(gamePlayer);
+	        });
+
+	        var jsonString = JSON.stringify(game);
+
+	        $('#new-game-save-btn').attr("disabled", true);
+	        $("#new-game-date").attr("disabled", true);
+	        $("#new-game-players").attr("disabled", true);
+	        $("#new-game-mode").attr("disabled", true);
+
+	        $.ajax({
+	            type: "POST",
+	            url: webApiUrl + "/CreateGame",
+	            async: true,
+	            dataType: 'json',
+	            contentType: 'application/json; charset=utf-8',
+	            data: jsonString,
+	            success: function (json) {
+	                $("#wid-id-0").hide();
+	                $("#wid-id-1").show();
+
+	                var gameDate = parseJsonDate(json.Date);
+	                var headerLabel = "#" + json.GameId + " | " + gameDate + " | " + json.Mode;
+	                $("#new-game-house-draw-label").text(headerLabel);
+
+	                $.each(json.Players, function (i, key) {
+	                    var imgTag = "";
+
+	                    switch (key.HouseId) {
+	                        case 1:
+	                            imgTag = '<img src="./img/got/sigils/stark-s.png" width="20px" height="24px" style="margin-right:10px"/>';
+	                            break;
+	                        case 2:
+	                            imgTag = '<img src="./img/got/sigils/baratheon-s.png" width="20px" height="24px" style="margin-right:10px"/>';
+	                            break;
+	                        case 3:
+	                            imgTag = '<img src="./img/got/sigils/greyjoy-s.png" width="20px" height="24px" style="margin-right:10px"/>';
+	                            break;
+	                        case 4:
+	                            imgTag = '<img src="./img/got/sigils/lannister-s.png" width="20px" height="24px" style="margin-right:10px"/>';
+	                            break;
+	                        case 5:
+	                            imgTag = '<img src="./img/got/sigils/martell-s.png" width="20px" height="20px" style="margin-right:10px"/>';
+	                            break;
+	                        case 6:
+	                            imgTag = '<img src="./img/got/sigils/tyrell-s.png" width="20px" height="24px" style="margin-right:10px"/>';
+	                            break;
+	                    }
+
+	                    var row = '<tr id=' + key.GamePlayerId + '><td>' + key.FirstName + " " + key.LastName + '</td><td>' + imgTag + key.HouseName + '</td></tr>';
+	                    $("#new-game-house-draw-table tbody").append(row);
+	                });
+	            },
+	            error: function (msg) {
+	                $('#new-game-save-btn').attr("disabled", false);
+	                $("#new-game-date").attr("disabled", false);
+	                $("#new-game-players").attr("disabled", false);
+	                $("#new-game-mode").attr("disabled", false);
+	            }
+	        });
+	    });
+
+	};
+
+	pagefunction();
+
+</script>

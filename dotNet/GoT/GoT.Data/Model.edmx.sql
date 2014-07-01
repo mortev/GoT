@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/28/2014 15:00:06
+-- Date Created: 06/29/2014 17:24:18
 -- Generated from EDMX file: C:\Data\Repository\GoT\dotNet\GoT\GoT.Data\Model.edmx
 -- --------------------------------------------------
 
@@ -37,12 +37,6 @@ IF OBJECT_ID(N'[dbo].[FK_RoundMove]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_RoundInfluenceTrackStatus]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[InfluenceTrackStatuses] DROP CONSTRAINT [FK_RoundInfluenceTrackStatus];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameGameResult]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[GameResults] DROP CONSTRAINT [FK_GameGameResult];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GamePlayerGameResult]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[GameResults] DROP CONSTRAINT [FK_GamePlayerGameResult];
 GO
 IF OBJECT_ID(N'[dbo].[FK_RegionPort]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Ports] DROP CONSTRAINT [FK_RegionPort];
@@ -115,9 +109,6 @@ GO
 IF OBJECT_ID(N'[dbo].[GamePlayers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[GamePlayers];
 GO
-IF OBJECT_ID(N'[dbo].[GameResults]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[GameResults];
-GO
 IF OBJECT_ID(N'[dbo].[Ports]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Ports];
 GO
@@ -176,7 +167,8 @@ CREATE TABLE [dbo].[Houses] (
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL,
     [Sigil] varbinary(max)  NULL,
-    [CapitalRegionId] int  NOT NULL
+    [CapitalRegionId] int  NOT NULL,
+    [Color] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -298,18 +290,10 @@ GO
 -- Creating table 'GamePlayers'
 CREATE TABLE [dbo].[GamePlayers] (
     [GamePlayerId] int IDENTITY(1,1) NOT NULL,
-    [HouseId] bigint  NOT NULL,
-    [PlayerId] bigint  NOT NULL,
+    [HouseId] int  NOT NULL,
+    [PlayerId] int  NOT NULL,
+    [Place] int  NULL,
     [Game_GameId] int  NOT NULL
-);
-GO
-
--- Creating table 'GameResults'
-CREATE TABLE [dbo].[GameResults] (
-    [GameResultId] int IDENTITY(1,1) NOT NULL,
-    [Place] int  NOT NULL,
-    [GameGameResult_GameResult_GameId] int  NOT NULL,
-    [GamePlayer_GamePlayerId] int  NOT NULL
 );
 GO
 
@@ -484,12 +468,6 @@ ADD CONSTRAINT [PK_GamePlayers]
     PRIMARY KEY CLUSTERED ([GamePlayerId] ASC);
 GO
 
--- Creating primary key on [GameResultId] in table 'GameResults'
-ALTER TABLE [dbo].[GameResults]
-ADD CONSTRAINT [PK_GameResults]
-    PRIMARY KEY CLUSTERED ([GameResultId] ASC);
-GO
-
 -- Creating primary key on [PortId] in table 'Ports'
 ALTER TABLE [dbo].[Ports]
 ADD CONSTRAINT [PK_Ports]
@@ -656,34 +634,6 @@ ADD CONSTRAINT [FK_RoundInfluenceTrackStatus]
 CREATE INDEX [IX_FK_RoundInfluenceTrackStatus]
 ON [dbo].[InfluenceTrackStatuses]
     ([Round_RoundId]);
-GO
-
--- Creating foreign key on [GameGameResult_GameResult_GameId] in table 'GameResults'
-ALTER TABLE [dbo].[GameResults]
-ADD CONSTRAINT [FK_GameGameResult]
-    FOREIGN KEY ([GameGameResult_GameResult_GameId])
-    REFERENCES [dbo].[Games]
-        ([GameId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GameGameResult'
-CREATE INDEX [IX_FK_GameGameResult]
-ON [dbo].[GameResults]
-    ([GameGameResult_GameResult_GameId]);
-GO
-
--- Creating foreign key on [GamePlayer_GamePlayerId] in table 'GameResults'
-ALTER TABLE [dbo].[GameResults]
-ADD CONSTRAINT [FK_GamePlayerGameResult]
-    FOREIGN KEY ([GamePlayer_GamePlayerId])
-    REFERENCES [dbo].[GamePlayers]
-        ([GamePlayerId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GamePlayerGameResult'
-CREATE INDEX [IX_FK_GamePlayerGameResult]
-ON [dbo].[GameResults]
-    ([GamePlayer_GamePlayerId]);
 GO
 
 -- Creating foreign key on [Region_RegionId] in table 'Ports'

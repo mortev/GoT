@@ -26,8 +26,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "RoundRegionStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus))]
 [assembly: EdmRelationshipAttribute("Model", "RoundMove", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "Move", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.Move))]
 [assembly: EdmRelationshipAttribute("Model", "RoundInfluenceTrackStatus", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Round), "InfluenceTrackStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.InfluenceTrackStatus))]
-[assembly: EdmRelationshipAttribute("Model", "GameGameResult", "Game", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Game), "GameResult", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GameResult))]
-[assembly: EdmRelationshipAttribute("Model", "GamePlayerGameResult", "GamePlayer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.GamePlayer), "GameResult", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.GameResult))]
 [assembly: EdmRelationshipAttribute("Model", "RegionPort", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.Port))]
 [assembly: EdmRelationshipAttribute("Model", "RegionRegionRelationship", "Region", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(GoT.Data.Region), "RegionRelationship", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionRelationship))]
 [assembly: EdmRelationshipAttribute("Model", "RegionStatusPort", "RegionStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(GoT.Data.RegionStatus), "Port", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(GoT.Data.Port))]
@@ -280,22 +278,6 @@ namespace GoT.Data
             }
         }
         private ObjectSet<GamePlayer> _GamePlayers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<GameResult> GameResults
-        {
-            get
-            {
-                if ((_GameResults == null))
-                {
-                    _GameResults = base.CreateObjectSet<GameResult>("GameResults");
-                }
-                return _GameResults;
-            }
-        }
-        private ObjectSet<GameResult> _GameResults;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -571,14 +553,6 @@ namespace GoT.Data
         public void AddToGamePlayers(GamePlayer gamePlayer)
         {
             base.AddObject("GamePlayers", gamePlayer);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the GameResults EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToGameResults(GameResult gameResult)
-        {
-            base.AddObject("GameResults", gameResult);
         }
     
         /// <summary>
@@ -1398,28 +1372,6 @@ namespace GoT.Data
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "GameGameResult", "GameResult")]
-        public EntityCollection<GameResult> GameResults
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<GameResult>("Model.GameGameResult", "GameResult");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<GameResult>("Model.GameGameResult", "GameResult", value);
-                }
-            }
-        }
 
         #endregion
 
@@ -1441,7 +1393,7 @@ namespace GoT.Data
         /// <param name="gamePlayerId">Initial value of the GamePlayerId property.</param>
         /// <param name="houseId">Initial value of the HouseId property.</param>
         /// <param name="playerId">Initial value of the PlayerId property.</param>
-        public static GamePlayer CreateGamePlayer(global::System.Int32 gamePlayerId, global::System.Int64 houseId, global::System.Int64 playerId)
+        public static GamePlayer CreateGamePlayer(global::System.Int32 gamePlayerId, global::System.Int32 houseId, global::System.Int32 playerId)
         {
             GamePlayer gamePlayer = new GamePlayer();
             gamePlayer.GamePlayerId = gamePlayerId;
@@ -1486,7 +1438,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 HouseId
+        public global::System.Int32 HouseId
         {
             get
             {
@@ -1501,8 +1453,8 @@ namespace GoT.Data
                 OnHouseIdChanged();
             }
         }
-        private global::System.Int64 _HouseId;
-        partial void OnHouseIdChanging(global::System.Int64 value);
+        private global::System.Int32 _HouseId;
+        partial void OnHouseIdChanging(global::System.Int32 value);
         partial void OnHouseIdChanged();
     
         /// <summary>
@@ -1510,7 +1462,7 @@ namespace GoT.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 PlayerId
+        public global::System.Int32 PlayerId
         {
             get
             {
@@ -1525,9 +1477,33 @@ namespace GoT.Data
                 OnPlayerIdChanged();
             }
         }
-        private global::System.Int64 _PlayerId;
-        partial void OnPlayerIdChanging(global::System.Int64 value);
+        private global::System.Int32 _PlayerId;
+        partial void OnPlayerIdChanging(global::System.Int32 value);
         partial void OnPlayerIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Place
+        {
+            get
+            {
+                return _Place;
+            }
+            set
+            {
+                OnPlaceChanging(value);
+                ReportPropertyChanging("Place");
+                _Place = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Place");
+                OnPlaceChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Place;
+        partial void OnPlaceChanging(Nullable<global::System.Int32> value);
+        partial void OnPlaceChanged();
 
         #endregion
 
@@ -1601,131 +1577,6 @@ namespace GoT.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="GameResult")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class GameResult : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new GameResult object.
-        /// </summary>
-        /// <param name="gameResultId">Initial value of the GameResultId property.</param>
-        /// <param name="place">Initial value of the Place property.</param>
-        public static GameResult CreateGameResult(global::System.Int32 gameResultId, global::System.Int32 place)
-        {
-            GameResult gameResult = new GameResult();
-            gameResult.GameResultId = gameResultId;
-            gameResult.Place = place;
-            return gameResult;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 GameResultId
-        {
-            get
-            {
-                return _GameResultId;
-            }
-            set
-            {
-                if (_GameResultId != value)
-                {
-                    OnGameResultIdChanging(value);
-                    ReportPropertyChanging("GameResultId");
-                    _GameResultId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("GameResultId");
-                    OnGameResultIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _GameResultId;
-        partial void OnGameResultIdChanging(global::System.Int32 value);
-        partial void OnGameResultIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Place
-        {
-            get
-            {
-                return _Place;
-            }
-            set
-            {
-                OnPlaceChanging(value);
-                ReportPropertyChanging("Place");
-                _Place = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Place");
-                OnPlaceChanged();
-            }
-        }
-        private global::System.Int32 _Place;
-        partial void OnPlaceChanging(global::System.Int32 value);
-        partial void OnPlaceChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "GamePlayerGameResult", "GamePlayer")]
-        public GamePlayer GamePlayer
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GamePlayer>("Model.GamePlayerGameResult", "GamePlayer").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GamePlayer>("Model.GamePlayerGameResult", "GamePlayer").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<GamePlayer> GamePlayerReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GamePlayer>("Model.GamePlayerGameResult", "GamePlayer");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GamePlayer>("Model.GamePlayerGameResult", "GamePlayer", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Model", Name="House")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1739,12 +1590,14 @@ namespace GoT.Data
         /// <param name="houseId">Initial value of the HouseId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="capitalRegionId">Initial value of the CapitalRegionId property.</param>
-        public static House CreateHouse(global::System.Int32 houseId, global::System.String name, global::System.Int32 capitalRegionId)
+        /// <param name="color">Initial value of the Color property.</param>
+        public static House CreateHouse(global::System.Int32 houseId, global::System.String name, global::System.Int32 capitalRegionId, global::System.String color)
         {
             House house = new House();
             house.HouseId = houseId;
             house.Name = name;
             house.CapitalRegionId = capitalRegionId;
+            house.Color = color;
             return house;
         }
 
@@ -1874,6 +1727,30 @@ namespace GoT.Data
         private global::System.Int32 _CapitalRegionId;
         partial void OnCapitalRegionIdChanging(global::System.Int32 value);
         partial void OnCapitalRegionIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Color
+        {
+            get
+            {
+                return _Color;
+            }
+            set
+            {
+                OnColorChanging(value);
+                ReportPropertyChanging("Color");
+                _Color = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Color");
+                OnColorChanged();
+            }
+        }
+        private global::System.String _Color;
+        partial void OnColorChanging(global::System.String value);
+        partial void OnColorChanged();
 
         #endregion
 
