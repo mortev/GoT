@@ -48,8 +48,7 @@ namespace GoT.Server.Visitors
                 CreatedDate = game.CreatedDate,
                 CreatedByPlayerId = game.CreatedByPlayerId,
                 Mode = game.Mode,
-                Status = game.Status,
-                Players = Visit(game.GamePlayers.ToList(), ctx)
+                Status = game.Status
             };
 
             var createdByPlayer = ctx.Players.FirstOrDefault(w => w.PlayerId == game.CreatedByPlayerId);
@@ -71,7 +70,7 @@ namespace GoT.Server.Visitors
 
             if (details)
             {
-                //TODO:: Add detailed game information::
+                response.Players = Visit(game.GamePlayers.ToList(), ctx).OrderBy(o => o.Place).ThenBy(o => o.FirstName).ToList();
 
             }
 

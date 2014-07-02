@@ -11,6 +11,7 @@
             <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
 
                 <header>
+                    <span class="widget-icon"> <i class="fa fa-plus"></i> </span>
                     <h2>New Game </h2>
 
                 </header>
@@ -226,7 +227,7 @@
 	                $("#wid-id-1").show();
 
 	                var gameDate = parseJsonDate(json.Date);
-	                var headerLabel = "#" + json.GameId + " | " + gameDate + " | " + json.Mode;
+	                var headerLabel = "#" + json.GameId + " | " + gameDate;
 	                $("#new-game-house-draw-label").text(headerLabel);
 
 	                $.each(json.Players, function (i, key) {

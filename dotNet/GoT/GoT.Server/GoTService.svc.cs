@@ -141,8 +141,8 @@ namespace GoT.Server
                 using (var ctx = new GoTDataContext())
                 {
                     //TODO:: Add paging in order to return games continuously::
-                    //Get last 20 games::
-                    var games = ctx.Games.OrderByDescending(o => o.Date).Take(10).ToList();
+                    //Get last 30 games::
+                    var games = ctx.Games.OrderByDescending(o => o.Date).Take(100).ToList();
 
                     //Add filter::
                     if(filter != null)

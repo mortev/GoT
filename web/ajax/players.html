@@ -68,10 +68,10 @@
     }
 
 
+
     // pagefunction
     var pagefunction = function () {
 
-  
         $.getJSON(webApiUrl + "/GetPlayers", function (json) {
 
             $.each(json, function (i, key) {
@@ -94,7 +94,6 @@
 
             $("#dt_basic_length").hide();
         });
-
     };
 
     // load related plugins

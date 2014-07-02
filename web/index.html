@@ -51,169 +51,157 @@
 	</head>
 
 
-	<body class="">
+<body class="" >
 
-		<!-- #HEADER -->
-		<header id="header">
-			<div id="logo-group">
+    <!-- #HEADER -->
+    <header id="header" style="background: #3a3633 url(./img/got/winter_is_coming.png) no-repeat top left;">
+        <div id="logo-group">
 
-                <span id="logo"> <img src="./img/got/got_logo.png" alt="Game of Thrones WebApp"> </span> 
+            <!--<span id="logo"> <img src="./img/got/got_logo.png" alt="Game of Thrones WebApp"> </span>-->
 
-			</div>
-			
-			<!-- #TOGGLE LAYOUT BUTTONS -->
-			<!-- pulled right: nav area -->
-			<div class="pull-right">
-				
-				<!-- collapse menu button -->
-				<div id="hide-menu" class="btn-header pull-right">
-					<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
-				</div>
-				<!-- end collapse menu -->
+        </div>
 
-				<!-- fullscreen button -->
-				<div id="fullscreen" class="btn-header transparent pull-right">
-					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
-				</div>
-				<!-- end fullscreen button -->
+        <!-- #TOGGLE LAYOUT BUTTONS -->
+        <!-- pulled right: nav area -->
+        <div class="pull-right">
 
-			</div>
-			<!-- end pulled right: nav area -->
+            <!-- collapse menu button -->
+            <div id="hide-menu" class="btn-header pull-right">
+                <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+            </div>
+            <!-- end collapse menu -->
+            <!-- fullscreen button -->
+            <div id="fullscreen" class="btn-header transparent pull-right">
+                <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
+            </div>
+            <!-- end fullscreen button -->
 
-		</header>
-		<!-- END HEADER -->
+        </div>
+        <!-- end pulled right: nav area -->
 
-		<!-- #NAVIGATION -->
-		<aside id="left-panel">
+    </header>
+    <!-- END HEADER -->
+    <!-- #NAVIGATION -->
+    <aside id="left-panel">
 
 
-			<!-- NAVIGATION : This navigation is also responsive
+        <!-- NAVIGATION : This navigation is also responsive
 
-			To make this navigation dynamic please make sure to link the node
-			(the reference to the nav > ul) after page load. Or the navigation
-			will not initialize.
-			-->
-			<nav>
-				<!-- 
-				NOTE: Notice the gaps after each icon usage <i></i>..
-				Please note that these links work a bit different than
-				traditional href="" links. See documentation for details.
-				-->
+        To make this navigation dynamic please make sure to link the node
+        (the reference to the nav > ul) after page load. Or the navigation
+        will not initialize.
+        -->
+        <nav>
+            <!--
+            NOTE: Notice the gaps after each icon usage <i></i>..
+            Please note that these links work a bit different than
+            traditional href="" links. See documentation for details.
+            -->
 
-				<ul>
-					<!--<li class="">
-						<a href="ajax/dashboard.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-					</li>-->
-                    <li class="">
-                        <a href="ajax/games-overview.html" title="Players"><i class="fa fa-lg fa-fw fa-gamepad"></i> <span class="menu-item-parent">Games</span></a>
-                    </li>
-                    <li>
-                        <a href="ajax/players.html" title="Players"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Players</span></a>
-                    </li>
-                    <li>
-                        <a href="ajax/new-game.html" title="New Game"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent">New Game</span></a>
-                    </li>
-                    <li>
-                        <a href="ajax/map.html" title="Atlas"><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Atlas</span></a>
-                    </li>
-				</ul>
-			</nav>
-			<!--<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>-->
+            <ul>
+                <!--<li class="">
+                    <a href="ajax/dashboard.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+                </li>-->
+                <li class="">
+                    <a href="ajax/games-overview.html" title="Players"><i class="fa fa-lg fa-fw fa-gamepad"></i> <span class="menu-item-parent">Games</span></a>
+                </li>
+                <li>
+                    <a href="ajax/players.html" title="Players"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Players</span></a>
+                </li>
+                <li>
+                    <a href="ajax/new-game.html" title="New Game"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent">New Game</span></a>
+                </li>
+                <li>
+                    <a href="ajax/map.html" title="Atlas"><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Atlas</span></a>
+                </li>
+            </ul>
+        </nav>
+        <!--<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>-->
 
-		</aside>
-		<!-- END NAVIGATION -->
+    </aside>
+    <!-- END NAVIGATION -->
+    <!-- #MAIN PANEL -->
+    <div id="main" role="main">
 
-		<!-- #MAIN PANEL -->
-		<div id="main" role="main">
+        <!-- #MAIN CONTENT -->
+        <div id="content">
 
-			<!-- #MAIN CONTENT -->
-			<div id="content">
+        </div>
 
-			</div>
-			
-			<!-- END #MAIN CONTENT -->
+        <!-- END #MAIN CONTENT -->
 
-		</div>
-		<!-- END #MAIN PANEL -->
+    </div>
+    <!-- END #MAIN PANEL -->
+    <!--================================================== -->
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+    <!-- #PLUGINS -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script>
+        if (!window.jQuery) {
+            document.write('<script src="js/libs/jquery-2.0.2.min.js"><\/script>');
+        }
+    </script>
 
-		<!--================================================== -->
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+        if (!window.jQuery.ui) {
+            document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+        }
+    </script>
 
-		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
-		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+    <script src="js/libs/jquery.imagemapster.min.js"></script>
+    <script src="js/got.js"></script>
 
-  
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+    <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
 
-            
+    <!-- BOOTSTRAP JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
 
-        <!-- #PLUGINS -->
-		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-2.0.2.min.js"><\/script>');
-			}
-		</script>
+    <!-- CUSTOM NOTIFICATION -->
+    <script src="js/notification/SmartNotification.min.js"></script>
 
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
-		</script>
+    <!-- JARVIS WIDGETS -->
+    <script src="js/smartwidgets/jarvis.widget.min.js"></script>
 
-        <script src="js/libs/jquery.imagemapster.min.js"></script>
-        <script src="js/got.js"></script>
+    <!-- EASY PIE CHARTS -->
+    <script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
 
-        <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
-		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+    <!-- SPARKLINES -->
+    <script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
 
-		<!-- BOOTSTRAP JS -->
-		<script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- JQUERY VALIDATE -->
+    <script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
 
-		<!-- CUSTOM NOTIFICATION -->
-		<script src="js/notification/SmartNotification.min.js"></script>
+    <!-- JQUERY MASKED INPUT -->
+    <script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
 
-		<!-- JARVIS WIDGETS -->
-		<script src="js/smartwidgets/jarvis.widget.min.js"></script>
+    <!-- JQUERY SELECT2 INPUT -->
+    <script src="js/plugin/select2/select2.min.js"></script>
 
-		<!-- EASY PIE CHARTS -->
-		<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+    <!-- JQUERY UI + Bootstrap Slider -->
+    <script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
 
-		<!-- SPARKLINES -->
-		<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+    <!-- browser msie issue fix -->
+    <script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
 
-		<!-- JQUERY VALIDATE -->
-		<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+    <!-- FastClick: For mobile devices: you can disable this in app.js -->
+    <script src="js/plugin/fastclick/fastclick.min.js"></script>
 
-		<!-- JQUERY MASKED INPUT -->
-		<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+    <!--[if IE 8]>
+        <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+    <![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <script src="js/app.min.js"></script>
 
-		<!-- JQUERY SELECT2 INPUT -->
-		<script src="js/plugin/select2/select2.min.js"></script>
-
-		<!-- JQUERY UI + Bootstrap Slider -->
-		<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
-
-		<!-- browser msie issue fix -->
-		<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
-
-		<!-- FastClick: For mobile devices: you can disable this in app.js -->
-		<script src="js/plugin/fastclick/fastclick.min.js"></script>
-
-		<!--[if IE 8]>
-			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
-		<![endif]-->
+    <!-- Your GOOGLE ANALYTICS CODE Below -->
+    <script type="text/javascript">
 
 
-		<!-- MAIN APP JS FILE -->
-		<script src="js/app.min.js"></script>
+    </script>
 
-		<!-- Your GOOGLE ANALYTICS CODE Below -->
-		<script type="text/javascript">
-
-
-		</script>
-
-	</body>
+</body>
 
 </html>

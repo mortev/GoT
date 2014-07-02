@@ -1,0 +1,161 @@
+
+<section id="widget-grid" class="">
+
+	<div class="row">
+
+        <article class="col-sm-12 col-md-12 col-lg-6">
+
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-gamepad"></i> </span>
+                    <h2>Game Details </h2>
+                </header>
+
+                <div>
+
+                    <div class="widget-body no-padding">
+
+                        <table class="table table-striped table-bordered table-hover" width="100%" id="game-details-table">
+
+                            <tbody></tbody>
+                        </table>
+
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <article class="col-sm-12 col-md-12 col-lg-6">
+
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-user"></i> </span>
+                    <h2>Players </h2>
+                </header>
+
+                <div>
+
+                    <div class="widget-body no-padding">
+
+                        <table class="table table-bordered table-striped responsive-utilities" id="game-players-table">
+                            <thead>
+                                <tr>
+                                    <th>Player</th>
+                                    <th>House</th>
+                                    <th>Place</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+	</div>
+
+</section>
+
+<script type="text/javascript">
+
+
+	pageSetUp();
+	
+
+	/* remove previous elems */
+	if($('.DTTT_dropdown.dropdown-menu').length){
+		$('.DTTT_dropdown.dropdown-menu').remove();
+	}
+	
+	
+	// pagefunction	
+	var pagefunction = function () {
+
+	    if (gameId == 0 || gameId == null)
+	        window.location.href = '#ajax/games-overview.html';
+
+	    var gameJson = null;
+
+	    $.getJSON(webApiUrl + "/GetGame?gameId=" + gameId, function (json) {
+
+	        if((json == null) || (json.GameId == null))
+	            return;
+
+            //Keep json object for later use::
+	        gameJson = json;
+
+	        var date = parseJsonDate(json.Date);
+	        var createdDate = parseJsonDate(json.CreatedDate);
+
+	        var winningPlayer = json.WinningPlayerName != null ? json.WinningPlayerName : "";
+
+	        var details = '<tr><td>Date</td><td>' + date + '</td></tr>';
+	        details += '<tr><td>Mode</td><td>' + json.Mode + '</td></tr>';
+	        details += '<tr><td>Status</td><td>' + json.Status + '</td></tr>';
+	        details += '<tr><td>Created By</td><td>' + json.CreatedByPlayerName + '</td></tr>';
+
+	        var winningHouseImg = "";
+
+	        $.each(json.Players, function (i, key) {
+	            var imgTag = "";
+	            
+	            switch (key.HouseId) {
+	                case 1:
+	                    imgTag = '<img src="./img/got/sigils/stark-s.png" width="16px" height="20px" style="margin-right:10px"/>';
+	                    break;
+	                case 2:
+	                    imgTag = '<img src="./img/got/sigils/baratheon-s.png" width="16px" height="20px" style="margin-right:10px"/>';
+	                    break;
+	                case 3:
+	                    imgTag = '<img src="./img/got/sigils/greyjoy-s.png" width="16px" height="20px" style="margin-right:10px"/>';
+	                    break;
+	                case 4:
+	                    imgTag = '<img src="./img/got/sigils/lannister-s.png" width="16px" height="20px" style="margin-right:10px"/>';
+	                    break;
+	                case 5:
+	                    imgTag = '<img src="./img/got/sigils/martell-s.png" width="16px" height="20px" style="margin-right:10px"/>';
+	                    break;
+	                case 6:
+	                    imgTag = '<img src="./img/got/sigils/tyrell-s.png" width="16px" height="20px" style="margin-right:10px"/>';
+	                    break;
+	            }
+
+	            var place = key.Place != null ? key.Place : "";
+	            if (place == 1)
+	                winningHouseImg = imgTag;
+
+	            var row = '<tr id=' + key.GamePlayerId + '><td>' + key.FirstName + " " + key.LastName + '</td><td>' + imgTag + key.HouseName + '</td><td>' + place + '</td></tr>';
+	            $("#game-players-table tbody").append(row);
+	        });
+
+	        details += '<tr><td>Winner</td><td>' + winningHouseImg + winningPlayer + '</td></tr>';
+	        
+
+	        $("#game-details-table tbody").append(details);
+
+	    });
+
+	};
+
+	// load related plugins
+	
+	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
+		loadScript("js/plugin/datatables/dataTables.colVis.min.js", function(){
+			loadScript("js/plugin/datatables/dataTables.tableTools.min.js", function(){
+				loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+			});
+		});
+	});
+
+
+</script>
