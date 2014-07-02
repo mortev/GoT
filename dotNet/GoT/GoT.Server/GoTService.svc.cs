@@ -54,6 +54,44 @@ namespace GoT.Server
         }
 
         /// <inheritdoc />
+        public DashboardDto GetDashboard()
+        {
+            var response = new DashboardDto();
+
+            try
+            {
+                using (var ctx = new GoTDataContext())
+                {
+                    response.NumberOfCompletedGames = ctx.Games.Count(w => w.Status.Equals("Completed"));
+                    var players = ctx.Players.OrderBy(o => o.FirstName).ToList();
+                    response.Players = PlayerVisitor.Visit(players, ctx);
+                    response.Houses = new List<HouseDto>();
+
+                    foreach (var house in ctx.Houses.ToList())
+                    {
+                        response.Houses.Add(new HouseDto
+                        {
+                            CapitalRegionId = house.CapitalRegionId,
+                            Color = house.Color,
+                            Description = house.Description,
+                            HouseId = house.HouseId,
+                            Name = house.Name,
+                            Sigil = house.Sigil,
+                            NumberOfWins = ctx.Games.Count(w => w.GamePlayers.Any(a => a.HouseId == house.HouseId && a.Place == 1))
+                        });
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception(string.Format("Failed to get list of houses."));
+            }
+
+            return response;
+        }
+
+        /// <inheritdoc />
         public List<HouseDto> GetHouses()
         {
             var response = new List<HouseDto>();

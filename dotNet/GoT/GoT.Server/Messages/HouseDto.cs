@@ -13,6 +13,8 @@ namespace GoT.Server.Messages
         public byte[] Sigil { get; set; }
         public string Color { get; set; }
 
+        public Int32 NumberOfWins { get; set; }
+
         public Int32 CapitalRegionId { get; set; }
         public List<CharacterDto> Characters { get; set; }
         public List<HouseCardDto> HouseCards { get; set; }

@@ -27,6 +27,14 @@ namespace GoT.Server
         PlayerDto Login(LoginDto loginDto);
 
         /// <summary>
+        /// Get dashboard info.
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
+        DashboardDto GetDashboard();
+
+        /// <summary>
         /// Get list of Houses.
         /// </summary>
         /// <returns></returns>

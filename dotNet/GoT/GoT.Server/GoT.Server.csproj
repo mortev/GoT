@@ -75,6 +75,7 @@
     <Compile Include="GoTService.svc.cs">
       <DependentUpon>GoTService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Messages\DashboardDto.cs" />
     <Compile Include="Messages\GameFilterDto.cs" />
     <Compile Include="Messages\GamePlayerDto.cs" />
     <Compile Include="Messages\LoginDto.cs" />
