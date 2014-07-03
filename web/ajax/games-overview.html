@@ -57,7 +57,7 @@
 
 
 	    $(".games-table tbody").delegate("tr", "click", function (e) {
-	        gameId = $(this).attr("id");
+	        currentGameId = $(this).attr("id");
 
 	        window.location.href = '#ajax/game.html';
 	    });

@@ -281,9 +281,48 @@ namespace GoT.Server
         }
 
         /// <inheritdoc />
-        public void UpdateGame(GameDto game)
+        public GameDto UpdateGame(GameDto gameDto)
         {
-            throw new NotImplementedException();
+            if (gameDto == null)
+                throw new ArgumentNullException("gameDto");
+
+            var response = new GameDto();
+
+            try
+            {
+                using (var ctx = new GoTDataContext())
+                {
+                    var game = ctx.Games.FirstOrDefault(w => w.GameId == gameDto.GameId);
+                    if (game != null)
+                    {
+                        game.Status = gameDto.Status;
+
+                        if (gameDto.Players != null)
+                        {
+
+                            foreach (var gamePlayerDto in gameDto.Players)
+                            {
+                                var gamePlayer = game.GamePlayers.FirstOrDefault(w => w.GamePlayerId == gamePlayerDto.GamePlayerId);
+                                if (gamePlayer != null)
+                                {
+                                    gamePlayer.Place = gamePlayerDto.Place;
+                                }
+                            }
+                        }
+
+                        ctx.SaveChanges();
+
+                        response = GameVisitor.Visit(game, true, ctx);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Logger.LogError(MethodBase.GetCurrentMethod().Name, "2", exc.Message, exc.StackTrace);
+                throw new Exception("Failed to update game.");
+            }
+
+            return response;
         }
 
         /// <inheritdoc />

@@ -112,7 +112,7 @@ namespace GoT.Server
         /// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = System.ServiceModel.Web.WebMessageBodyStyle.Bare)]
-        void UpdateGame(GameDto gameDto);
+        GameDto UpdateGame(GameDto gameDto);
 
         /// <summary>
         /// Add round to existing game.

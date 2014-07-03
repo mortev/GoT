@@ -1,7 +1,8 @@
 var webApiUrl = "http://192.168.0.117/GoT/GoTService/";
 
 
-var gameId = 0;
+var currentGameId = 0;
+var currentGame = null;
 
 function parseJsonDate(jsonDate) {
     var offset = new Date().getTimezoneOffset() * 60000;
